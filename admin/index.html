@@ -21,7 +21,6 @@ body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 0%,
 a{color:inherit}
 ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:var(--bleu-quebec);border-radius:5px}
 
-/* ===== LOGIN ===== */
 #loginScreen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;background:radial-gradient(circle at 50% 30%,rgba(0,85,150,.25),transparent 60%),var(--bleu-tres-fonce)}
 .login-box{width:100%;max-width:420px;background:rgba(13,21,38,.85);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:24px;padding:45px 40px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .5s ease}
 @keyframes pop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
@@ -36,10 +35,9 @@ a{color:inherit}
 .login-err{color:var(--err);font-size:.85rem;margin-top:14px;min-height:18px;font-weight:600}
 .login-hint{margin-top:22px;font-size:.75rem;color:var(--text-moyen);opacity:.7}
 
-/* ===== APP LAYOUT ===== */
 #adminApp{display:none;min-height:100vh}
 #adminApp.show{display:flex}
-.sidebar{width:260px;background:rgba(8,14,26,.95);border-right:1px solid var(--border);padding:25px 18px;position:fixed;top:0;bottom:0;display:flex;flex-direction:column;gap:8px;z-index:20;transition:transform .3s}
+.sidebar{width:260px;background:rgba(8,14,26,.95);border-right:1px solid var(--border);padding:25px 18px;position:fixed;top:0;bottom:0;display:flex;flex-direction:column;gap:8px;z-index:20;transition:transform .3s;overflow-y:auto}
 .side-logo{display:flex;align-items:center;gap:12px;padding:8px 10px 22px;border-bottom:1px solid var(--border);margin-bottom:14px}
 .side-logo img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(240,228,200,.35)}
 .side-logo b{font-family:'Playfair Display',serif;font-size:1.05rem;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -48,6 +46,7 @@ a{color:inherit}
 .nav-btn i{width:20px;text-align:center;font-size:1rem}
 .nav-btn:hover{background:rgba(0,85,150,.18);color:var(--text-clair)}
 .nav-btn.active{background:linear-gradient(135deg,rgba(0,85,150,.35),rgba(240,228,200,.08));color:var(--or-clair);border-color:var(--border)}
+.nav-btn .badge{margin-left:auto;background:var(--err);color:#fff;font-size:.68rem;font-weight:800;padding:2px 7px;border-radius:20px;min-width:20px;text-align:center}
 .side-foot{margin-top:auto;padding-top:15px;border-top:1px solid var(--border)}
 .logout-btn{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:12px;color:#fc8181;font-weight:600;cursor:pointer;background:none;border:none;width:100%;transition:.25s}
 .logout-btn:hover{background:rgba(229,62,62,.12)}
@@ -60,24 +59,23 @@ a{color:inherit}
 .burger{display:none;background:none;border:1px solid var(--border);color:var(--or-clair);width:42px;height:42px;border-radius:10px;font-size:1.2rem;cursor:pointer}
 .info-banner{display:flex;gap:12px;align-items:flex-start;background:rgba(0,85,150,.12);border:1px solid rgba(0,85,150,.3);border-radius:14px;padding:14px 18px;margin:18px 0 30px;font-size:.85rem;color:var(--text-moyen);line-height:1.6}
 .info-banner i{color:var(--or-clair);margin-top:2px}
+.info-banner code{background:rgba(0,0,0,.3);padding:1px 6px;border-radius:5px;color:var(--or-clair)}
 
 .section{display:none;animation:fade .4s ease}
 .section.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* cards & grids */
 .grid{display:grid;gap:22px}
-.g-stats{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g-stats{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
 .g-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:26px;transition:.3s;position:relative;overflow:hidden}
 .card:hover{border-color:rgba(240,228,200,.25);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
 .stat-card .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--or-clair);background:linear-gradient(135deg,rgba(0,85,150,.45),rgba(240,228,200,.18));margin-bottom:16px}
-.stat-card .num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
-.stat-card .lbl{color:var(--text-moyen);font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px}
+.stat-card .num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.stat-card .lbl{color:var(--text-moyen);font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px}
 .card h3{font-size:1.15rem;margin-bottom:16px;color:#fff;display:flex;align-items:center;gap:10px}
 .card h3 i{color:var(--or-clair)}
 
-/* quick links */
 .qlink{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-radius:12px;background:rgba(5,13,26,.5);border:1px solid var(--border);margin-bottom:10px;transition:.25s}
 .qlink:hover{border-color:rgba(240,228,200,.25);background:rgba(0,85,150,.12)}
 .qlink .l{display:flex;align-items:center;gap:12px;min-width:0}
@@ -88,7 +86,6 @@ a{color:inherit}
 .copy-btn:hover{background:var(--grad-bleu);color:#fff}
 .copy-btn.copied{background:var(--ok);border-color:var(--ok);color:#fff}
 
-/* forms */
 .field{margin-bottom:18px}
 .field label{display:block;font-size:.82rem;color:var(--text-moyen);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
 .field input,.field textarea{width:100%;padding:13px 15px;border-radius:12px;border:1px solid var(--border);background:rgba(5,13,26,.6);color:#fff;font-size:.95rem;font-family:inherit;outline:none;transition:.25s;resize:vertical}
@@ -101,21 +98,72 @@ a{color:inherit}
 .btn-ghost:hover{border-color:var(--or-clair);color:var(--or-clair)}
 .btn-gold{background:var(--grad-or);color:var(--bleu-fonce)}
 .btn-gold:hover{transform:translateY(-2px)}
+.btn-err{background:transparent;border:1px solid rgba(229,62,62,.4);color:#fc8181}
+.btn-err:hover{background:rgba(229,62,62,.12)}
 
-/* preview */
 .preview{border-radius:16px;padding:35px 28px;text-align:center;background:radial-gradient(ellipse at center,rgba(0,85,150,.3),transparent 70%),var(--bleu-tres-fonce);border:1px solid var(--border)}
 .preview .pv-badge{display:inline-block;background:rgba(0,85,150,.4);border:1px solid rgba(240,228,200,.3);color:var(--or-clair);padding:6px 16px;border-radius:30px;font-size:.72rem;letter-spacing:2px;margin-bottom:16px}
 .preview h4{font-family:'Playfair Display',serif;font-size:2.2rem;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
 .preview .pv-sub{color:var(--or-clair);letter-spacing:3px;font-size:.95rem;margin-bottom:14px}
 .preview .pv-desc{color:var(--text-moyen);font-size:.95rem;line-height:1.7;max-width:520px;margin:0 auto}
 
-/* team */
 .team-row{display:flex;align-items:center;gap:16px;padding:16px;border-radius:14px;background:rgba(5,13,26,.5);border:1px solid var(--border);margin-bottom:12px;transition:.25s}
 .team-row:hover{border-color:rgba(240,228,200,.25);transform:translateX(5px)}
 .team-row img{width:54px;height:54px;border-radius:50%;border:2px solid rgba(240,228,200,.3);flex-shrink:0}
 .team-row .info b{display:block;color:#fff;font-size:1.05rem}
 .team-row .info .role{font-size:.78rem;color:var(--or-clair);font-weight:600}
 .team-row .info .u{font-size:.8rem;color:var(--text-moyen)}
+
+/* ===== LOGS ===== */
+.session-card{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(0,85,150,.22),rgba(240,228,200,.05));border:1px solid rgba(0,85,150,.35)}
+.session-card .live{width:14px;height:14px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(56,161,105,.6);animation:livepulse 1.8s infinite;flex-shrink:0}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(56,161,105,.6)}70%{box-shadow:0 0 0 12px rgba(56,161,105,0)}100%{box-shadow:0 0 0 0 rgba(56,161,105,0)}}
+.session-card .sinfo{flex:1;min-width:200px}
+.session-card .sinfo .st{font-weight:700;color:#fff}
+.session-card .sinfo .sd{font-size:.82rem;color:var(--text-moyen);margin-top:3px}
+.session-card .timer{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--or-clair);font-weight:800}
+.log-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.log-controls input,.log-controls select{padding:11px 14px;border-radius:11px;border:1px solid var(--border);background:rgba(5,13,26,.6);color:#fff;font-size:.9rem;outline:none;font-family:inherit}
+.log-controls input{flex:1;min-width:180px}
+.log-controls input:focus,.log-controls select:focus{border-color:var(--or-clair)}
+.log-list{display:flex;flex-direction:column;gap:12px;max-height:620px;overflow-y:auto;padding-right:6px}
+.log-item{background:rgba(5,13,26,.5);border:1px solid var(--border);border-left:4px solid var(--text-moyen);border-radius:13px;padding:15px 18px;cursor:pointer;transition:.25s}
+.log-item:hover{border-color:rgba(240,228,200,.25);background:rgba(0,85,150,.1)}
+.log-item.t-login_success{border-left-color:var(--ok)}
+.log-item.t-login_fail{border-left-color:var(--err)}
+.log-item.t-logout{border-left-color:var(--text-moyen)}
+.log-item.t-action{border-left-color:var(--bleu-quebec)}
+.log-item.t-visit{border-left-color:var(--or-vanille)}
+.log-item.t-session_resume{border-left-color:var(--warn)}
+.log-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.log-badge{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,.08);color:var(--text-clair)}
+.t-login_success .log-badge{background:rgba(56,161,105,.2);color:#9ae6b4}
+.t-login_fail .log-badge{background:rgba(229,62,62,.2);color:#feb2b2}
+.t-action .log-badge{background:rgba(59,130,246,.2);color:#90cdf4}
+.t-visit .log-badge{background:rgba(214,158,46,.2);color:#f6e05e}
+.t-session_resume .log-badge{background:rgba(214,158,46,.2);color:#f6e05e}
+.log-msg{font-weight:600;color:#fff;font-size:.95rem}
+.log-meta{margin-left:auto;font-size:.78rem;color:var(--text-moyen);white-space:nowrap}
+.log-dev{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:.82rem;color:var(--text-moyen);flex-wrap:wrap}
+.log-dev .chip{background:rgba(255,255,255,.05);padding:3px 9px;border-radius:8px;display:inline-flex;align-items:center;gap:6px}
+.log-dev .chip i{color:var(--or-clair)}
+.log-detail{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border)}
+.log-item.open .log-detail{display:block}
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 18px}
+.detail-grid .d{font-size:.8rem}
+.detail-grid .d .k{color:var(--text-moyen);text-transform:uppercase;letter-spacing:.5px;font-size:.68rem;display:block;margin-bottom:2px}
+.detail-grid .d .v{color:var(--text-clair);word-break:break-word}
+.detail-ua{margin-top:12px;font-size:.72rem;color:var(--text-moyen);background:rgba(0,0,0,.3);padding:10px;border-radius:8px;word-break:break-all;font-family:monospace}
+.log-empty{text-align:center;color:var(--text-moyen);padding:40px;font-size:.9rem}
+
+/* toggle */
+.switch{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:rgba(255,255,255,.15);border-radius:30px;transition:.3s;cursor:pointer}
+.slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
+.switch input:checked + .slider{background:var(--ok)}
+.switch input:checked + .slider:before{transform:translateX(20px)}
+.track-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 
 .toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--panel2);border:1px solid var(--ok);color:#fff;padding:13px 24px;border-radius:12px;font-weight:600;font-size:.9rem;box-shadow:0 15px 40px rgba(0,0,0,.5);z-index:100;opacity:0;transition:.4s;display:flex;align-items:center;gap:10px}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -126,12 +174,12 @@ a{color:inherit}
   .sidebar.open{transform:translateX(0)}
   .main{margin-left:0;padding:20px}
   .burger{display:block}
+  .log-meta{margin-left:0;width:100%}
 }
 </style>
 </head>
 <body>
 
-<!-- ============ LOGIN ============ -->
 <div id="loginScreen">
   <div class="login-box">
     <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo" class="login-logo">
@@ -142,11 +190,10 @@ a{color:inherit}
       <button type="submit"><i class="fas fa-lock-open"></i> Se connecter</button>
     </form>
     <div class="login-err" id="loginErr"></div>
-    <p class="login-hint"><i class="fas fa-shield-alt"></i> Zone protégée · Communauté Québec</p>
+    <p class="login-hint"><i class="fas fa-shield-alt"></i> Connexions journalisées · tentative & appareil enregistrés</p>
   </div>
 </div>
 
-<!-- ============ ADMIN APP ============ -->
 <div id="adminApp">
   <aside class="sidebar" id="sidebar">
     <div class="side-logo">
@@ -154,6 +201,7 @@ a{color:inherit}
       <div><b>CQ Admin</b><span>PANEL</span></div>
     </div>
     <button class="nav-btn active" data-target="dashboard"><i class="fas fa-gauge-high"></i> Tableau de bord</button>
+    <button class="nav-btn" data-target="logs"><i class="fas fa-clipboard-list"></i> Logs & Sécurité <span class="badge" id="logBadge">0</span></button>
     <button class="nav-btn" data-target="content"><i class="fas fa-pen-to-square"></i> Contenu du site</button>
     <button class="nav-btn" data-target="links"><i class="fas fa-link"></i> Liens & Réseaux</button>
     <button class="nav-btn" data-target="team"><i class="fas fa-users-gear"></i> Équipe</button>
@@ -178,7 +226,7 @@ a{color:inherit}
 
     <div class="info-banner">
       <i class="fas fa-circle-info"></i>
-      <div><b>Mode local.</b> Ce panel tourne côté navigateur (GitHub Pages = site statique, sans serveur). Le mot de passe sécurise l'accès visuel mais n'est pas un chiffrement serveur, et les modifications de contenu sont enregistrées sur <b>cet appareil uniquement</b>. Pour publier un changement sur le site public, applique-le dans <code>index.html</code>.</div>
+      <div><b>Mode local + logs.</b> Ce panel tourne côté navigateur (GitHub Pages = sans serveur). Le mot de passe sécurise l'accès visuel, et <b>toute connexion / action est journalisée</b> dans l'onglet <i>Logs & Sécurité</i> (appareil, IP, heure, durée). Les visites du <b>site public</b> peuvent aussi y remonter via l'option <i>webhook</i> (voir l'onglet Logs). Les modifs de contenu restent sur cet appareil ; pour publier, applique-les dans <code>index.html</code>.</div>
     </div>
 
     <!-- DASHBOARD -->
@@ -203,6 +251,62 @@ a{color:inherit}
           <div class="qlink"><div class="l"><i class="fas fa-robot" style="color:var(--or-clair)"></i><div class="t">Bots actifs</div></div><span style="color:var(--or-clair);font-weight:700;font-size:.85rem">13 EN LIGNE</span></div>
           <div class="qlink"><div class="l"><i class="fas fa-crown" style="color:var(--or-vanille)"></i><div class="t">Boosts</div></div><span style="color:var(--or-vanille);font-weight:700;font-size:.85rem">NIVEAU 3</span></div>
         </div>
+      </div>
+    </section>
+
+    <!-- LOGS -->
+    <section class="section" id="logs">
+      <div class="card session-card" style="margin-bottom:22px">
+        <div class="live"></div>
+        <div class="sinfo">
+          <div class="st">Session en cours</div>
+          <div class="sd" id="sessionDevice">Chargement des infos de l'appareil…</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:.7rem;color:var(--text-moyen);text-transform:uppercase;letter-spacing:1px">Durée</div>
+          <div class="timer" id="sessionElapsed">00:00:00</div>
+        </div>
+      </div>
+
+      <div class="grid g-stats" style="margin-bottom:22px">
+        <div class="card stat-card"><div class="ico"><i class="fas fa-right-to-bracket"></i></div><div class="num" id="cLogins">0</div><div class="lbl">Connexions</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-triangle-exclamation"></i></div><div class="num" id="cFails">0</div><div class="lbl">Échecs</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-globe"></i></div><div class="num" id="cVisits">0</div><div class="lbl">Visites site</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-bolt"></i></div><div class="num" id="cActions">0</div><div class="lbl">Actions</div></div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-clipboard-list"></i> Journal des événements</h3>
+        <div class="log-controls">
+          <input type="text" id="logSearch" placeholder="🔍 Rechercher (appareil, IP, message…)">
+          <select id="logFilter">
+            <option value="all">Tous les types</option>
+            <option value="login_success">Connexions réussies</option>
+            <option value="login_fail">Échecs de connexion</option>
+            <option value="visit">Visites site public</option>
+            <option value="action">Actions</option>
+            <option value="logout">Déconnexions</option>
+          </select>
+          <button class="btn btn-gold" id="exportLogs"><i class="fas fa-download"></i> Exporter</button>
+          <button class="btn btn-err" id="clearLogs"><i class="fas fa-trash"></i> Vider</button>
+        </div>
+        <div class="log-list" id="logList"></div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <h3><i class="fas fa-satellite-dish"></i> Tracking des visiteurs du site public <span style="font-size:.7rem;font-weight:600;color:var(--text-moyen)">(optionnel)</span></h3>
+        <p style="color:var(--text-moyen);font-size:.85rem;line-height:1.7;margin-bottom:18px">Active ceci pour que chaque visite de <code>index.html</code> remonte ici. Ça utilise <b>webhook.site</b> (gratuit, sans compte) : le site public y envoie les infos, et le panel les lit. <b>À coller au même endroit dans <code>index.html</code></b> (voir le mini-tuto sous le code). <i>Note : l'ID du webhook étant présent dans le site public, les logs bruts restent consultables sur webhook.site — acceptable pour un petit serveur, mais pas pour des données sensibles.</i></p>
+        <div class="track-row" style="margin-bottom:14px">
+          <label class="switch"><input type="checkbox" id="trackEnabled"><span class="slider"></span></label>
+          <span style="font-weight:600">Activer le tracking</span>
+        </div>
+        <div class="field" style="margin-bottom:14px"><label>ID du webhook (le code après webhook.site/)</label><input type="text" id="webhookId" placeholder="ex: 12345678-abcd-..."></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="saveTrack"><i class="fas fa-floppy-disk"></i> Enregistrer</button>
+          <button class="btn btn-ghost" id="testTrack"><i class="fas fa-flask"></i> Tester / rafraîchir</button>
+        </div>
+        <div id="trackStatus" style="margin-top:14px;font-size:.85rem;color:var(--text-moyen)"></div>
+        <div class="log-list" id="visitList" style="margin-top:14px;max-height:380px"></div>
       </div>
     </section>
 
@@ -264,7 +368,7 @@ a{color:inherit}
       </div>
       <div class="card">
         <h3><i class="fas fa-circle-info"></i> Source des données</h3>
-        <p style="color:var(--text-moyen);line-height:1.8">Les chiffres <b style="color:var(--or-clair)">Membres</b> et <b style="color:var(--or-clair)">En ligne</b> proviennent de la page Disboard du serveur (388 / 90 au dernier relevé). Les salons, rôles et bots sont issus de l'inventaire du serveur. Sur un site statique, ces valeurs sont mises à jour manuellement dans ce panel ; un rafraîchissement 100% automatique nécessiterait un petit serveur backend.</p>
+        <p style="color:var(--text-moyen);line-height:1.8">Les chiffres <b style="color:var(--or-clair)">Membres</b> (388) et <b style="color:var(--or-clair)">En ligne</b> (90) proviennent de la page Disboard du serveur. Les salons, rôles et bots sont issus de l'inventaire du serveur. Sur un site statique, ces valeurs sont mises à jour manuellement dans ce panel.</p>
       </div>
     </section>
 
@@ -273,9 +377,10 @@ a{color:inherit}
       <div class="card">
         <h3><i class="fas fa-sliders"></i> Paramètres du panel</h3>
         <div class="qlink"><div class="l"><i class="fas fa-key"></i><div><div class="t">Mot de passe</div><div class="u">Stocké sous forme de hash (non visible en clair)</div></div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● ACTIF</span></div>
+        <div class="qlink"><div class="l"><i class="fas fa-clipboard-list"></i><div><div class="t">Journalisation</div><div class="u">Connexions, échecs & actions enregistrés</div></div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● ACTIF</span></div>
         <div class="qlink"><div class="l"><i class="fas fa-cookie-bite"></i><div><div class="t">Session enregistrée</div><div class="u">Tu restes connecté sur cet appareil</div></div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● OUI</span></div>
         <div class="btn-row" style="margin-top:18px">
-          <button class="btn btn-ghost" id="clearSession"><i class="fas fa-trash"></i> Effacer les données locales</button>
+          <button class="btn btn-err" id="clearSession"><i class="fas fa-trash"></i> Effacer les données locales</button>
         </div>
       </div>
     </section>
@@ -286,140 +391,238 @@ a{color:inherit}
 
 <script>
 /* ====== CONFIG ====== */
-// Hash SHA-256 du mot de passe (le mot de passe n'apparaît PAS en clair ici).
 const PWD_HASH = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
-const SESSION_KEY = 'cq_admin_session';
-const CONTENT_KEY = 'cq_admin_content';
-
-const DEFAULTS = {
-  title: 'COMMUNAUTÉ QUÉBEC',
-  sub: 'UNIS • ENTRAIDE • RESPECT • PARTAGE',
-  desc: "Bienvenue sur le serveur francophone dédié aux échanges, au partage et à la bonne ambiance. Que vous soyez du Québec ou passionné par la culture québécoise, vous trouverez ici un espace chaleureux, actif et respectueux pour discuter, jouer et créer des liens durables."
-};
-
-const LINKS = [
-  {t:'Invitation Discord', u:'https://discord.gg/commuqc', i:'fab fa-discord'},
-  {t:'TikTok', u:'https://www.tiktok.com/@communaut.qubec', i:'fab fa-tiktok'},
-  {t:'Disboard', u:'https://disboard.org/fr/server/1469888825294852130', i:'fas fa-arrow-up-from-bracket'},
-  {t:'Site public', u:'https://jacobin904.github.io/Communaute-Quebec/', i:'fas fa-globe'},
-  {t:'Ouvrir un ticket', u:'https://discord.com/channels/1469888825294852130/1469902008637980684', i:'fas fa-ticket'},
-  {t:'Devenir Staff', u:'https://discord.com/channels/1469888825294852130/1472999931487977513', i:'fas fa-user-shield'},
-  {t:'Partenariat', u:'https://discord.com/channels/1469888825294852130/1489674814997401823', i:'fas fa-handshake'}
+const SESSION_KEY='cq_admin_session', CONTENT_KEY='cq_admin_content', LOGS_KEY='cq_admin_logs', TRACK_KEY='cq_admin_track', LOGIN_TS='cq_login_ts';
+const DEFAULTS={title:'COMMUNAUTÉ QUÉBEC',sub:'UNIS • ENTRAIDE • RESPECT • PARTAGE',desc:"Bienvenue sur le serveur francophone dédié aux échanges, au partage et à la bonne ambiance. Que vous soyez du Québec ou passionné par la culture québécoise, vous trouverez ici un espace chaleureux, actif et respectueux pour discuter, jouer et créer des liens durables."};
+const LINKS=[
+  {t:'Invitation Discord',u:'https://discord.gg/commuqc',i:'fab fa-discord'},
+  {t:'TikTok',u:'https://www.tiktok.com/@communaut.qubec',i:'fab fa-tiktok'},
+  {t:'Disboard',u:'https://disboard.org/fr/server/1469888825294852130',i:'fas fa-arrow-up-from-bracket'},
+  {t:'Site public',u:'https://jacobin904.github.io/Communaute-Quebec/',i:'fas fa-globe'},
+  {t:'Ouvrir un ticket',u:'https://discord.com/channels/1469888825294852130/1469902008637980684',i:'fas fa-ticket'},
+  {t:'Devenir Staff',u:'https://discord.com/channels/1469888825294852130/1472999931487977513',i:'fas fa-user-shield'},
+  {t:'Partenariat',u:'https://discord.com/channels/1469888825294852130/1489674814997401823',i:'fas fa-handshake'}
 ];
+const TYPE_LABEL={login_success:'Connexion',login_fail:'Échec',logout:'Déconnexion',action:'Action',visit:'Visite site',session_resume:'Reprise'};
 
 /* ====== UTILS ====== */
-const $ = s => document.querySelector(s);
-async function sha256(text){
-  if(!window.crypto || !crypto.subtle) return null; // fallback géré ailleurs
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
-  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+const $=s=>document.querySelector(s);
+function toast(m){$('#toastMsg').textContent=m;const t=$('#toast');t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(()=>t.classList.remove('show'),2200);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function fmtDate(iso){try{return new Date(iso).toLocaleString('fr-CA',{dateStyle:'short',timeStyle:'medium'});}catch(e){return iso;}}
+function devIcon(t){return t==='Mobile'?'fa-mobile-screen':t==='Tablette'?'fa-tablet-screen-button':'fa-desktop';}
+
+async function sha256(t){if(!window.crypto||!crypto.subtle)return null;const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+
+/* ====== DEVICE FINGERPRINT ====== */
+function parseUA(ua){
+  let os='Inconnu',br='Inconnu',type='Desktop',ver='';
+  if(/Windows NT 10/.test(ua))os='Windows 10/11';else if(/Windows/.test(ua))os='Windows';
+  else if(/Mac OS X ([0-9_]+)/.test(ua))os='macOS '+RegExp.$1.replace(/_/g,'.');
+  else if(/Android ([0-9.]+)/.test(ua)){os='Android '+RegExp.$1;}
+  else if(/iPhone OS ([0-9_]+)/.test(ua))os='iOS '+RegExp.$1.replace(/_/g,'.');
+  else if(/iPad/.test(ua))os='iPadOS';else if(/CrOS/.test(ua))os='Chrome OS';else if(/Linux/.test(ua))os='Linux';
+  if(/Edg\/([0-9.]+)/.test(ua)){br='Edge';ver=RegExp.$1;}else if(/OPR\/([0-9.]+)/.test(ua)||/Opera/.test(ua)){br='Opera';}
+  else if(/Chrome\/([0-9.]+)/.test(ua)){br='Chrome';ver=RegExp.$1;}else if(/Firefox\/([0-9.]+)/.test(ua)){br='Firefox';ver=RegExp.$1;}
+  else if(/Version\/([0-9.]+).*Safari/.test(ua)){br='Safari';ver=RegExp.$1;}
+  if(/Mobi|Android.*Mobile|iPhone/.test(ua))type='Mobile';else if(/iPad|Android(?!.*Mobile)|Tablet/.test(ua))type='Tablette';
+  return {os,browser:br+(ver?' '+ver.split('.')[0]:''),type};
 }
-function toast(msg){
-  $('#toastMsg').textContent = msg;
-  const t = $('#toast'); t.classList.add('show');
-  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove('show'), 2200);
+let cachedDevice=null;
+async function getDeviceInfo(){
+  const ua=navigator.userAgent,p=parseUA(ua);let ip='—';
+  try{const r=await fetch('https://api.ipify.org?format=json');const j=await r.json();ip=j.ip;}catch(e){}
+  const tz=(Intl.DateTimeFormat().resolvedOptions().timeZone)||'—';
+  const cn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  return {os:p.os,browser:p.browser,deviceType:p.type,ip,
+    screen:screen.width+'×'+screen.height+' @'+(window.devicePixelRatio||1).toFixed(1)+'x',
+    viewport:window.innerWidth+'×'+window.innerHeight,
+    language:navigator.language,timezone:tz,
+    cores:navigator.hardwareConcurrency||'—',
+    memory:navigator.deviceMemory?navigator.deviceMemory+' Go':'—',
+    touch:navigator.maxTouchPoints||0,
+    network:cn?((cn.effectiveType||'—')+(cn.downlink?' · '+cn.downlink+'Mbps':'')):'—',
+    platform:navigator.platform||'—',colorDepth:screen.colorDepth+'-bit',
+    referrer:document.referrer||'(direct)',userAgent:ua};
 }
+async function ensureDevice(){if(!cachedDevice)cachedDevice=await getDeviceInfo();return cachedDevice;}
+
+/* ====== LOGS STORAGE ====== */
+function loadLogs(){try{return JSON.parse(localStorage.getItem(LOGS_KEY))||[];}catch(e){return[];}}
+function saveLogs(a){localStorage.setItem(LOGS_KEY,JSON.stringify(a));}
+async function logEvent(type,message,extra={}){
+  const dev=await ensureDevice();
+  const entry={id:Date.now()+'-'+Math.random().toString(36).slice(2,7),ts:new Date().toISOString(),type,message,device:dev,extra};
+  let logs=loadLogs();logs.unshift(entry);if(logs.length>600)logs=logs.slice(0,600);
+  saveLogs(logs);updateLogBadge();updateLogStats();
+  if($('#logs').classList.contains('active'))renderLogs();
+  return entry;
+}
+function updateLogBadge(){$('#logBadge').textContent=loadLogs().length;}
+function updateLogStats(){
+  const l=loadLogs();
+  $('#cLogins').textContent=l.filter(x=>x.type==='login_success'||x.type==='session_resume').length;
+  $('#cFails').textContent=l.filter(x=>x.type==='login_fail').length;
+  $('#cVisits').textContent=l.filter(x=>x.type==='visit').length;
+  $('#cActions').textContent=l.filter(x=>x.type==='action').length;
+}
+
+/* ====== RENDER LOGS ====== */
+function renderLogs(){
+  const q=($('#logSearch').value||'').toLowerCase();
+  const f=$('#logFilter').value;
+  let logs=loadLogs();
+  if(f!=='all')logs=logs.filter(x=>x.type===f);
+  if(q)logs=logs.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+  const box=$('#logList');
+  if(!logs.length){box.innerHTML='<div class="log-empty"><i class="fas fa-feather"></i><br>Aucun événement à afficher.</div>';return;}
+  box.innerHTML=logs.map(x=>{
+    const d=x.device||{};
+    const detail=Object.entries({...d,userAgent:undefined}).filter(([k,v])=>v!=null&&v!=='').map(([k,v])=>`<div class="d"><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join('');
+    const extra=x.extra&&Object.keys(x.extra).length?Object.entries(x.extra).map(([k,v])=>`<div class="d"><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join(''):'';
+    return `<div class="log-item t-${x.type}" data-id="${x.id}">
+      <div class="log-head">
+        <span class="log-badge">${esc(TYPE_LABEL[x.type]||x.type)}</span>
+        <span class="log-msg">${esc(x.message)}</span>
+        <span class="log-meta">${esc(fmtDate(x.ts))}</span>
+      </div>
+      <div class="log-dev">
+        <span class="chip"><i class="fas ${devIcon(d.deviceType)}"></i>${esc(d.deviceType||'?')}</span>
+        <span class="chip"><i class="fab fa-${(d.browser||'').toLowerCase().startsWith('safari')?'safari':(d.browser||'').toLowerCase().startsWith('firefox')?'firefox':(d.browser||'').toLowerCase().startsWith('edge')?'edge':'chrome'}"></i>${esc(d.browser||'?')}</span>
+        <span class="chip"><i class="fas fa-microchip"></i>${esc(d.os||'?')}</span>
+        <span class="chip"><i class="fas fa-network-wired"></i>IP ${esc(d.ip||'?')}</span>
+      </div>
+      <div class="log-detail">
+        <div class="detail-grid">${detail}${extra}</div>
+        <div class="detail-ua"><b>User-Agent :</b> ${esc(d.userAgent||'—')}</div>
+        <div style="margin-top:8px;font-size:.72rem;color:var(--text-moyen)">ID ${esc(x.id)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+$('#logList').addEventListener('click',e=>{const it=e.target.closest('.log-item');if(it)it.classList.toggle('open');});
+$('#logSearch').addEventListener('input',renderLogs);
+$('#logFilter').addEventListener('change',renderLogs);
+$('#exportLogs').addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify(loadLogs(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cq-logs-'+Date.now()+'.json';a.click();
+  logEvent('action','Export des logs téléchargé');toast('Logs exportés ✓');
+});
+$('#clearLogs').addEventListener('click',()=>{if(confirm('Vider tout le journal des logs ?')){saveLogs([]);renderLogs();updateLogBadge();updateLogStats();toast('Journal vidé');}});
+
+/* ====== SESSION CARD + TIMER ====== */
+function updateSessionCard(){
+  if(cachedDevice){const d=cachedDevice;$('#sessionDevice').innerHTML=`<i class="fas ${devIcon(d.deviceType)}"></i> ${esc(d.deviceType)} · ${esc(d.os)} · ${esc(d.browser)} · IP ${esc(d.ip)} · ${esc(d.timezone)}`;}
+  const ts=+sessionStorage.getItem(LOGIN_TS)||Date.now();
+  const s=Math.floor((Date.now()-ts)/1000);
+  const h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),ss=String(s%60).padStart(2,'0');
+  $('#sessionElapsed').textContent=`${h}:${m}:${ss}`;
+}
+setInterval(updateSessionCard,1000);
+
+/* ====== WEBHOOK TRACKING (visites site public) ====== */
+function getTrack(){try{return JSON.parse(localStorage.getItem(TRACK_KEY))||{id:'',enabled:false};}catch(e){return{id:'',enabled:false};}}
+function loadTrackUI(){const t=getTrack();$('#trackEnabled').checked=t.enabled;$('#webhookId').value=t.id||'';refreshTrackStatus();}
+function refreshTrackStatus(){
+  const t=getTrack();const st=$('#trackStatus');
+  if(!t.enabled){st.innerHTML='<span style="color:var(--warn)">● Tracking désactivé.</span>';$('#visitList').innerHTML='';return;}
+  if(!t.id){st.innerHTML='<span style="color:var(--err)">● Activé mais aucun ID webhook renseigné.</span>';$('#visitList').innerHTML='';return;}
+  st.innerHTML='<span style="color:var(--text-moyen)">● Activé · ID <code>'+esc(t.id.slice(0,8))+'…</code> — chargement…</span>';
+  fetchVisits();
+}
+async function fetchVisits(){
+  const t=getTrack();if(!t.enabled||!t.id)return;
+  try{
+    const r=await fetch('https://webhook.site/'+t.id+'/requests?sorting=newest');
+    if(!r.ok)throw 0;const j=await r.json();const data=j.data||[];
+    const visits=data.map(req=>{let body={};try{body=JSON.parse(req.content||'{}');}catch(e){}return{ts:body.ts||req.date,ip:req.ip||((body.device)||{}).ip||'—',device:body.device||{},page:body.page||'—',referrer:(body.device||{}).referrer||req.referer||'(direct)'};}).filter(v=>v.page||v.device.os);
+    $('#trackStatus').innerHTML='<span style="color:var(--ok)">● '+visits.length+' visite(s) récupérée(s) via webhook.site</span> · <a href="https://webhook.site/#!/view/'+esc(t.id)+'" target="_blank" style="color:var(--or-clair)">ouvrir sur webhook.site ↗</a>';
+    const box=$('#visitList');
+    if(!visits.length){box.innerHTML='<div class="log-empty">Aucune visite reçue pour l\'instant. Ouvre ton site public (dans un autre appareil / navigation privée) pour tester.</div>';return;}
+    box.innerHTML=visits.map(v=>{const d=v.device;return `<div class="log-item t-visit">
+      <div class="log-head"><span class="log-badge">Visite site</span><span class="log-msg">${esc(v.page)}</span><span class="log-meta">${esc(fmtDate(v.ts))}</span></div>
+      <div class="log-dev">
+        <span class="chip"><i class="fas ${devIcon(d.deviceType)}"></i>${esc(d.deviceType||'?')}</span>
+        <span class="chip"><i class="fas fa-microchip"></i>${esc(d.os||'?')}</span>
+        <span class="chip"><i class="fas fa-window-maximize"></i>${esc(d.browser||'?')}</span>
+        <span class="chip"><i class="fas fa-network-wired"></i>IP ${esc(v.ip)}</span>
+      </div></div>`;}).join('');
+  }catch(e){
+    $('#trackStatus').innerHTML='<span style="color:var(--warn)">● Lecture bloquée (CORS) depuis le panel — les visites sont quand même enregistrées. <a href="https://webhook.site/#!/view/'+esc(t.id)+'" target="_blank" style="color:var(--or-clair)">Voir sur webhook.site ↗</a></span>';
+  }
+}
+$('#saveTrack').addEventListener('click',()=>{
+  const t={enabled:$('#trackEnabled').checked,id:$('#webhookId').value.trim()};
+  localStorage.setItem(TRACK_KEY,JSON.stringify(t));
+  logEvent('action','Tracking visiteurs '+(t.enabled?'activé':'désactivé'),{webhook:t.id? t.id.slice(0,8)+'…':'(vide)'});
+  toast('Tracking enregistré ✓');refreshTrackStatus();
+});
+$('#trackEnabled').addEventListener('change',()=>{if($('#trackEnabled').checked&&!$('#webhookId').value.trim())toast('Pense à renseigner l\'ID du webhook');});
+$('#testTrack').addEventListener('click',()=>{const t=getTrack();if(!t.id){toast('Renseigne d\'abord un ID webhook');return;}fetchVisits();toast('Rafraîchissement…');});
 
 /* ====== LOGIN / SESSION ====== */
-function showApp(){ $('#loginScreen').style.display='none'; $('#adminApp').classList.add('show'); }
-function showLogin(){ $('#loginScreen').style.display='flex'; $('#adminApp').classList.remove('show'); }
+function showApp(){$('#loginScreen').style.display='none';$('#adminApp').classList.add('show');
+  if(!sessionStorage.getItem(LOGIN_TS)){sessionStorage.setItem(LOGIN_TS,Date.now());logEvent('session_resume','Session admin reprise (page rechargée / nouvel onglet)');}
+  ensureDevice().then(updateSessionCard);
+}
+function showLogin(){$('#loginScreen').style.display='flex';$('#adminApp').classList.remove('show');}
+if(localStorage.getItem(SESSION_KEY)==='1')showApp();
 
-if(localStorage.getItem(SESSION_KEY) === '1'){ showApp(); }
-
-$('#loginForm').addEventListener('submit', async e=>{
-  e.preventDefault();
-  const val = $('#pwd').value;
-  const err = $('#loginErr');
-  err.textContent = '';
-  const h = await sha256(val);
-  // comparaison hash (ou fallback clair si crypto indisponible)
-  const ok = h ? (h === PWD_HASH) : (val === '1234');
+$('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();const val=$('#pwd').value,err=$('#loginErr');err.textContent='';
+  const h=await sha256(val);const ok=h?(h===PWD_HASH):(val==='1234');
   if(ok){
-    localStorage.setItem(SESSION_KEY,'1');
-    $('#pwd').value='';
-    showApp();
-    toast('Connexion réussie ⚜️');
-  } else {
-    err.textContent = '❌ Mot de passe incorrect';
-    $('#pwd').style.borderColor = 'var(--err)';
-    setTimeout(()=>$('#pwd').style.borderColor='', 1200);
+    localStorage.setItem(SESSION_KEY,'1');sessionStorage.setItem(LOGIN_TS,Date.now());
+    await logEvent('login_success','Connexion réussie au panel admin');
+    $('#pwd').value='';showApp();updateSessionCard();toast('Connexion réussie ⚜️');
+  }else{
+    await logEvent('login_fail','Tentative de connexion ÉCHOUÉE',{motDePasseTenté:'•'.repeat(val.length)+' ('+val.length+' car.)'});
+    err.textContent='❌ Mot de passe incorrect (tentative journalisée)';
+    $('#pwd').style.borderColor='var(--err)';setTimeout(()=>$('#pwd').style.borderColor='',1200);
   }
 });
-
-$('#logoutBtn').addEventListener('click', ()=>{
-  localStorage.removeItem(SESSION_KEY);
-  showLogin();
+$('#logoutBtn').addEventListener('click',async()=>{
+  const ts=+sessionStorage.getItem(LOGIN_TS)||Date.now();
+  const dur=Math.floor((Date.now()-ts)/1000);
+  await logEvent('logout','Déconnexion du panel',{dureeSession:dur+'s'});
+  localStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(LOGIN_TS);showLogin();
 });
 
-/* ====== NAVIGATION ====== */
-const titles = {dashboard:'Tableau de bord',content:'Contenu du site',links:'Liens & Réseaux',team:'Équipe',stats:'Statistiques',settings:'Paramètres'};
+/* ====== NAV ====== */
+const titles={dashboard:'Tableau de bord',logs:'Logs & Sécurité',content:'Contenu du site',links:'Liens & Réseaux',team:'Équipe',stats:'Statistiques',settings:'Paramètres'};
 document.querySelectorAll('.nav-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const tgt = btn.dataset.target;
-    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-    $('#'+tgt).classList.add('active');
-    $('#secTitle').textContent = titles[tgt];
-    $('#sidebar').classList.remove('open');
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+    const tgt=btn.dataset.target;document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$('#'+tgt).classList.add('active');
+    $('#secTitle').textContent=titles[tgt];$('#sidebar').classList.remove('open');
+    if(tgt==='logs'){renderLogs();updateLogStats();refreshTrackStatus();}
   });
 });
-$('#burger').addEventListener('click', ()=> $('#sidebar').classList.toggle('open'));
+$('#burger').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
 
-/* ====== LINKS LIST ====== */
-const ll = $('#linksList');
-LINKS.forEach((l,idx)=>{
-  const row = document.createElement('div');
-  row.className='qlink';
-  row.innerHTML = `<div class="l"><i class="${l.i}"></i><div><div class="t">${l.t}</div><div class="u">${l.u}</div></div></div>
-    <button class="copy-btn" data-i="${idx}" title="Copier"><i class="fas fa-copy"></i></button>`;
-  ll.appendChild(row);
-});
-ll.addEventListener('click', e=>{
-  const b = e.target.closest('.copy-btn'); if(!b) return;
-  const url = LINKS[b.dataset.i].u;
-  navigator.clipboard.writeText(url).then(()=>{
-    b.classList.add('copied'); b.innerHTML='<i class="fas fa-check"></i>';
-    toast('Lien copié !');
-    setTimeout(()=>{ b.classList.remove('copied'); b.innerHTML='<i class="fas fa-copy"></i>'; }, 1500);
-  });
-});
+/* ====== LINKS ====== */
+const ll=$('#linksList');
+LINKS.forEach((l,idx)=>{const row=document.createElement('div');row.className='qlink';
+  row.innerHTML=`<div class="l"><i class="${l.i}"></i><div><div class="t">${l.t}</div><div class="u">${l.u}</div></div></div><button class="copy-btn" data-i="${idx}" title="Copier"><i class="fas fa-copy"></i></button>`;ll.appendChild(row);});
+ll.addEventListener('click',e=>{const b=e.target.closest('.copy-btn');if(!b)return;const url=LINKS[b.dataset.i].u;
+  navigator.clipboard.writeText(url).then(()=>{b.classList.add('copied');b.innerHTML='<i class="fas fa-check"></i>';logEvent('action','Lien copié',{lien:LINKS[b.dataset.i].t});toast('Lien copié !');setTimeout(()=>{b.classList.remove('copied');b.innerHTML='<i class="fas fa-copy"></i>';},1500);});});
 
-/* ====== CONTENT EDITOR ====== */
-const edT=$('#edTitle'), edS=$('#edSub'), edD=$('#edDesc');
-function loadContent(){
-  let c = DEFAULTS;
-  try{ const s = localStorage.getItem(CONTENT_KEY); if(s) c = {...DEFAULTS, ...JSON.parse(s)}; }catch(e){}
-  edT.value=c.title; edS.value=c.sub; edD.value=c.desc;
-  renderPreview(c);
-}
-function renderPreview(c){ $('#pvTitle').textContent=c.title; $('#pvSub').textContent=c.sub; $('#pvDesc').textContent=c.desc; }
-function currentContent(){ return {title:edT.value, sub:edS.value, desc:edD.value}; }
-[edT,edS,edD].forEach(el=> el.addEventListener('input', ()=> renderPreview(currentContent())));
-$('#saveContent').addEventListener('click', ()=>{
-  localStorage.setItem(CONTENT_KEY, JSON.stringify(currentContent()));
-  toast('Contenu sauvegardé sur cet appareil ✓');
-});
-$('#resetContent').addEventListener('click', ()=>{
-  localStorage.removeItem(CONTENT_KEY); loadContent(); toast('Valeurs par défaut restaurées');
-});
-$('#copyJson').addEventListener('click', ()=>{
-  navigator.clipboard.writeText(JSON.stringify(currentContent(), null, 2))
-    .then(()=> toast('Config JSON copiée !'));
-});
+/* ====== CONTENT ====== */
+const edT=$('#edTitle'),edS=$('#edSub'),edD=$('#edDesc');
+function loadContent(){let c=DEFAULTS;try{const s=localStorage.getItem(CONTENT_KEY);if(s)c={...DEFAULTS,...JSON.parse(s)};}catch(e){}edT.value=c.title;edS.value=c.sub;edD.value=c.desc;renderPreview(c);}
+function renderPreview(c){$('#pvTitle').textContent=c.title;$('#pvSub').textContent=c.sub;$('#pvDesc').textContent=c.desc;}
+function cur(){return{title:edT.value,sub:edS.value,desc:edD.value};}
+[edT,edS,edD].forEach(el=>el.addEventListener('input',()=>renderPreview(cur())));
+$('#saveContent').addEventListener('click',()=>{localStorage.setItem(CONTENT_KEY,JSON.stringify(cur()));logEvent('action','Contenu du hero sauvegardé');toast('Contenu sauvegardé ✓');});
+$('#resetContent').addEventListener('click',()=>{localStorage.removeItem(CONTENT_KEY);loadContent();logEvent('action','Contenu réinitialisé aux valeurs par défaut');toast('Valeurs par défaut restaurées');});
+$('#copyJson').addEventListener('click',()=>{navigator.clipboard.writeText(JSON.stringify(cur(),null,2)).then(()=>{logEvent('action','Config JSON copiée');toast('Config JSON copiée !');});});
 
 /* ====== SETTINGS ====== */
-$('#clearSession').addEventListener('click', ()=>{
-  if(confirm('Effacer toutes les données locales du panel (session + contenu) ?')){
-    localStorage.removeItem(SESSION_KEY);
-    localStorage.removeItem(CONTENT_KEY);
-    toast('Données effacées');
-    setTimeout(showLogin, 800);
-  }
-});
+$('#clearSession').addEventListener('click',()=>{if(confirm('Effacer toutes les données locales (session + contenu + logs) ?')){localStorage.removeItem(SESSION_KEY);localStorage.removeItem(CONTENT_KEY);localStorage.removeItem(LOGS_KEY);localStorage.removeItem(TRACK_KEY);sessionStorage.removeItem(LOGIN_TS);toast('Données effacées');setTimeout(showLogin,800);}});
 
-/* init */
-loadContent();
+/* ====== INIT ====== */
+getDeviceInfo().then(d=>{cachedDevice=d;updateSessionCard();});
+loadContent();loadTrackUI();updateLogBadge();updateLogStats();
 </script>
 </body>
 </html>
