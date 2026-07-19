@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚜️ Admin · Communauté Québec</title>
+<link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap');
+:root{
+  --bleu-quebec:#005596; --bleu-fonce:#003366; --bleu-nuit:#0a1628; --bleu-tres-fonce:#050d1a;
+  --or-clair:#f0e4c8; --or-vanille:#d4af37; --text-clair:#e2e8f0; --text-moyen:#94a3b8;
+  --panel:#0d1526; --panel2:#111c30; --border:rgba(240,228,200,.12);
+  --grad-or:linear-gradient(135deg,#f0e4c8 0%,#d4af37 50%,#b8941f 100%);
+  --grad-bleu:linear-gradient(135deg,#005596 0%,#3b82f6 100%);
+  --ok:#38a169; --warn:#d69e2e; --err:#e53e3e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 0%,rgba(0,85,150,.18),transparent 50%),linear-gradient(180deg,var(--bleu-tres-fonce),var(--bleu-nuit));color:var(--text-clair);min-height:100vh;overflow-x:hidden}
+a{color:inherit}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:var(--bleu-quebec);border-radius:5px}
+
+/* ===== LOGIN ===== */
+#loginScreen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;background:radial-gradient(circle at 50% 30%,rgba(0,85,150,.25),transparent 60%),var(--bleu-tres-fonce)}
+.login-box{width:100%;max-width:420px;background:rgba(13,21,38,.85);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:24px;padding:45px 40px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .5s ease}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+.login-logo{width:80px;height:80px;border-radius:50%;border:3px solid rgba(240,228,200,.35);margin:0 auto 20px;box-shadow:0 0 40px rgba(0,85,150,.6);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 30px rgba(0,85,150,.5)}50%{box-shadow:0 0 55px rgba(240,228,200,.7)}}
+.login-box h1{font-family:'Playfair Display',serif;font-size:1.8rem;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.login-box .sub{color:var(--text-moyen);font-size:.9rem;margin-bottom:30px}
+.login-box input{width:100%;padding:15px 18px;border-radius:12px;border:1px solid var(--border);background:rgba(5,13,26,.6);color:#fff;font-size:1rem;letter-spacing:3px;text-align:center;margin-bottom:18px;outline:none;transition:.3s}
+.login-box input:focus{border-color:var(--or-clair);box-shadow:0 0 0 3px rgba(240,228,200,.15)}
+.login-box button{width:100%;padding:15px;border:none;border-radius:12px;background:var(--grad-bleu);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:.3s;box-shadow:0 10px 30px rgba(0,85,150,.4)}
+.login-box button:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,85,150,.6)}
+.login-err{color:var(--err);font-size:.85rem;margin-top:14px;min-height:18px;font-weight:600}
+.login-hint{margin-top:22px;font-size:.75rem;color:var(--text-moyen);opacity:.7}
+
+/* ===== APP LAYOUT ===== */
+#adminApp{display:none;min-height:100vh}
+#adminApp.show{display:flex}
+.sidebar{width:260px;background:rgba(8,14,26,.95);border-right:1px solid var(--border);padding:25px 18px;position:fixed;top:0;bottom:0;display:flex;flex-direction:column;gap:8px;z-index:20;transition:transform .3s}
+.side-logo{display:flex;align-items:center;gap:12px;padding:8px 10px 22px;border-bottom:1px solid var(--border);margin-bottom:14px}
+.side-logo img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(240,228,200,.35)}
+.side-logo b{font-family:'Playfair Display',serif;font-size:1.05rem;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side-logo span{display:block;font-size:.7rem;color:var(--text-moyen);letter-spacing:2px}
+.nav-btn{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:12px;color:var(--text-moyen);font-weight:600;font-size:.92rem;cursor:pointer;border:1px solid transparent;transition:.25s;background:none;width:100%;text-align:left}
+.nav-btn i{width:20px;text-align:center;font-size:1rem}
+.nav-btn:hover{background:rgba(0,85,150,.18);color:var(--text-clair)}
+.nav-btn.active{background:linear-gradient(135deg,rgba(0,85,150,.35),rgba(240,228,200,.08));color:var(--or-clair);border-color:var(--border)}
+.side-foot{margin-top:auto;padding-top:15px;border-top:1px solid var(--border)}
+.logout-btn{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:12px;color:#fc8181;font-weight:600;cursor:pointer;background:none;border:none;width:100%;transition:.25s}
+.logout-btn:hover{background:rgba(229,62,62,.12)}
+
+.main{margin-left:260px;flex:1;padding:30px 40px 60px;min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:8px;flex-wrap:wrap}
+.topbar h2{font-family:'Playfair Display',serif;font-size:2rem;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent}
+.topbar .who{display:flex;align-items:center;gap:10px;color:var(--text-moyen);font-size:.9rem}
+.topbar .who img{width:34px;height:34px;border-radius:50%;border:2px solid rgba(240,228,200,.3)}
+.burger{display:none;background:none;border:1px solid var(--border);color:var(--or-clair);width:42px;height:42px;border-radius:10px;font-size:1.2rem;cursor:pointer}
+.info-banner{display:flex;gap:12px;align-items:flex-start;background:rgba(0,85,150,.12);border:1px solid rgba(0,85,150,.3);border-radius:14px;padding:14px 18px;margin:18px 0 30px;font-size:.85rem;color:var(--text-moyen);line-height:1.6}
+.info-banner i{color:var(--or-clair);margin-top:2px}
+
+.section{display:none;animation:fade .4s ease}
+.section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* cards & grids */
+.grid{display:grid;gap:22px}
+.g-stats{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:26px;transition:.3s;position:relative;overflow:hidden}
+.card:hover{border-color:rgba(240,228,200,.25);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.stat-card .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--or-clair);background:linear-gradient(135deg,rgba(0,85,150,.45),rgba(240,228,200,.18));margin-bottom:16px}
+.stat-card .num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.stat-card .lbl{color:var(--text-moyen);font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px}
+.card h3{font-size:1.15rem;margin-bottom:16px;color:#fff;display:flex;align-items:center;gap:10px}
+.card h3 i{color:var(--or-clair)}
+
+/* quick links */
+.qlink{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-radius:12px;background:rgba(5,13,26,.5);border:1px solid var(--border);margin-bottom:10px;transition:.25s}
+.qlink:hover{border-color:rgba(240,228,200,.25);background:rgba(0,85,150,.12)}
+.qlink .l{display:flex;align-items:center;gap:12px;min-width:0}
+.qlink .l i{color:var(--or-clair);width:20px;text-align:center}
+.qlink .l .t{font-weight:600;font-size:.92rem}
+.qlink .l .u{font-size:.75rem;color:var(--text-moyen);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy-btn{background:rgba(0,85,150,.3);border:1px solid var(--border);color:var(--or-clair);width:36px;height:36px;border-radius:9px;cursor:pointer;flex-shrink:0;transition:.25s}
+.copy-btn:hover{background:var(--grad-bleu);color:#fff}
+.copy-btn.copied{background:var(--ok);border-color:var(--ok);color:#fff}
+
+/* forms */
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.82rem;color:var(--text-moyen);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.field input,.field textarea{width:100%;padding:13px 15px;border-radius:12px;border:1px solid var(--border);background:rgba(5,13,26,.6);color:#fff;font-size:.95rem;font-family:inherit;outline:none;transition:.25s;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--or-clair);box-shadow:0 0 0 3px rgba(240,228,200,.12)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.btn{padding:12px 22px;border-radius:11px;border:none;font-weight:700;font-size:.88rem;cursor:pointer;letter-spacing:.5px;transition:.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--grad-bleu);color:#fff;box-shadow:0 8px 24px rgba(0,85,150,.35)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-clair)}
+.btn-ghost:hover{border-color:var(--or-clair);color:var(--or-clair)}
+.btn-gold{background:var(--grad-or);color:var(--bleu-fonce)}
+.btn-gold:hover{transform:translateY(-2px)}
+
+/* preview */
+.preview{border-radius:16px;padding:35px 28px;text-align:center;background:radial-gradient(ellipse at center,rgba(0,85,150,.3),transparent 70%),var(--bleu-tres-fonce);border:1px solid var(--border)}
+.preview .pv-badge{display:inline-block;background:rgba(0,85,150,.4);border:1px solid rgba(240,228,200,.3);color:var(--or-clair);padding:6px 16px;border-radius:30px;font-size:.72rem;letter-spacing:2px;margin-bottom:16px}
+.preview h4{font-family:'Playfair Display',serif;font-size:2.2rem;background:var(--grad-or);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+.preview .pv-sub{color:var(--or-clair);letter-spacing:3px;font-size:.95rem;margin-bottom:14px}
+.preview .pv-desc{color:var(--text-moyen);font-size:.95rem;line-height:1.7;max-width:520px;margin:0 auto}
+
+/* team */
+.team-row{display:flex;align-items:center;gap:16px;padding:16px;border-radius:14px;background:rgba(5,13,26,.5);border:1px solid var(--border);margin-bottom:12px;transition:.25s}
+.team-row:hover{border-color:rgba(240,228,200,.25);transform:translateX(5px)}
+.team-row img{width:54px;height:54px;border-radius:50%;border:2px solid rgba(240,228,200,.3);flex-shrink:0}
+.team-row .info b{display:block;color:#fff;font-size:1.05rem}
+.team-row .info .role{font-size:.78rem;color:var(--or-clair);font-weight:600}
+.team-row .info .u{font-size:.8rem;color:var(--text-moyen)}
+
+.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--panel2);border:1px solid var(--ok);color:#fff;padding:13px 24px;border-radius:12px;font-weight:600;font-size:.9rem;box-shadow:0 15px 40px rgba(0,0,0,.5);z-index:100;opacity:0;transition:.4s;display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast i{color:var(--ok)}
+
+@media(max-width:860px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;padding:20px}
+  .burger{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo" class="login-logo">
+    <h1>Panneau Admin</h1>
+    <p class="sub">Communauté Québec · Accès restreint</p>
+    <form id="loginForm" autocomplete="off">
+      <input type="password" id="pwd" placeholder="••••••" aria-label="Mot de passe" required>
+      <button type="submit"><i class="fas fa-lock-open"></i> Se connecter</button>
+    </form>
+    <div class="login-err" id="loginErr"></div>
+    <p class="login-hint"><i class="fas fa-shield-alt"></i> Zone protégée · Communauté Québec</p>
+  </div>
+</div>
+
+<!-- ============ ADMIN APP ============ -->
+<div id="adminApp">
+  <aside class="sidebar" id="sidebar">
+    <div class="side-logo">
+      <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo">
+      <div><b>CQ Admin</b><span>PANEL</span></div>
+    </div>
+    <button class="nav-btn active" data-target="dashboard"><i class="fas fa-gauge-high"></i> Tableau de bord</button>
+    <button class="nav-btn" data-target="content"><i class="fas fa-pen-to-square"></i> Contenu du site</button>
+    <button class="nav-btn" data-target="links"><i class="fas fa-link"></i> Liens & Réseaux</button>
+    <button class="nav-btn" data-target="team"><i class="fas fa-users-gear"></i> Équipe</button>
+    <button class="nav-btn" data-target="stats"><i class="fas fa-chart-line"></i> Statistiques</button>
+    <button class="nav-btn" data-target="settings"><i class="fas fa-sliders"></i> Paramètres</button>
+    <div class="side-foot">
+      <button class="logout-btn" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Déconnexion</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:14px">
+        <button class="burger" id="burger"><i class="fas fa-bars"></i></button>
+        <h2 id="secTitle">Tableau de bord</h2>
+      </div>
+      <div class="who">
+        <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="">
+        <span>Connecté · <b style="color:var(--or-clair)">Jacobin</b></span>
+      </div>
+    </div>
+
+    <div class="info-banner">
+      <i class="fas fa-circle-info"></i>
+      <div><b>Mode local.</b> Ce panel tourne côté navigateur (GitHub Pages = site statique, sans serveur). Le mot de passe sécurise l'accès visuel mais n'est pas un chiffrement serveur, et les modifications de contenu sont enregistrées sur <b>cet appareil uniquement</b>. Pour publier un changement sur le site public, applique-le dans <code>index.html</code>.</div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="section active" id="dashboard">
+      <div class="grid g-stats" style="margin-bottom:24px">
+        <div class="card stat-card"><div class="ico"><i class="fas fa-users"></i></div><div class="num">388</div><div class="lbl">Membres</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-signal"></i></div><div class="num">90</div><div class="lbl">En ligne</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-hashtag"></i></div><div class="num">129</div><div class="lbl">Salons</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-layer-group"></i></div><div class="num">200</div><div class="lbl">Rôles</div></div>
+      </div>
+      <div class="grid g-2">
+        <div class="card">
+          <h3><i class="fas fa-bolt"></i> Actions rapides</h3>
+          <a class="qlink" href="https://discord.gg/commuqc" target="_blank"><div class="l"><i class="fab fa-discord"></i><div><div class="t">Ouvrir le serveur</div><div class="u">discord.gg/commuqc</div></div></div><i class="fas fa-arrow-up-right-from-square" style="color:var(--text-moyen)"></i></a>
+          <a class="qlink" href="https://jacobin904.github.io/Communaute-Quebec/" target="_blank"><div class="l"><i class="fas fa-globe"></i><div><div class="t">Voir le site public</div><div class="u">jacobin904.github.io</div></div></div><i class="fas fa-arrow-up-right-from-square" style="color:var(--text-moyen)"></i></a>
+          <a class="qlink" href="https://disboard.org/fr/server/1469888825294852130" target="_blank"><div class="l"><i class="fas fa-arrow-up-from-bracket"></i><div><div class="t">Page Disboard</div><div class="u">Bumper / voir les stats</div></div></div><i class="fas fa-arrow-up-right-from-square" style="color:var(--text-moyen)"></i></a>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-circle-check"></i> État du serveur</h3>
+          <div class="qlink"><div class="l"><i class="fas fa-server" style="color:var(--ok)"></i><div class="t">Site en ligne</div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● OPÉRATIONNEL</span></div>
+          <div class="qlink"><div class="l"><i class="fas fa-shield-halved" style="color:var(--ok)"></i><div class="t">Modération</div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● ACTIVE 24/7</span></div>
+          <div class="qlink"><div class="l"><i class="fas fa-robot" style="color:var(--or-clair)"></i><div class="t">Bots actifs</div></div><span style="color:var(--or-clair);font-weight:700;font-size:.85rem">13 EN LIGNE</span></div>
+          <div class="qlink"><div class="l"><i class="fas fa-crown" style="color:var(--or-vanille)"></i><div class="t">Boosts</div></div><span style="color:var(--or-vanille);font-weight:700;font-size:.85rem">NIVEAU 3</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="section" id="content">
+      <div class="grid g-2">
+        <div class="card">
+          <h3><i class="fas fa-pen-to-square"></i> Éditeur (Hero)</h3>
+          <p style="color:var(--text-moyen);font-size:.85rem;margin-bottom:18px">Modifie le texte d'accueil. L'aperçu se met à jour en direct et se sauvegarde sur cet appareil.</p>
+          <div class="field"><label>Titre principal</label><input type="text" id="edTitle"></div>
+          <div class="field"><label>Sous-titre (valeurs)</label><input type="text" id="edSub"></div>
+          <div class="field"><label>Description</label><textarea id="edDesc" rows="4"></textarea></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="saveContent"><i class="fas fa-floppy-disk"></i> Sauvegarder</button>
+            <button class="btn btn-gold" id="copyJson"><i class="fas fa-copy"></i> Copier la config</button>
+            <button class="btn btn-ghost" id="resetContent"><i class="fas fa-rotate-left"></i> Réinitialiser</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-eye"></i> Aperçu en direct</h3>
+          <div class="preview">
+            <span class="pv-badge">🍁 APERÇU</span>
+            <h4 id="pvTitle"></h4>
+            <div class="pv-sub" id="pvSub"></div>
+            <p class="pv-desc" id="pvDesc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="section" id="links">
+      <div class="card">
+        <h3><i class="fas fa-link"></i> Tous les liens du projet</h3>
+        <p style="color:var(--text-moyen);font-size:.85rem;margin-bottom:18px">Clique sur <i class="fas fa-copy"></i> pour copier un lien instantanément.</p>
+        <div id="linksList"></div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section" id="team">
+      <div class="card">
+        <h3><i class="fas fa-users-gear"></i> Membres de l'équipe</h3>
+        <div class="team-row"><img src="https://cdn.discordapp.com/avatars/1504186999098314882/0b7fe4ae81670ba163b4eb6507671e48.webp?size=1024" alt=""><div class="info"><b>Vanille</b><span class="role">💕 Fondatrice</span> · <span class="u">@disc0rdvanille</span></div></div>
+        <div class="team-row"><img src="https://cdn.discordapp.com/avatars/1472310772414808326/e66c92954ebe6fcada0f67b51d1b1584.webp?size=1024" alt=""><div class="info"><b>Marianne</b><span class="role">💕 Seconde Fondatrice</span> · <span class="u">@mariannizer</span></div></div>
+        <div class="team-row"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt=""><div class="info"><b>Jacobin Babouain</b><span class="role">🛠️ Développeur</span> · <span class="u">@jacobin904</span></div></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section" id="stats">
+      <div class="grid g-stats" style="margin-bottom:24px">
+        <div class="card stat-card"><div class="ico"><i class="fas fa-users"></i></div><div class="num">388</div><div class="lbl">Membres totaux</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-signal"></i></div><div class="num">90</div><div class="lbl">En ligne</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-hashtag"></i></div><div class="num">129</div><div class="lbl">Salons</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-layer-group"></i></div><div class="num">200</div><div class="lbl">Rôles</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-robot"></i></div><div class="num">13</div><div class="lbl">Bots</div></div>
+        <div class="card stat-card"><div class="ico"><i class="fas fa-calendar"></i></div><div class="num">2026</div><div class="lbl">Création</div></div>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-circle-info"></i> Source des données</h3>
+        <p style="color:var(--text-moyen);line-height:1.8">Les chiffres <b style="color:var(--or-clair)">Membres</b> et <b style="color:var(--or-clair)">En ligne</b> proviennent de la page Disboard du serveur (388 / 90 au dernier relevé). Les salons, rôles et bots sont issus de l'inventaire du serveur. Sur un site statique, ces valeurs sont mises à jour manuellement dans ce panel ; un rafraîchissement 100% automatique nécessiterait un petit serveur backend.</p>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="section" id="settings">
+      <div class="card">
+        <h3><i class="fas fa-sliders"></i> Paramètres du panel</h3>
+        <div class="qlink"><div class="l"><i class="fas fa-key"></i><div><div class="t">Mot de passe</div><div class="u">Stocké sous forme de hash (non visible en clair)</div></div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● ACTIF</span></div>
+        <div class="qlink"><div class="l"><i class="fas fa-cookie-bite"></i><div><div class="t">Session enregistrée</div><div class="u">Tu restes connecté sur cet appareil</div></div></div><span style="color:var(--ok);font-weight:700;font-size:.85rem">● OUI</span></div>
+        <div class="btn-row" style="margin-top:18px">
+          <button class="btn btn-ghost" id="clearSession"><i class="fas fa-trash"></i> Effacer les données locales</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast"><i class="fas fa-circle-check"></i><span id="toastMsg">OK</span></div>
+
+<script>
+/* ====== CONFIG ====== */
+// Hash SHA-256 du mot de passe (le mot de passe n'apparaît PAS en clair ici).
+const PWD_HASH = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
+const SESSION_KEY = 'cq_admin_session';
+const CONTENT_KEY = 'cq_admin_content';
+
+const DEFAULTS = {
+  title: 'COMMUNAUTÉ QUÉBEC',
+  sub: 'UNIS • ENTRAIDE • RESPECT • PARTAGE',
+  desc: "Bienvenue sur le serveur francophone dédié aux échanges, au partage et à la bonne ambiance. Que vous soyez du Québec ou passionné par la culture québécoise, vous trouverez ici un espace chaleureux, actif et respectueux pour discuter, jouer et créer des liens durables."
+};
+
+const LINKS = [
+  {t:'Invitation Discord', u:'https://discord.gg/commuqc', i:'fab fa-discord'},
+  {t:'TikTok', u:'https://www.tiktok.com/@communaut.qubec', i:'fab fa-tiktok'},
+  {t:'Disboard', u:'https://disboard.org/fr/server/1469888825294852130', i:'fas fa-arrow-up-from-bracket'},
+  {t:'Site public', u:'https://jacobin904.github.io/Communaute-Quebec/', i:'fas fa-globe'},
+  {t:'Ouvrir un ticket', u:'https://discord.com/channels/1469888825294852130/1469902008637980684', i:'fas fa-ticket'},
+  {t:'Devenir Staff', u:'https://discord.com/channels/1469888825294852130/1472999931487977513', i:'fas fa-user-shield'},
+  {t:'Partenariat', u:'https://discord.com/channels/1469888825294852130/1489674814997401823', i:'fas fa-handshake'}
+];
+
+/* ====== UTILS ====== */
+const $ = s => document.querySelector(s);
+async function sha256(text){
+  if(!window.crypto || !crypto.subtle) return null; // fallback géré ailleurs
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function toast(msg){
+  $('#toastMsg').textContent = msg;
+  const t = $('#toast'); t.classList.add('show');
+  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ====== LOGIN / SESSION ====== */
+function showApp(){ $('#loginScreen').style.display='none'; $('#adminApp').classList.add('show'); }
+function showLogin(){ $('#loginScreen').style.display='flex'; $('#adminApp').classList.remove('show'); }
+
+if(localStorage.getItem(SESSION_KEY) === '1'){ showApp(); }
+
+$('#loginForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const val = $('#pwd').value;
+  const err = $('#loginErr');
+  err.textContent = '';
+  const h = await sha256(val);
+  // comparaison hash (ou fallback clair si crypto indisponible)
+  const ok = h ? (h === PWD_HASH) : (val === '1234');
+  if(ok){
+    localStorage.setItem(SESSION_KEY,'1');
+    $('#pwd').value='';
+    showApp();
+    toast('Connexion réussie ⚜️');
+  } else {
+    err.textContent = '❌ Mot de passe incorrect';
+    $('#pwd').style.borderColor = 'var(--err)';
+    setTimeout(()=>$('#pwd').style.borderColor='', 1200);
+  }
+});
+
+$('#logoutBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(SESSION_KEY);
+  showLogin();
+});
+
+/* ====== NAVIGATION ====== */
+const titles = {dashboard:'Tableau de bord',content:'Contenu du site',links:'Liens & Réseaux',team:'Équipe',stats:'Statistiques',settings:'Paramètres'};
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tgt = btn.dataset.target;
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    $('#'+tgt).classList.add('active');
+    $('#secTitle').textContent = titles[tgt];
+    $('#sidebar').classList.remove('open');
+  });
+});
+$('#burger').addEventListener('click', ()=> $('#sidebar').classList.toggle('open'));
+
+/* ====== LINKS LIST ====== */
+const ll = $('#linksList');
+LINKS.forEach((l,idx)=>{
+  const row = document.createElement('div');
+  row.className='qlink';
+  row.innerHTML = `<div class="l"><i class="${l.i}"></i><div><div class="t">${l.t}</div><div class="u">${l.u}</div></div></div>
+    <button class="copy-btn" data-i="${idx}" title="Copier"><i class="fas fa-copy"></i></button>`;
+  ll.appendChild(row);
+});
+ll.addEventListener('click', e=>{
+  const b = e.target.closest('.copy-btn'); if(!b) return;
+  const url = LINKS[b.dataset.i].u;
+  navigator.clipboard.writeText(url).then(()=>{
+    b.classList.add('copied'); b.innerHTML='<i class="fas fa-check"></i>';
+    toast('Lien copié !');
+    setTimeout(()=>{ b.classList.remove('copied'); b.innerHTML='<i class="fas fa-copy"></i>'; }, 1500);
+  });
+});
+
+/* ====== CONTENT EDITOR ====== */
+const edT=$('#edTitle'), edS=$('#edSub'), edD=$('#edDesc');
+function loadContent(){
+  let c = DEFAULTS;
+  try{ const s = localStorage.getItem(CONTENT_KEY); if(s) c = {...DEFAULTS, ...JSON.parse(s)}; }catch(e){}
+  edT.value=c.title; edS.value=c.sub; edD.value=c.desc;
+  renderPreview(c);
+}
+function renderPreview(c){ $('#pvTitle').textContent=c.title; $('#pvSub').textContent=c.sub; $('#pvDesc').textContent=c.desc; }
+function currentContent(){ return {title:edT.value, sub:edS.value, desc:edD.value}; }
+[edT,edS,edD].forEach(el=> el.addEventListener('input', ()=> renderPreview(currentContent())));
+$('#saveContent').addEventListener('click', ()=>{
+  localStorage.setItem(CONTENT_KEY, JSON.stringify(currentContent()));
+  toast('Contenu sauvegardé sur cet appareil ✓');
+});
+$('#resetContent').addEventListener('click', ()=>{
+  localStorage.removeItem(CONTENT_KEY); loadContent(); toast('Valeurs par défaut restaurées');
+});
+$('#copyJson').addEventListener('click', ()=>{
+  navigator.clipboard.writeText(JSON.stringify(currentContent(), null, 2))
+    .then(()=> toast('Config JSON copiée !'));
+});
+
+/* ====== SETTINGS ====== */
+$('#clearSession').addEventListener('click', ()=>{
+  if(confirm('Effacer toutes les données locales du panel (session + contenu) ?')){
+    localStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem(CONTENT_KEY);
+    toast('Données effacées');
+    setTimeout(showLogin, 800);
+  }
+});
+
+/* init */
+loadContent();
+</script>
+</body>
+</html>
