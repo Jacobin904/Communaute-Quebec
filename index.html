@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Communauté Québec | Serveur Discord Francophone</title>
-    <meta name="description" content="Rejoignez Communauté Québec - 383 membres, une communauté active et chaleureuse.">
+    <meta name="description" content="Rejoignez Communauté Québec - Une communauté active et chaleureuse.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap');
@@ -324,121 +324,6 @@
             box-shadow: 0 15px 50px rgba(240, 228, 200, 0.2);
         }
         
-        /* Stats Section ULTRA PREMIUM */
-        .stats {
-            background: linear-gradient(180deg, var(--bleu-nuit) 0%, #0a0f1c 100%);
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(240, 228, 200, 0.3), transparent);
-        }
-        
-        .stats::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(0, 85, 150, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .stat-card {
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 24px;
-            padding: 50px 40px;
-            border: 1px solid rgba(240, 228, 200, 0.08);
-            backdrop-filter: blur(20px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 85, 150, 0.15), rgba(240, 228, 200, 0.05));
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        
-        .stat-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(240, 228, 200, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(240, 228, 200, 0.2);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(240, 228, 200, 0.1),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-        
-        .stat-card:hover::before {
-            opacity: 1;
-        }
-        
-        .stat-card:hover::after {
-            opacity: 1;
-        }
-        
-        .stat-number {
-            font-size: 5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--or-clair) 0%, var(--pastel-vanille) 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            margin-bottom: 15px;
-            position: relative;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -2px;
-            line-height: 1;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-moyen);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            position: relative;
-        }
-        
         /* Sections General */
         section {
             padding: 140px 0;
@@ -639,78 +524,6 @@
             font-size: 1.05rem;
             line-height: 1.9;
             position: relative;
-        }
-        
-        /* Sanctions Timeline */
-        .sanctions-container {
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 35px;
-            padding: 60px;
-            border: 1px solid rgba(240, 228, 200, 0.08);
-            backdrop-filter: blur(20px);
-            max-width: 1000px;
-            margin: 0 auto;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-        }
-        
-        .sanction-step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding: 30px;
-            background: rgba(0, 85, 150, 0.08);
-            border-radius: 20px;
-            border: 1px solid rgba(240, 228, 200, 0.08);
-            transition: all 0.5s;
-            position: relative;
-        }
-        
-        .sanction-step:hover {
-            background: rgba(0, 85, 150, 0.15);
-            transform: scale(1.02);
-            border-color: rgba(240, 228, 200, 0.2);
-            box-shadow: 0 15px 40px rgba(0, 85, 150, 0.2);
-        }
-        
-        .sanction-step:last-child {
-            margin-bottom: 0;
-            background: rgba(229, 62, 62, 0.1);
-            border-color: rgba(229, 62, 62, 0.3);
-        }
-        
-        .step-number {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--bleu-quebec), var(--accent));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.6rem;
-            margin-right: 30px;
-            flex-shrink: 0;
-            box-shadow: 0 10px 30px rgba(0, 85, 150, 0.5);
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .sanction-step:last-child .step-number {
-            background: linear-gradient(135deg, #e53e3e, #fc8181);
-            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.5);
-        }
-        
-        .step-content h4 {
-            color: var(--or-clair);
-            margin-bottom: 10px;
-            font-weight: 800;
-            font-size: 1.3rem;
-        }
-        
-        .step-content p {
-            color: var(--text-moyen);
-            font-size: 1.05rem;
-            line-height: 1.7;
         }
         
         /* FAQ Accordion */
@@ -1067,10 +880,6 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .stat-number {
-                font-size: 4rem;
-            }
         }
     </style>
 </head>
@@ -1118,30 +927,6 @@
         </div>
     </section>
 
-    <!-- Stats Section ULTRA PREMIUM -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card reveal">
-                    <span class="stat-number" data-target="383">0</span>
-                    <span class="stat-label">Membres</span>
-                </div>
-                <div class="stat-card reveal">
-                    <span class="stat-number" data-target="120">0</span>
-                    <span class="stat-label">En ligne</span>
-                </div>
-                <div class="stat-card reveal">
-                    <span class="stat-number" data-target="129">0</span>
-                    <span class="stat-label">Salons</span>
-                </div>
-                <div class="stat-card reveal">
-                    <span class="stat-number" data-target="200">0</span>
-                    <span class="stat-label">Rôles</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- About Section -->
     <section id="apropos">
         <div class="container">
@@ -1164,6 +949,16 @@
                     <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Environnement Sain</h3>
                     <p>Une modération active et respectueuse, des règles claires et un espace sécurisé pour tous.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <h3>Support & Tickets</h3>
+                    <p>Un système de tickets efficace pour obtenir de l'aide rapidement. Notre équipe est là pour répondre à toutes vos questions et résoudre vos problèmes.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Partenariats</h3>
+                    <p>Ouvert aux collaborations ! Nous accueillons les partenariats avec d'autres communautés pour grandir ensemble et offrir plus de contenu à nos membres.</p>
                 </div>
                 <div class="feature-card reveal">
                     <div class="feature-icon"><i class="fas fa-heart"></i></div>
@@ -1224,60 +1019,6 @@
                 <div class="rule-card reveal">
                     <h4><i class="fas fa-exclamation-triangle"></i> 6. Contenu & Mensonges</h4>
                     <p>Aucun contenu NSFW ou violent. Il est strictement interdit de mentir au staff ou de falsifier son âge (rôle majeur/mineur).</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sanctions Section -->
-    <section style="background: linear-gradient(180deg, #0a0f1c 0%, var(--bleu-nuit) 100%);">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Échelle des Sanctions</h2>
-                <p>La transparence est clé. Voici les conséquences en cas de non-respect des règles.</p>
-            </div>
-            <div class="sanctions-container reveal">
-                <div class="sanction-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Premier Avertissement</h4>
-                        <p>Oups ! Tu as enfreint une infraction, fais plus attention à tes actions.</p>
-                    </div>
-                </div>
-                <div class="sanction-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Deuxième Avertissement</h4>
-                        <p>Ceci est ton dernier avertissement avant que des sanctions ne s'appliquent.</p>
-                    </div>
-                </div>
-                <div class="sanction-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Troisième Avertissement</h4>
-                        <p>Mute de 5 minutes pour vos actions.</p>
-                    </div>
-                </div>
-                <div class="sanction-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Quatrième Avertissement</h4>
-                        <p>Mute de 10 minutes. Faites attention, 2 de plus et c'est le ban !</p>
-                    </div>
-                </div>
-                <div class="sanction-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h4>Cinquième Avertissement</h4>
-                        <p>Dernier avertissement avant un ban. Mute de 1 heure immédiat.</p>
-                    </div>
-                </div>
-                <div class="sanction-step">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
-                        <h4>Bannissement Permanent</h4>
-                        <p>Après 6 avertissements, l'accès au serveur est définitivement révoqué.</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1374,9 +1115,9 @@
                 <div class="footer-col">
                     <h4>Ressources</h4>
                     <ul>
-                        <li><a href="#"><i class="fas fa-ticket-alt"></i> Ouvrir un ticket</a></li>
-                        <li><a href="#"><i class="fas fa-users"></i> Devenir Staff</a></li>
-                        <li><a href="#"><i class="fas fa-handshake"></i> Partenariat</a></li>
+                        <li><a href="https://discord.com/channels/1469888825294852130/1469902008637980684" target="_blank"><i class="fas fa-ticket-alt"></i> Ouvrir un ticket</a></li>
+                        <li><a href="https://discord.com/channels/1469888825294852130/1472999931487977513" target="_blank"><i class="fas fa-users"></i> Devenir Staff</a></li>
+                        <li><a href="https://discord.com/channels/1469888825294852130/1489674814997401823" target="_blank"><i class="fas fa-handshake"></i> Partenariat</a></li>
                     </ul>
                 </div>
             </div>
@@ -1404,35 +1145,6 @@
         
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
-
-        // Number Counter Animation ULTRA SMOOTH
-        const counters = document.querySelectorAll('.stat-number');
-        const speed = 300;
-        
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = target / speed;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 15);
-                } else {
-                    counter.innerText = target + '+';
-                }
-            });
-        };
-        
-        const statsSection = document.querySelector('.stats');
-        let counted = false;
-        
-        window.addEventListener('scroll', () => {
-            if (!counted && window.scrollY + window.innerHeight > statsSection.offsetTop + 100) {
-                animateCounters();
-                counted = true;
-            }
-        });
 
         // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
