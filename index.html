@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communauté Québec | Serveur Discord Premium - 383+ Membres</title>
+    <title>⚜️ Communauté Québec ⚜️ | Serveur Discord Premium</title>
+    <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
+    <link rel="apple-touch-icon" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
     <meta name="description" content="Rejoignez Communauté Québec - La meilleure communauté francophone sur Discord.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -130,12 +132,7 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid rgba(240, 228, 200, 0.4);
-            animation: logoRotate 20s linear infinite;
-        }
-        
-        @keyframes logoRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            box-shadow: 0 0 20px rgba(0, 85, 150, 0.4);
         }
         
         .logo h1 {
@@ -373,105 +370,6 @@
             background: rgba(240, 228, 200, 0.1);
             border-color: var(--or-clair);
             box-shadow: 0 15px 40px rgba(240, 228, 200, 0.2);
-        }
-        
-        /* Stats Section Animée */
-        .stats-section {
-            background: linear-gradient(180deg, var(--bleu-nuit) 0%, #0a0f1c 100%);
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(240, 228, 200, 0.3), transparent);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .stat-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 20px;
-            padding: 40px 30px;
-            border: 1px solid rgba(240, 228, 200, 0.1);
-            backdrop-filter: blur(10px);
-            text-align: center;
-            transition: all 0.5s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(240, 228, 200, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        
-        .stat-card:hover::before {
-            opacity: 1;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(240, 228, 200, 0.3);
-            box-shadow: 0 25px 60px rgba(0, 85, 150, 0.4);
-        }
-        
-        .stat-icon {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, rgba(0, 85, 150, 0.5), rgba(240, 228, 200, 0.2));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--or-clair);
-            margin: 0 auto 20px;
-            border: 2px solid rgba(240, 228, 200, 0.3);
-            animation: iconPulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes iconPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: var(--gradient-or);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-moyen);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
         }
         
         /* Sections */
@@ -869,107 +767,6 @@
             padding: 0 35px 35px 35px;
         }
         
-        /* Founder */
-        .founder {
-            background: linear-gradient(180deg, var(--bleu-nuit) 0%, #0a0f1c 100%);
-        }
-        
-        .founder-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 36px;
-            padding: 70px;
-            display: flex;
-            align-items: center;
-            gap: 70px;
-            border: 1px solid rgba(240, 228, 200, 0.1);
-            backdrop-filter: blur(20px);
-            max-width: 1000px;
-            margin: 0 auto;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .founder-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(240, 228, 200, 0.05) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .founder-img {
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid rgba(240, 228, 200, 0.25);
-            box-shadow: 0 20px 60px rgba(0, 85, 150, 0.5);
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-            transition: all 0.5s;
-        }
-        
-        .founder-card:hover .founder-img {
-            transform: scale(1.05);
-            border-color: var(--or-clair);
-        }
-        
-        .founder-info {
-            flex: 1;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .founder-info h3 {
-            font-size: 3.2rem;
-            background: var(--gradient-or);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 18px;
-            font-weight: 900;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .founder-role {
-            display: inline-block;
-            background: var(--gradient-bleu);
-            color: white;
-            padding: 10px 28px;
-            border-radius: 30px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 85, 150, 0.4);
-        }
-        
-        .founder-info p {
-            color: var(--text-moyen);
-            font-size: 1.15rem;
-            line-height: 2.1;
-            margin-bottom: 18px;
-        }
-        
-        .founder-username {
-            margin-top: 28px;
-            font-weight: 700;
-            color: var(--or-clair);
-            font-size: 1.15rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
         /* CTA */
         .cta {
             background: radial-gradient(ellipse at center, rgba(0, 85, 150, 0.35) 0%, transparent 70%);
@@ -1139,12 +936,6 @@
                 display: none;
             }
             
-            .founder-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 50px;
-            }
-            
             .btn-group {
                 flex-direction: column;
                 align-items: center;
@@ -1171,7 +962,6 @@
                 </a>
                 <ul class="nav-links">
                     <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#stats">Stats</a></li>
                     <li><a href="#apropos">À propos</a></li>
                     <li><a href="#jeux">Jeux</a></li>
                     <li><a href="#reglements">Règles</a></li>
@@ -1201,48 +991,6 @@
                 <a href="#apropos" class="btn btn-secondary">
                     Découvrir plus
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section" id="stats">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Nos Statistiques</h2>
-                <p>Une communauté en constante croissance et pleine de vie</p>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card reveal">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-number">383+</div>
-                    <div class="stat-label">Membres Totaux</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
-                    <div class="stat-number">120+</div>
-                    <div class="stat-label">En Ligne</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon"><i class="fas fa-comments"></i></div>
-                    <div class="stat-number">129+</div>
-                    <div class="stat-label">Salons</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
-                    <div class="stat-number">200+</div>
-                    <div class="stat-label">Rôles</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon"><i class="fas fa-robot"></i></div>
-                    <div class="stat-number">13+</div>
-                    <div class="stat-label">Bots Actifs</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <div class="stat-number">2026</div>
-                    <div class="stat-label">Année de Création</div>
-                </div>
             </div>
         </div>
     </section>
@@ -1364,7 +1112,7 @@
                 <div class="team-card reveal">
                     <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" class="team-img">
                     <h3>Jacobin Babouain</h3>
-                    <span class="team-role">️ Développeur</span>
+                    <span class="team-role">🛠️ Développeur</span>
                     <p>Créateur du site web et développeur de bots. Passionné par le code et l'amélioration continue du serveur.</p>
                     <p style="margin-top: 15px; font-size: 0.95rem;"><i class="fab fa-discord"></i> @jacobin904</p>
                 </div>
@@ -1417,7 +1165,7 @@
         <div class="container">
             <div class="cta-content reveal">
                 <h2>Prêt à rejoindre l'aventure ?</h2>
-                <p>Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés ou simplement envie de discuter dans une ambiance chaleureuse et respectueuse, votre place est parmi nous. Rejoignez les 383+ membres qui font vivre cette communauté chaque jour !</p>
+                <p>Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés ou simplement envie de discuter dans une ambiance chaleureuse et respectueuse, votre place est parmi nous. Rejoignez la communauté qui fait vivre cette belle famille chaque jour !</p>
                 <a href="https://discord.gg/commuqc" class="btn" target="_blank" style="background: var(--gradient-or); color: var(--bleu-fonce); border: none; font-size: 1.15rem; padding: 20px 50px;">
                     <i class="fab fa-discord"></i> Rejoindre le serveur maintenant
                 </a>
@@ -1441,10 +1189,10 @@
                     <h4>Navigation</h4>
                     <ul>
                         <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
-                        <li><a href="#stats"><i class="fas fa-chart-line"></i> Statistiques</a></li>
                         <li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li>
                         <li><a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a></li>
                         <li><a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a></li>
+                        <li><a href="#equipe"><i class="fas fa-users"></i> Équipe</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
