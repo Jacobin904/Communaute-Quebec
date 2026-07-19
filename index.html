@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Communauté Québec | Serveur Discord Francophone</title>
-    <meta name="description" content="Rejoignez Communauté Québec - Un serveur Discord dédié aux échanges, au partage et à la bonne ambiance. 129 salons, 200 rôles, communauté active!">
+    <meta name="description" content="Rejoignez Communauté Québec - 383 membres, 129 salons, une communauté active, respectueuse et chaleureuse.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -12,39 +12,64 @@
             --bleu-fonce: #003366;
             --blanc: #FFFFFF;
             --pastel-vanille: #f9f2e8;
-            --text-dark: #2c3e50;
-            --accent: #ff6b6b;
+            --text-dark: #1a202c;
+            --text-light: #4a5568;
+            --accent: #e53e3e;
+            --success: #38a169;
+            --warning: #d69e2e;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background-color: #f5f7fa;
+            background-color: #f7fafc;
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
         
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bleu-quebec);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--bleu-fonce);
+        }
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--bleu-quebec) 0%, var(--bleu-fonce) 100%);
+            background: rgba(0, 51, 102, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 15px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
         
         nav {
@@ -57,45 +82,56 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
+            color: white;
         }
         
         .logo img {
-            height: 50px;
+            height: 45px;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: rotate(15deg) scale(1.1);
         }
         
         .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
         
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
+            list-style: none;
         }
         
         .nav-links a {
-            color: white;
+            color: rgba(255,255,255,0.9);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: all 0.3s;
             position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: var(--pastel-vanille);
+            padding: 5px 0;
         }
         
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: white;
-            transition: all 0.3s;
+            background: var(--pastel-vanille);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: white;
         }
         
         .nav-links a:hover::after {
@@ -104,169 +140,222 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://cdn.discordapp.com/attachments/1465863675968618566/1499133359618785512/IMG_0430.png') no-repeat center center/cover;
-            height: 90vh;
+            background: linear-gradient(135deg, rgba(0,51,102,0.85) 0%, rgba(0,85,150,0.85) 100%), 
+                        url('https://cdn.discordapp.com/attachments/1465863675968618566/1499133359618785512/IMG_0430.png?ex=6a5dd0fd&is=6a5c7f7d&hm=9ca04c7f461e96629e5c9085118a61b5926ec3484cd87e08838e9cb88dd8123a&animated=true') no-repeat center center/cover;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 900px;
             padding: 0 20px;
         }
         
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+        
         .hero h2 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease 0.2s both;
+            line-height: 1.1;
         }
         
         .hero-subtitle {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 30px;
             font-weight: 300;
-            animation: fadeInUp 1s ease 0.3s both;
+            color: var(--pastel-vanille);
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
         
         .hero-description {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 40px;
             line-height: 1.8;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-        
-        .values {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            animation: fadeInUp 1s ease 0.9s both;
-        }
-        
-        .values span {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.6s both;
         }
         
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             background: var(--accent);
             color: white;
-            padding: 15px 40px;
+            padding: 16px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid var(--accent);
-            font-size: 1.1rem;
-            animation: fadeInUp 1s ease 1.2s both;
+            font-size: 1rem;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);
         }
         
         .btn:hover {
             background: transparent;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229, 62, 62, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+            box-shadow: none;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--bleu-fonce);
         }
         
         /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, var(--bleu-quebec) 0%, var(--bleu-fonce) 100%);
+            background: var(--bleu-fonce);
             color: white;
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: rgba(255,255,255,0.9);
-            max-width: 700px;
-            margin: 0 auto;
+            padding: 60px 0;
+            position: relative;
         }
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 30px;
+            text-align: center;
         }
         
         .stat-card {
-            text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
+            padding: 20px;
         }
         
-        .stat-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .stat-card h3 {
+        .stat-number {
             font-size: 3.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--pastel-vanille);
+            margin-bottom: 5px;
+            display: block;
         }
         
-        .stat-card p {
-            font-size: 1.2rem;
-            opacity: 0.95;
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        /* Features Section */
-        .features {
+        /* Sections General */
+        section {
             padding: 100px 0;
-            background-color: white;
         }
         
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--bleu-fonce);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Features & Games */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
         
         .feature-card {
-            background: var(--pastel-vanille);
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px rgba(0,85,150,0.15);
+            border-color: var(--bleu-quebec);
         }
         
-        .feature-card i {
-            font-size: 3rem;
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--pastel-vanille);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
             color: var(--bleu-quebec);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: var(--bleu-quebec);
+            color: white;
+            transform: scale(1.1);
         }
         
         .feature-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
-            color: var(--bleu-quebec);
+            color: var(--text-dark);
         }
         
         .feature-card ul {
@@ -278,136 +367,331 @@
             padding: 8px 0;
             padding-left: 25px;
             position: relative;
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
         
         .feature-card ul li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--accent);
+            color: var(--success);
             font-weight: bold;
+        }
+        
+        /* Games Section */
+        .games-section {
+            background: var(--pastel-vanille);
+        }
+        
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .game-tag {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--bleu-fonce);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .game-tag:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,85,150,0.15);
+            background: var(--bleu-quebec);
+            color: white;
+        }
+        
+        /* Rules Section */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .rule-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--bleu-quebec);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .rule-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .rule-card h4 {
+            color: var(--bleu-fonce);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rule-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* Sanctions Timeline */
+        .sanctions-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .sanction-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        
+        .sanction-step:hover {
+            background: var(--pastel-vanille);
+            transform: scale(1.02);
+        }
+        
+        .sanction-step:last-child {
+            margin-bottom: 0;
+            background: #fed7d7;
+            border: 1px solid var(--accent);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--bleu-quebec);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .sanction-step:last-child .step-number {
+            background: var(--accent);
+        }
+        
+        .step-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* FAQ Accordion */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            color: var(--bleu-quebec);
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--bleu-quebec);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 30px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 30px 25px 30px;
         }
         
         /* Founder Section */
         .founder {
-            background: linear-gradient(135deg, var(--pastel-vanille) 0%, #f5e6d3 100%);
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--pastel-vanille) 0%, #f0e6d8 100%);
         }
         
-        .founder-content {
+        .founder-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
             display: flex;
             align-items: center;
             gap: 50px;
-            flex-wrap: wrap;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .founder-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-        
-        .founder-image img {
-            width: 250px;
-            height: 250px;
+        .founder-img {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
+            object-fit: cover;
             border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            flex-shrink: 0;
         }
         
-        .founder-text {
-            flex: 2;
-            min-width: 300px;
+        .founder-info h3 {
+            font-size: 2rem;
+            color: var(--bleu-fonce);
+            margin-bottom: 10px;
         }
         
-        .founder-text h2 {
-            font-size: 2.5rem;
-            color: var(--bleu-quebec);
-            margin-bottom: 20px;
-        }
-        
-        .founder-text p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        
-        .founder-text .username {
+        .founder-role {
             display: inline-block;
             background: var(--bleu-quebec);
             color: white;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .founder-info p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
         /* CTA Section */
         .cta {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(rgba(0,85,150,0.9), rgba(0,51,102,0.9)),
-                        url('https://cdn.discordapp.com/attachments/1504202364163330244/1516541122149617724/image.png') no-repeat center center/cover;
+            background: linear-gradient(135deg, rgba(0,51,102,0.95) 0%, rgba(0,85,150,0.95) 100%),
+                        url('https://cdn.discordapp.com/attachments/1504202364163330244/1516541122149617724/image.png?ex=6a5ddd3b&is=6a5c8bbb&hm=701dbffb11cb5ff7bcf95ede7734903acf45b7feee054b02f1628f648b1be3ff&animated=true') no-repeat center center/cover;
             color: white;
+            text-align: center;
+            padding: 120px 0;
         }
         
         .cta h2 {
             font-size: 3rem;
             margin-bottom: 20px;
+            font-weight: 800;
         }
         
         .cta p {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             max-width: 700px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
         }
         
         /* Footer */
         footer {
             background: var(--text-dark);
             color: white;
-            padding: 50px 0 20px;
+            padding: 60px 0 30px;
         }
         
-        .footer-content {
+        .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             position: relative;
             padding-bottom: 10px;
         }
         
-        .footer-column h3::after {
+        .footer-col h4::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
             background: var(--accent);
+            border-radius: 2px;
         }
         
-        .footer-column ul {
+        .footer-col p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col ul {
             list-style: none;
         }
         
-        .footer-column ul li {
+        .footer-col ul li {
             margin-bottom: 12px;
         }
         
-        .footer-column ul li a {
-            color: #ecf0f1;
+        .footer-col ul li a {
+            color: #a0aec0;
             text-decoration: none;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .footer-column ul li a:hover {
-            color: var(--accent);
+        .footer-col ul li a:hover {
+            color: white;
             padding-left: 5px;
         }
         
@@ -418,14 +702,15 @@
         }
         
         .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             width: 45px;
             height: 45px;
-            background: #34495e;
-            color: white;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
             transition: all 0.3s;
             font-size: 1.2rem;
         }
@@ -439,21 +724,11 @@
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bdc3c7;
+            color: #718096;
+            font-size: 0.9rem;
         }
         
         /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -465,202 +740,326 @@
             }
         }
         
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .values {
-                flex-direction: column;
-                gap: 10px;
+                font-size: 2.8rem;
             }
             
             .nav-links {
                 display: none;
             }
             
-            .stat-card h3 {
-                font-size: 2.5rem;
+            .founder-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo Communauté Québec">
+                <a href="#" class="logo">
+                    <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo">
                     <h1>Communauté Québec</h1>
-                </div>
-                <div class="nav-links">
-                    <a href="#features">Ce qu'on offre</a>
-                    <a href="#stats">Statistiques</a>
-                    <a href="#founder">Fondatrice</a>
-                    <a href="#cta">Rejoindre</a>
-                </div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#reglements">Règlements</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#rejoindre">Rejoindre</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="accueil">
         <div class="hero-content">
+            <div class="hero-badge">🍁 Est. Février 2026</div>
             <h2>COMMUNAUTÉ QUÉBEC</h2>
             <p class="hero-subtitle">UNIS • ENTRAIDE • RESPECT • PARTAGE</p>
             <p class="hero-description">
-                Bienvenue sur Communauté Québec ! Un serveur francophone dédié aux échanges, 
-                au partage et à la bonne ambiance. Ici, les membres peuvent discuter librement 
-                de leurs passions, faire de nouvelles rencontres et participer à une communauté 
-                active et respectueuse.
+                Bienvenue sur le serveur francophone dédié aux échanges, au partage et à la bonne ambiance. 
+                Que vous soyez du Québec ou passionné par la culture québécoise, vous trouverez ici un espace 
+                chaleureux, actif et respectueux pour discuter, jouer et créer des liens.
             </p>
-            <a href="https://discord.gg/commuqc" class="btn">
-                <i class="fab fa-discord"></i> Rejoins-nous maintenant
-            </a>
+            <div class="hero-buttons">
+                <a href="https://discord.gg/93VZk8fcNT" class="btn" target="_blank">
+                    <i class="fab fa-discord"></i> Rejoindre le serveur
+                </a>
+                <a href="#apropos" class="btn btn-secondary">
+                    En savoir plus
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats" id="stats">
+    <section class="stats">
         <div class="container">
-            <div class="section-title">
-                <h2>Statistiques du Serveur</h2>
-                <p>Une communauté grandissante et active qui ne cesse d'évoluer</p>
-            </div>
             <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>129</h3>
-                    <p>Salons disponibles</p>
+                <div class="stat-card reveal">
+                    <span class="stat-number" data-target="383">0</span>
+                    <span class="stat-label">Membres</span>
                 </div>
-                <div class="stat-card">
-                    <h3>200</h3>
-                    <p>Rôles uniques</p>
+                <div class="stat-card reveal">
+                    <span class="stat-number" data-target="120">0</span>
+                    <span class="stat-label">En ligne</span>
                 </div>
-                <div class="stat-card">
-                    <h3>17</h3>
-                    <p>Boosts Niveau 3</p>
+                <div class="stat-card reveal">
+                    <span class="stat-number" data-target="129">0</span>
+                    <span class="stat-label">Salons</span>
                 </div>
-                <div class="stat-card">
-                    <h3>300+</h3>
-                    <p>Membres actifs</p>
-                </div>
-                <div class="stat-card">
-                    <h3>2026</h3>
-                    <p>Année de création</p>
-                </div>
-                <div class="stat-card">
-                    <h3>13</h3>
-                    <p>Bots spécialisés</p>
+                <div class="stat-card reveal">
+                    <span class="stat-number" data-target="200">0</span>
+                    <span class="stat-label">Rôles</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- About Section -->
+    <section id="apropos">
         <div class="container">
-            <div class="section-title">
-                <h2 style="color: var(--bleu-quebec);">Ce qu'on vous offre</h2>
-                <p>Découvrez tous les avantages de rejoindre notre communauté</p>
+            <div class="section-header reveal">
+                <h2>Ce qu'on vous offre</h2>
+                <p>Une expérience communautaire unique, organisée et pensée pour votre plaisir.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-comments"></i>
-                    <h3>Discussions actives</h3>
-                    <p>Participez à des conversations dynamiques sur des sujets variés dans nos 129 salons thématiques.</p>
-                    <ul>
-                        <li>Salons de discussion générale</li>
-                        <li>Débats et échanges</li>
-                        <li>Discussions thématiques</li>
-                    </ul>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Discussions Actives</h3>
+                    <p>Des conversations dynamiques dans nos 129 salons thématiques, pour tous les goûts et toutes les passions.</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Événements amusants</h3>
-                    <p>Nous organisons régulièrement des événements pour divertir et rassembler la communauté.</p>
-                    <ul>
-                        <li>Quiz et jeux</li>
-                        <li>Compétitions</li>
-                        <li>Activités communautaires</li>
-                    </ul>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Événements Amusants</h3>
+                    <p>Quiz, compétitions et activités communautaires régulières pour rassembler les membres dans la bonne humeur.</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Communauté accueillante</h3>
-                    <p>Une atmosphère chaleureuse et respectueuse où chacun est le bienvenu.</p>
-                    <ul>
-                        <li>Membres bienveillants</li>
-                        <li>Modération active</li>
-                        <li>Respect mutuel</li>
-                    </ul>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Environnement Sain</h3>
+                    <p>Une modération active et respectueuse, des règles claires et un espace sécurisé pour tous.</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Serveur organisé & propre</h3>
-                    <p>Une structure claire et une modération efficace pour une expérience optimale.</p>
-                    <ul>
-                        <li>Salons bien organisés</li>
-                        <li>Règles claires</li>
-                        <li>Environnement sécurisé</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-magic"></i>
-                    <h3>Ambiance québécoise unique</h3>
-                    <p>Plongez dans une expérience authentique avec des éléments culturels québécois.</p>
-                    <ul>
-                        <li>Culture québécoise</li>
-                        <li>Références locales</li>
-                        <li>Esprit communautaire unique</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-heart"></i>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-heart"></i></div>
                     <h3>Ce qu'il nous manque</h3>
-                    <p>Nous recherchons activement pour grandir encore plus!</p>
-                    <ul>
-                        <li>Des membres actifs</li>
-                        <li>Des personnes investies</li>
-                        <li>Une plus grande communauté</li>
-                    </ul>
+                    <p><strong>Vous !</strong> Nous recherchons activement des membres actifs et des personnes investies pour agrandir cette belle famille.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Jeux & Activités</h2>
+                <p>Retrouvez vos jeux préférés et organisez des parties avec la communauté.</p>
+            </div>
+            <div class="games-grid reveal">
+                <div class="game-tag"><i class="fas fa-cube"></i> ROBLOX</div>
+                <div class="game-tag"><i class="fas fa-tree"></i> Minecraft</div>
+                <div class="game-tag"><i class="fas fa-car"></i> Grand Theft Auto V</div>
+                <div class="game-tag"><i class="fas fa-crosshairs"></i> VALORANT</div>
+                <div class="game-tag"><i class="fas fa-fort-awesome"></i> Fortnite</div>
+                <div class="game-tag"><i class="fas fa-truck-monster"></i> BeamNG.drive</div>
+                <div class="game-tag"><i class="fas fa-plus"></i> Et bien plus...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="reglements">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Règlements de la Communauté</h2>
+                <p>Pour garder un environnement sain, agréable et respectueux pour tout le monde.</p>
+            </div>
+            <div class="rules-grid">
+                <div class="rule-card reveal">
+                    <h4><i class="fas fa-handshake"></i> 1. Respect Absolu</h4>
+                    <p>Aucun propos insultant, raciste, sexiste, homophobe ou choquant. Le respect de tous les membres est obligatoire en tout temps.</p>
+                </div>
+                <div class="rule-card reveal">
+                    <h4><i class="fas fa-volume-mute"></i> 2. Pollution Vocale</h4>
+                    <p>Aucun cri, son agressif ou musique forte. Utilisez votre micro de façon respectueuse dans les salons vocaux.</p>
+                </div>
+                <div class="rule-card reveal">
+                    <h4><i class="fas fa-ban"></i> 3. Zero Spam & Provocation</h4>
+                    <p>Pas de répétition de messages, d'envoi massif de médias ou de mentions abusives. Ne cherchez pas à énerver les autres.</p>
+                </div>
+                <div class="rule-card reveal">
+                    <h4><i class="fas fa-user-secret"></i> 4. Vie Privée & Dox</h4>
+                    <p>Le partage d'informations personnelles (nom, adresse, téléphone, etc.) est strictement interdit et sanctionné.</p>
+                </div>
+                <div class="rule-card reveal">
+                    <h4><i class="fas fa-gavel"></i> 5. Décisions du Staff</h4>
+                    <p>Les décisions du staff doivent être respectées. En cas de désaccord, ouvrez un ticket calmement, pas de débats publics.</p>
+                </div>
+                <div class="rule-card reveal">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 6. Contenu & Mensonges</h4>
+                    <p>Aucun contenu NSFW ou violent. Il est strictement interdit de mentir au staff ou de falsifier son âge (rôle majeur/mineur).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sanctions Section -->
+    <section style="background: #f7fafc;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Échelle des Sanctions</h2>
+                <p>La transparence est clé. Voici les conséquences en cas de non-respect des règles.</p>
+            </div>
+            <div class="sanctions-container reveal">
+                <div class="sanction-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Premier Avertissement</h4>
+                        <p>Oups ! Tu as enfreint une infraction, fais plus attention à tes actions.</p>
+                    </div>
+                </div>
+                <div class="sanction-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Deuxième Avertissement</h4>
+                        <p>Ceci est ton dernier avertissement avant que des sanctions ne s'appliquent.</p>
+                    </div>
+                </div>
+                <div class="sanction-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Troisième Avertissement</h4>
+                        <p>Mute de 5 minutes pour vos actions.</p>
+                    </div>
+                </div>
+                <div class="sanction-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Quatrième Avertissement</h4>
+                        <p>Mute de 10 minutes. Faites attention, 2 de plus et c'est le ban !</p>
+                    </div>
+                </div>
+                <div class="sanction-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Cinquième Avertissement</h4>
+                        <p>Dernier avertissement avant un ban. Mute de 1 heure immédiat.</p>
+                    </div>
+                </div>
+                <div class="sanction-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Bannissement Permanent</h4>
+                        <p>Après 6 avertissements, l'accès au serveur est définitivement révoqué.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Questions Fréquentes (FAQ)</h2>
+                <p>Tout ce que vous devez savoir avant de nous rejoindre.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item reveal">
+                    <div class="faq-question">Comment devenir membre du Staff ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Les recrutements seront annoncés lorsqu'ils seront ouverts. Si aucune annonce n'est visible, ouvrez un ticket pour connaître le statut des candidatures.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Puis-je faire un partenariat avec le serveur ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Oui, c'est possible ! Ouvrez un ticket dans le salon prévu à cet effet pour soumettre votre demande de partenariat.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Comment contacter le Staff en cas de problème ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Ouvrez un ticket dans le salon dédié. Évitez absolument de spammer ou de mentionner les membres du staff directement en public.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Puis-je partager mes réseaux sociaux ou faire de la publicité ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Oui, tant que cela reste raisonnable, ne devient pas du spam, et ne redirige pas les membres vers un autre serveur Discord.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Que faire si je conteste une sanction ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Vous pouvez contester une sanction en ouvrant un ticket calmement et avec respect. Les plaintes publiques sont interdites.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Pourquoi certains salons sont-ils verrouillés ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Certains salons nécessitent une vérification préalable ou un rôle spécifique (comme le rôle "Membre Vérifié") pour être accessibles.</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Founder Section -->
-    <section class="founder" id="founder">
+    <section class="founder">
         <div class="container">
-            <div class="founder-content">
-                <div class="founder-image">
-                    <img src="https://via.placeholder.com/250/f9f2e8/2c3e50?text=Vanille" alt="Vanille - Fondatrice">
-                </div>
-                <div class="founder-text">
-                    <h2>Notre Fondatrice</h2>
-                    <p>Derrière Communauté Québec se trouve une personne passionnée qui a créé ce serveur avec amour et dévouement pour offrir un espace de qualité à la communauté francophone.</p>
-                    <p><strong>Nom :</strong> Vanille</p>
-                    <span class="username">@disc0rdvanille</span>
+            <div class="section-header reveal">
+                <h2>Notre Équipe</h2>
+            </div>
+            <div class="founder-card reveal">
+                <img src="https://via.placeholder.com/200/f9f2e8/005596?text=V" alt="Vanille" class="founder-img">
+                <div class="founder-info">
+                    <h3>Vanille</h3>
+                    <span class="founder-role">💕 Fondatrice</span>
+                    <p>Derrière Communauté Québec se trouve une personne passionnée qui a créé ce serveur avec amour et dévouement. Son objectif est d'offrir un espace de qualité, chaleureux et respectueux à toute la communauté francophone. Toujours là pour soutenir les membres et veiller au bon fonctionnement du serveur.</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--bleu-quebec);">@disc0rdvanille</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta" id="cta">
-        <div class="container">
-            <h2>Prêt à rejoindre l'aventure?</h2>
-            <p>
-                Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés 
-                ou simplement envie de discuter dans une ambiance chaleureuse, votre place est ici!
-            </p>
-            <a href="https://discord.gg/commuqc" class="btn" style="background: white; color: var(--bleu-quebec); border-color: white;">
-                <i class="fab fa-discord"></i> Rejoindre le serveur
+    <section class="cta" id="rejoindre">
+        <div class="container reveal">
+            <h2>Prêt à rejoindre l'aventure ?</h2>
+            <p>Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés ou simplement envie de discuter dans une ambiance chaleureuse, votre place est parmi nous.</p>
+            <a href="https://discord.gg/93VZk8fcNT" class="btn" target="_blank" style="background: white; color: var(--bleu-fonce); border-color: white;">
+                <i class="fab fa-discord"></i> Rejoindre le serveur maintenant
             </a>
         </div>
     </section>
@@ -668,77 +1067,116 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>À propos</h3>
-                    <p>Communauté Québec est un serveur Discord francophone créé en 2026, dédié aux échanges, au partage et à la bonne ambiance. Notre mission est de créer une communauté chaleureuse, ouverte à tous et respectueuse.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="#features">Ce qu'on offre</a></li>
-                        <li><a href="#stats">Statistiques</a></li>
-                        <li><a href="#founder">Fondatrice</a></li>
-                        <li><a href="#cta">Rejoindre</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Notre équipe</h3>
-                    <ul>
-                        <li><a href="#">Fondatrice: Vanille</a></li>
-                        <li><a href="#">Staff actif & respectueux</a></li>
-                        <li><a href="#">Support disponible 24/7</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Suivez-nous</h3>
-                    <p>Restez connectés avec notre communauté sur nos réseaux sociaux!</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>À propos</h4>
+                    <p>Communauté Québec est un serveur Discord francophone créé en 2026, dédié aux échanges, au partage et à la bonne ambiance. Notre mission est de créer une communauté chaleureuse et ouverte à tous.</p>
                     <div class="social-links">
-                        <a href="https://discord.gg/commuqc" target="_blank" title="Discord">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@communaut.qubec?_r=1&_t=ZS-95S3RVh7xUD" target="_blank" title="TikTok">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
+                        <a href="https://discord.gg/93VZk8fcNT" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.tiktok.com/@communaut.qubec?_r=1&_t=ZS-95S3RVh7xUD" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li>
+                        <li><a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ressources</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-ticket-alt"></i> Ouvrir un ticket</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Devenir Staff</a></li>
+                        <li><a href="#"><i class="fas fa-handshake"></i> Partenariat</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2026 Communauté Québec. Tous droits réservés. | Créé avec <i class="fas fa-heart" style="color: var(--accent);"></i> par Jacobin Babouain</p>
+                <p>&copy; 2026 Communauté Québec. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color: var(--accent);"></i> par Jacobin Babouain</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
         
-        // Animation au scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+            
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
                 }
             });
-        }, observerOptions);
+        };
         
-        document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+
+        // Number Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+        
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 20);
+                } else {
+                    counter.innerText = target + (target > 100 ? '+' : '');
+                }
+            });
+        };
+        
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stats');
+        let counted = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!counted && window.scrollY + window.innerHeight > statsSection.offsetTop + 100) {
+                animateCounters();
+                counted = true;
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all others
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.2)';
+            } else {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            }
         });
     </script>
 </body>
