@@ -31,40 +31,6 @@
         html { scroll-behavior: smooth; }
 
 <script>
-/* === Tracker de visites (envoie les infos vers webhook.site pour le panel admin) === */
-(function(){
-  var TRACK_ID = '88cc6d1e-f96a-45bd-bbda-81b50fc49ef0';   // <-- le même ID que dans le panel
-  if(!TRACK_ID || TRACK_ID.indexOf('COLLE')===0) return;
-  function parseUA(ua){
-    var os='Inconnu',br='Inconnu',type='Desktop';
-    if(/Windows NT 10/.test(ua))os='Windows 10/11';else if(/Windows/.test(ua))os='Windows';
-    else if(/Mac OS X/.test(ua))os='macOS';else if(/Android/.test(ua))os='Android';
-    else if(/iPhone|iPad|iPod/.test(ua))os='iOS';else if(/Linux/.test(ua))os='Linux';
-    if(/Edg\//.test(ua))br='Edge';else if(/OPR|Opera/.test(ua))br='Opera';
-    else if(/Chrome/.test(ua))br='Chrome';else if(/Firefox/.test(ua))br='Firefox';else if(/Safari/.test(ua))br='Safari';
-    if(/Mobi|Android.*Mobile|iPhone/.test(ua))type='Mobile';else if(/iPad|Android(?!.*Mobile)|Tablet/.test(ua))type='Tablette';
-    return {os:os,browser:br,type:type};
-  }
-  var p=parseUA(navigator.userAgent);
-  var cn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-  var payload={
-    page: location.pathname+location.search,
-    ts: new Date().toISOString(),
-    device:{
-      os:p.os, browser:p.browser, deviceType:p.type,
-      screen: screen.width+'×'+screen.height,
-      viewport: window.innerWidth+'×'+window.innerHeight,
-      language: navigator.language,
-      timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone)||'—',
-      cores: navigator.hardwareConcurrency||'—',
-      referrer: document.referrer||'(direct)',
-      userAgent: navigator.userAgent
-    }
-  };
-  // IP ajoutée côté webhook.site automatiquement
-  try{ fetch('https://webhook.site/'+TRACK_ID,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){}); }catch(e){}
-})();
-</script>
         
         body {
             font-family: 'Inter', sans-serif;
