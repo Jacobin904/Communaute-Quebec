@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communauté Québec | Un serveur francophone actif et respectueux</title>
+    <meta name="description" content="Rejoignez Communauté Québec, un serveur dédié aux échanges, au partage et à la bonne ambiance en français.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bleu-quebec: #005596;
+            --blanc-quebec: #FFFFFF;
+            --fleurdelis: #005596;
+            --pastel-vanille: #f9f2e8;
+            --text-dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--bleu-quebec) 0%, #003366 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #f9f2e8;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://cdn.discordapp.com/attachments/1465863675968618566/1499133359618785512/IMG_0430.png') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #ff6b6b;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--bleu-quebec);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--pastel-vanille);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--bleu-quebec);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--bleu-quebec);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--bleu-quebec) 0%, #003366 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .stat-card p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #f9f2e8;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            color: var(--bleu-quebec);
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #ff6b6b;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff6b6b;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #ff6b6b;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo Communauté Québec">
+                    <h1>Communauté Québec</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Ce qu'on offre</a>
+                    <a href="#stats">Statistiques</a>
+                    <a href="#cta">Rejoindre</a>
+                    <a href="#about">À propos</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Bienvenue sur Communauté Québec</h2>
+                <p>Un serveur francophone dédié aux échanges, au partage et à la bonne ambiance. Ici, les membres peuvent discuter librement de leurs passions, faire de nouvelles rencontres et participer à une communauté active et respectueuse.</p>
+                <a href="https://discord.gg/ton-invite" class="btn">Rejoins-nous maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ce qu'on vous offre</h2>
+                <p>Notre communauté est conçue pour vous offrir une expérience unique et enrichissante. Découvrez ce qui nous rend spéciaux !</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Discussions actives</h3>
+                    <p>Participez à des conversations dynamiques sur des sujets variés. Que vous soyez passionné de jeux, de culture ou de débats, il y a toujours une place pour vous.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Événements amusants</h3>
+                    <p>Nous organisons régulièrement des événements spéciaux, des quiz, des compétitions et bien plus encore pour vous divertir et renforcer les liens entre membres.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Communauté accueillante</h3>
+                    <p>Notre communauté est connue pour son atmosphère chaleureuse et respectueuse. Chacun est le bienvenu, peu importe son expérience ou ses centres d'intérêt.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Serveur organisé & propre</h3>
+                    <p>Grâce à une structure claire et une modération active, vous trouverez toujours facilement ce que vous cherchez sans être submergé par le désordre.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-magic"></i>
+                    <h3>Ambiance québécoise unique</h3>
+                    <p>Plongez dans une expérience authentique avec des éléments culturels québécois, des références locales et un esprit communautaire typiquement québécois.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Plus grande communauté</h3>
+                    <p>Avec plus de 300 membres actifs, notre communauté ne cesse de grandir. Rejoignez-nous pour faire partie de quelque chose de plus grand !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Statistiques du serveur</h2>
+                <p>Voici quelques chiffres qui montrent la croissance et l'activité de notre communauté</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>129</h3>
+                    <p>Salons</p>
+                </div>
+                <div class="stat-card">
+                    <h3>200</h3>
+                    <p>Rôles</p>
+                </div>
+                <div class="stat-card">
+                    <h3>300+</h3>
+                    <p>Membres actifs</p>
+                </div>
+                <div class="stat-card">
+                    <h3>17</h3>
+                    <p>Boosts (Niveau 3)</p>
+                </div>
+                <div class="stat-card">
+                    <h3>2026</h3>
+                    <p>Créé en</p>
+                </div>
+                <div class="stat-card">
+                    <h3>4.8/5</h3>
+                    <p>Évaluation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <h2>Prêt à rejoindre la communauté ?</h2>
+            <p>Que vous soyez passionné de culture québécoise, de jeux vidéo, de débats ou simplement à la recherche d'un endroit chaleureux pour discuter, vous trouverez votre place ici.</p>
+            <a href="https://discord.gg/ton-invite" class="btn">Rejoins-nous maintenant</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>À propos</h3>
+                    <p>Communauté Québec est un serveur Discord francophone dédié aux échanges, au partage et à la bonne ambiance. Notre objectif est de créer une communauté chaleureuse, ouverte à tous et respectueuse des autres.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#features">Ce qu'on offre</a></li>
+                        <li><a href="#stats">Statistiques</a></li>
+                        <li><a href="#cta">Rejoindre</a></li>
+                        <li><a href="#">Règles du serveur</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Qui sommes-nous ?</h3>
+                    <ul>
+                        <li><a href="#">Fondatrice: Vanille</a></li>
+                        <li><a href="#">Équipe de modération</a></li>
+                        <li><a href="#">Histoire de la communauté</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Partenaires</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Communauté Québec. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
