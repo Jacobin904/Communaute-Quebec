@@ -411,6 +411,30 @@
             padding-left: 5px;
         }
         
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #34495e;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -667,13 +691,16 @@
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Nos bots</h3>
-                    <ul>
-                        <li><i class="fas fa-robot"></i> Commu QC</li>
-                        <li><i class="fas fa-robot"></i> Dyno</li>
-                        <li><i class="fas fa-robot"></i> Xenon</li>
-                        <li><i class="fas fa-robot"></i> Et 10 autres...</li>
-                    </ul>
+                    <h3>Suivez-nous</h3>
+                    <p>Restez connectés avec notre communauté sur nos réseaux sociaux!</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/commuqc" target="_blank" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@communaut.qubec?_r=1&_t=ZS-95S3RVh7xUD" target="_blank" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
