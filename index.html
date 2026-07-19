@@ -66,7 +66,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== CUSTOM CURSOR (sans blend-mode = pas de halo sur le titre) ===== */
+        /* ===== CUSTOM CURSOR ===== */
         .cursor-dot, .cursor-ring {
             position: fixed; top: 0; left: 0; border-radius: 50%;
             pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
@@ -114,7 +114,7 @@
 
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
         
-        /* ===== HEADER (fond quasi opaque = plus rien ne transparaît derrière le titre) ===== */
+        /* ===== HEADER ===== */
         header {
             background: rgba(8, 16, 30, 0.94);
             backdrop-filter: blur(24px) saturate(180%);
@@ -242,7 +242,7 @@
         .rule-card h4 { color: var(--or-clair); margin-bottom: 15px; font-size: 1.4rem; display: flex; align-items: center; gap: 14px; font-weight: 800; position: relative; z-index: 1; }
         .rule-card p { color: var(--text-moyen); font-size: 1.05rem; line-height: 1.9; position: relative; z-index: 1; }
         
-        /* ===== TEAM (3 cartes) ===== */
+        /* ===== TEAM ===== */
         .team-section { background: linear-gradient(180deg, var(--bleu-nuit) 0%, #0a0f1c 100%); }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto; }
         .team-card { background: rgba(15, 23, 42, 0.6); border-radius: 28px; padding: 40px; text-align: center; border: 1px solid rgba(240, 228, 200, 0.1); backdrop-filter: blur(15px); transition: all 0.5s; position: relative; overflow: hidden; }
@@ -288,6 +288,7 @@
         .social-links { display: flex; gap: 18px; margin-top: 30px; }
         .social-links a { width: 55px; height: 55px; background: linear-gradient(135deg, rgba(0, 85, 150, 0.5), rgba(240, 228, 200, 0.2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--or-clair); text-decoration: none; transition: all 0.5s; font-size: 1.4rem; border: 1px solid rgba(240, 228, 200, 0.25); }
         .social-links a:hover { background: var(--gradient-bleu); transform: translateY(-8px) scale(1.15); border-color: var(--or-clair); box-shadow: 0 15px 40px rgba(0, 85, 150, 0.5); }
+        .social-links a svg { width: 22px; height: 22px; }
         .copyright { text-align: center; padding-top: 50px; border-top: 1px solid rgba(240, 228, 200, 0.15); color: var(--text-moyen); }
         
         /* ===== BACK TO TOP ===== */
@@ -495,7 +496,7 @@
                 <p>Tout ce que vous devez savoir avant de nous rejoindre.</p>
             </div>
             <div class="faq-container">
-                <div class="faq-item reveal"><div class="faq-question">Comment devenir membre du Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Les recrutements sont annoncés dans le salon dédié lorsqu'ils sont ouverts. Si aucune annonce n'est visible, vous pouvez ouvrir un ticket pour connaître le statut des candidatures. Nous recherchons des personnes actives, matures et investies.</div></div>
+                <div class="faq-item reveal"><div class="faq-question">Comment devenir membre du Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Les recrutements sont annoncés dans le salon dédié lorsqu'ils seront ouverts. Si aucune annonce n'est visible, vous pouvez ouvrir un ticket pour connaître le statut des candidatures. Nous recherchons des personnes actives, matures et investies.</div></div>
                 <div class="faq-item reveal"><div class="faq-question">Puis-je faire un partenariat avec le serveur ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, c'est tout à fait possible ! Ouvrez un ticket dans le salon partenariat prévu à cet effet pour soumettre votre demande. Nous étudions toutes les propositions sérieuses.</div></div>
                 <div class="faq-item reveal"><div class="faq-question">Comment contacter le Staff en cas de problème ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Ouvrez un ticket dans le salon dédié. C'est la méthode la plus rapide et efficace. Évitez absolument de spammer ou de mentionner les membres du staff directement en public.</div></div>
                 <div class="faq-item reveal"><div class="faq-question">Puis-je partager mes réseaux sociaux ou faire de la publicité ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, tant que cela reste raisonnable et ne devient pas du spam. La publicité écrite est interdite, mais vous pouvez partager occasionnellement. Ne redirigez pas les membres vers un autre serveur Discord.</div></div>
@@ -519,16 +520,23 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>À propos</h4>
                     <p>Communauté Québec est un serveur Discord francophone créé en février 2026, dédié aux échanges, au partage et à la bonne ambiance. Notre mission est de créer une communauté chaleureuse, ouverte à tous et respectueuse.</p>
+                    <!-- RÉSEAUX SOCIAUX (Discord / TikTok / Disboard) -->
                     <div class="social-links">
-                        <a href="https://discord.gg/commuqc" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.tiktok.com/@communaut.qubec" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://discord.gg/commuqc" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.tiktok.com/@communaut.qubec" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://disboard.org/fr/server/1469888825294852130" target="_blank" rel="noopener noreferrer" title="Disboard">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9.5"></circle>
+                                <path d="M9.5 7.5 V16.5 M9.5 7.5 C15 7.5 15 16.5 9.5 16.5"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-col">
