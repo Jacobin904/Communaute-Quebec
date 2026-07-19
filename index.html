@@ -66,7 +66,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== CUSTOM CURSOR ===== */
+        /* ===== CUSTOM CURSOR (sans blend-mode = pas de halo sur le titre) ===== */
         .cursor-dot, .cursor-ring {
             position: fixed; top: 0; left: 0; border-radius: 50%;
             pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
@@ -114,7 +114,7 @@
 
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
         
-        /* ===== HEADER ===== */
+        /* ===== HEADER (fond quasi opaque = rien ne transparaît derrière le titre) ===== */
         header {
             background: rgba(8, 16, 30, 0.94);
             backdrop-filter: blur(24px) saturate(180%);
@@ -212,7 +212,7 @@
         @keyframes expandWidth { 0%,100% { width: 100px; } 50% { width: 150px; } }
         .section-header p { color: var(--text-moyen); max-width: 650px; margin: 0 auto; font-size: 1.2rem; line-height: 1.9; }
         
-        /* ===== FEATURES ===== */
+        /* ===== FEATURES (TILT 3D + SPOTLIGHT) ===== */
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
         .feature-card { background: rgba(15, 23, 42, 0.6); border-radius: 28px; padding: 50px; border: 1px solid rgba(240, 228, 200, 0.1); backdrop-filter: blur(15px); transition: border-color 0.5s, box-shadow 0.5s; position: relative; overflow: hidden; transform-style: preserve-3d; will-change: transform; }
         .feature-card .spotlight { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(240, 228, 200, 0.12), transparent 40%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
@@ -242,7 +242,7 @@
         .rule-card h4 { color: var(--or-clair); margin-bottom: 15px; font-size: 1.4rem; display: flex; align-items: center; gap: 14px; font-weight: 800; position: relative; z-index: 1; }
         .rule-card p { color: var(--text-moyen); font-size: 1.05rem; line-height: 1.9; position: relative; z-index: 1; }
         
-        /* ===== TEAM ===== */
+        /* ===== TEAM (3 cartes) ===== */
         .team-section { background: linear-gradient(180deg, var(--bleu-nuit) 0%, #0a0f1c 100%); }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto; }
         .team-card { background: rgba(15, 23, 42, 0.6); border-radius: 28px; padding: 40px; text-align: center; border: 1px solid rgba(240, 228, 200, 0.1); backdrop-filter: blur(15px); transition: all 0.5s; position: relative; overflow: hidden; }
@@ -262,7 +262,7 @@
         .faq-container { max-width: 850px; margin: 0 auto; }
         .faq-item { background: rgba(15, 23, 42, 0.6); border-radius: 20px; margin-bottom: 25px; border: 1px solid rgba(240, 228, 200, 0.1); overflow: hidden; transition: all 0.5s; backdrop-filter: blur(10px); }
         .faq-item:hover { border-color: rgba(240, 228, 200, 0.25); box-shadow: 0 15px 50px rgba(0, 85, 150, 0.3); }
-        .faq-question { padding: 35px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--or-clair); transition: all 0.4s; font-size: 1.15rem; }
+        .faq-question { padding: 35px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--or-clair); transition: all 0.4s; font-size: 1.15rem; cursor: pointer; }
         .faq-question:hover { color: #fff; }
         .faq-question i { transition: transform 0.5s; color: var(--bleu-quebec); font-size: 1.3rem; }
         .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--or-clair); }
@@ -622,7 +622,7 @@
         backToTop.classList.toggle('visible', scrollTop > 500);
     });
 
-    /* ===== HERO TITLE SPLIT ===== */
+    /* ===== HERO TITLE SPLIT (lettre par lettre) ===== */
     const heroTitle = document.getElementById('heroTitle');
     const titleText = heroTitle.textContent;
     heroTitle.innerHTML = '';
@@ -687,7 +687,7 @@
         });
     }
 
-    /* ===== CANVAS PARTICLES ===== */
+    /* ===== CANVAS PARTICLES CONNECTÉES ===== */
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -745,14 +745,14 @@
     }
     drawParticles();
 
-    /* ===== SCROLL REVEAL ===== */
+    /* ===== SCROLL REVEAL (multi-directions) ===== */
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.12 });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    /* ===== SCROLL SPY ===== */
+    /* ===== SCROLL SPY (nav active) ===== */
     const sections = document.querySelectorAll('section[id]');
     const navLinksAll = document.querySelectorAll('.nav-link');
     const spyObserver = new IntersectionObserver(entries => {
@@ -765,7 +765,7 @@
     }, { threshold: 0.4 });
     sections.forEach(s => spyObserver.observe(s));
 
-    /* ===== FAQ ===== */
+    /* ===== FAQ ACCORDION ===== */
     document.querySelectorAll('.faq-item').forEach(item => {
         item.querySelector('.faq-question').addEventListener('click', () => {
             const isActive = item.classList.contains('active');
@@ -774,7 +774,7 @@
         });
     });
 
-    /* ===== HAMBURGER ===== */
+    /* ===== HAMBURGER MOBILE ===== */
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('open'); });
@@ -789,6 +789,35 @@
             if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         });
     });
+    </script>
+
+    <!-- =====================================================================
+         TRACKER DE VISITES (multi-appareils) — INACTIF TANT QUE CLÉS VIDES
+         Pour l'activer plus tard : remplis SUPABASE_URL + SUPABASE_KEY (cloud)
+         OU WEBHOOK_ID (collecte simple). Sinon, ce bloc ne fait rien.
+         ===================================================================== -->
+    <script>
+    (function(){
+      var SUPABASE_URL = '';
+      var SUPABASE_KEY = '';
+      var WEBHOOK_ID   = '';
+      if(!SUPABASE_URL && !WEBHOOK_ID) return;
+      function parseUA(ua){var os='Inconnu',br='Inconnu',type='Desktop';
+        if(/Windows NT 10/.test(ua))os='Windows 10/11';else if(/Windows/.test(ua))os='Windows';else if(/Mac OS X/.test(ua))os='macOS';else if(/Android/.test(ua))os='Android';else if(/iPhone|iPad|iPod/.test(ua))os='iOS';else if(/Linux/.test(ua))os='Linux';
+        if(/Edg\//.test(ua))br='Edge';else if(/OPR|Opera/.test(ua))br='Opera';else if(/Chrome/.test(ua))br='Chrome';else if(/Firefox/.test(ua))br='Firefox';else if(/Safari/.test(ua))br='Safari';
+        if(/Mobi|Android.*Mobile|iPhone/.test(ua))type='Mobile';else if(/iPad|Android(?!.*Mobile)|Tablet/.test(ua))type='Tablette';
+        return{os:os,browser:br,type:type};}
+      var p=parseUA(navigator.userAgent);
+      var dev={os:p.os,browser:p.browser,deviceType:p.type,screen:screen.width+'×'+screen.height,viewport:window.innerWidth+'×'+window.innerHeight,language:navigator.language,timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone)||'—',cores:navigator.hardwareConcurrency||'—',referrer:document.referrer||'(direct)',userAgent:navigator.userAgent};
+      function withIP(cb){try{fetch('https://api.ipify.org?format=json').then(function(r){return r.json();}).then(function(j){dev.ip=j.ip;cb();}).catch(function(){cb();});}catch(e){cb();}}
+      withIP(function(){
+        if(SUPABASE_URL){
+          try{fetch(SUPABASE_URL.replace(/\/$/,'')+'/rest/v1/cq_logs',{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({kind:'visit',message:'Visite '+location.pathname,device:dev,extra:{page:location.pathname+location.search}}),keepalive:true}).catch(function(){});}catch(e){}
+        } else if(WEBHOOK_ID){
+          try{fetch('https://webhook.site/'+WEBHOOK_ID,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({app:'CQ',kind:'visit',message:'Visite '+location.pathname,device:dev,extra:{page:location.pathname+location.search},ts:new Date().toISOString()}),keepalive:true}).catch(function(){});}catch(e){}
+        }
+      });
+    })();
     </script>
 </body>
 </html>
