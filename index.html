@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚜️ Communauté Québec ⚜️ | Serveur Discord Premium</title>
+    <title>⚜️ Communauté Québec ⚜ | Serveur Discord Premium</title>
     <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
     <link rel="apple-touch-icon" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
     <meta name="description" content="Rejoignez Communauté Québec - La meilleure communauté francophone sur Discord.">
@@ -138,6 +138,9 @@
         .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marqScroll 25s linear infinite;width:max-content}
         .marquee-item{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--blanc);display:flex;align-items:center;gap:60px;letter-spacing:3px}
         .marquee-item .sep{font-size:1.5rem;color:var(--ambre)}
+        .marquee-item .sep:nth-of-type(3n+1){color:var(--ambre)}
+        .marquee-item .sep:nth-of-type(3n+2){color:var(--blanc)}
+        .marquee-item .sep:nth-of-type(3n+3){color:var(--bleu-clair)}
         @keyframes marqScroll{to{transform:translateX(-50%)}}
 
         /* SECTIONS */
@@ -147,12 +150,6 @@
         .section-header h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:100px;height:4px;background:var(--grad-ambre);border-radius:2px;animation:expandW 2s ease infinite}
         @keyframes expandW{0%,100%{width:100px}50%{width:150px}}
         .section-header p{color:var(--gris);max-width:650px;margin:0 auto;font-size:1.2rem;line-height:1.9}
-
-        /* COUNTERS */
-        .counters-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;padding:60px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:0}
-        .counter-item{text-align:center}
-        .counter-num{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;background:var(--grad-ambre);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-        .counter-label{font-size:.8rem;color:var(--gris);text-transform:uppercase;letter-spacing:2px;margin-top:8px;font-weight:600}
 
         /* FEATURES */
         .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:35px}
@@ -217,7 +214,7 @@
         .faq-question i{transition:transform .5s;color:var(--royal-2);font-size:1.3rem}
         .faq-item.active .faq-question i{transform:rotate(180deg);color:var(--ambre)}
         .faq-answer{max-height:0;overflow:hidden;transition:max-height .6s ease,padding .6s ease;padding:0 35px;color:var(--gris);line-height:1.9;font-size:1.05rem}
-        .faq-item.active .faq-answer{max-height:400px;padding:0 35px 35px}
+        .faq-item.active .faq-answer{max-height:400px;padding:0 35px 35px 35px}
 
         /* CTA */
         .cta{background:radial-gradient(ellipse at center,rgba(30,58,138,.35),transparent 70%);text-align:center;padding:150px 0;position:relative;overflow:hidden}
@@ -287,7 +284,7 @@
         .stagger.active>*:nth-child(9){transition-delay:.61s}
 
         @media(max-width:900px){.hamburger{display:flex}.nav-links{position:fixed;top:80px;left:0;width:100%;background:rgba(5,8,15,.98);backdrop-filter:blur(20px);flex-direction:column;gap:0;padding:20px 0;transform:translateY(-150%);transition:transform .4s;border-bottom:1px solid var(--border)}.nav-links.open{transform:translateY(0)}.nav-links li{width:100%;text-align:center}.nav-links a{display:block;padding:15px}}
-        @media(max-width:768px){.container{padding:0 20px}.hero h2{font-size:3rem}.section-header h2{font-size:2.5rem}.cta h2{font-size:2.5rem}.btn-group{flex-direction:column;align-items:center}.features-grid,.rules-grid{grid-template-columns:1fr}.marquee-item{font-size:1.4rem;gap:40px}.counter-num{font-size:2.4rem}}
+        @media(max-width:768px){.container{padding:0 20px}.hero h2{font-size:3rem}.section-header h2{font-size:2.5rem}.cta h2{font-size:2.5rem}.btn-group{flex-direction:column;align-items:center}.features-grid,.rules-grid{grid-template-columns:1fr}.marquee-item{font-size:1.4rem;gap:40px}}
     </style>
 </head>
 <body>
@@ -335,17 +332,6 @@
         <div class="marquee-item">UNIS <span class="sep">⚜️</span> ENTRAIDE <span class="sep">★</span> RESPECT <span class="sep">♥</span> PARTAGE <span class="sep">⚜️</span> COMMUNAUTÉ <span class="sep">★</span> QUÉBEC <span class="sep">♥</span></div>
         <div class="marquee-item">UNIS <span class="sep">⚜️</span> ENTRAIDE <span class="sep">★</span> RESPECT <span class="sep">♥</span> PARTAGE <span class="sep">⚜️</span> COMMUNAUTÉ <span class="sep">★</span> QUÉBEC <span class="sep">♥</span></div>
     </div></div>
-
-    <!-- COUNTERS -->
-    <div class="container">
-        <div class="counters-strip reveal" id="countersStrip">
-            <div class="counter-item"><div class="counter-num" data-target="388">0</div><div class="counter-label">Membres</div></div>
-            <div class="counter-item"><div class="counter-num" data-target="90">0</div><div class="counter-label">En ligne</div></div>
-            <div class="counter-item"><div class="counter-num" data-target="129">0</div><div class="counter-label">Salons</div></div>
-            <div class="counter-item"><div class="counter-num" data-target="200">0</div><div class="counter-label">Rôles</div></div>
-            <div class="counter-item"><div class="counter-num" data-target="13">0</div><div class="counter-label">Bots</div></div>
-        </div>
-    </div>
 
     <section id="apropos">
         <div class="container">
@@ -457,7 +443,7 @@ if(!isTouch){
 const scrollProgress=document.getElementById('scrollProgress'),header=document.getElementById('header'),backToTop=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{const s=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;scrollProgress.style.width=(s/h*100)+'%';header.classList.toggle('scrolled',s>100);backToTop.classList.toggle('visible',s>500)});
 
-/* ===== TEXT SCRAMBLE (hero title) ===== */
+/* ===== TEXT SCRAMBLE (hero title) - FIXED ===== */
 const titleEl=document.getElementById('heroTitle');
 const TITLE_TEXT='COMMUNAUTÉ QUÉBEC';
 const CHARS='ABCDEFGHIJKLMNOPQRSTUVWXYZ⚜★♥';
@@ -469,7 +455,11 @@ function scrambleTitle(){
             return`<span class="scramble-char" style="opacity:.6">${CHARS[Math.floor(Math.random()*CHARS.length)]}</span>`;
         }).join('');
         iteration+=1/2;
-        if(iteration>=TITLE_TEXT.length){clearInterval(interval);scrambleDone=true}
+        if(iteration>=TITLE_TEXT.length){
+            clearInterval(interval);
+            scrambleDone=true;
+            titleEl.innerHTML=TITLE_TEXT.split('').map(ch=>`<span class="scramble-char">${ch}</span>`).join('');
+        }
     },50);
 }
 setTimeout(scrambleTitle,1000);
@@ -502,11 +492,6 @@ function drawP(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach
 const allReveal=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger');
 const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')})},{threshold:.1});
 allReveal.forEach(el=>revObs.observe(el));
-
-/* ===== COUNTERS ===== */
-let counted=false;
-const counterObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&!counted){counted=true;document.querySelectorAll('.counter-num').forEach(el=>{const target=+el.dataset.target;let cur=0;const step=target/60;const iv=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(iv)}el.textContent=Math.floor(cur)+'+'},25)})}})},{threshold:.3});
-counterObs.observe(document.getElementById('countersStrip'));
 
 /* ===== PROGRESS DOTS ===== */
 const sects=document.querySelectorAll('section[id]');
