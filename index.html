@@ -7,8 +7,6 @@
     <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
     <link rel="apple-touch-icon" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
     <meta name="description" content="Rejoignez Communauté Québec - La meilleure communauté francophone sur Discord.">
-
-    <!-- ============ EMBED DISCORD / RÉSEAUX (Open Graph + Twitter Cards) ============ -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Communauté Québec">
     <meta property="og:title" content="⚜️ Communauté Québec — Serveur Discord Francophone">
@@ -18,246 +16,328 @@
     <meta property="og:image" content="https://jacobin904.github.io/Communaute-Quebec/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Communauté Québec — drapeau du Québec, Château Frontenac et logo du serveur">
+    <meta property="og:image:alt" content="Communauté Québec">
     <meta property="og:image:type" content="image/png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="⚜️ Communauté Québec — Serveur Discord Francophone">
     <meta name="twitter:description" content="Un serveur francophone dédié aux échanges, au partage et à la bonne ambiance. 🍁 388 membres · 129 salons · Rejoins la famille Québec !">
     <meta name="twitter:image" content="https://jacobin904.github.io/Communaute-Quebec/og-image.png">
     <meta name="theme-color" content="#0a1024">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
-
-        /* ===== PALETTE EXTRAITE DE LA BANNIÈRE DE NUIT =====
-           nuit  = ciel / fond froid
-           royal = bleu du drapeau (accents froids, boutons, icônes)
-           blanc = blanc du drapeau + globe (titres, textes)
-           ambre = lumières du Château (accent chaleureux)        */
         :root {
-            --nuit-0: #05080f; --nuit-1: #0a1024; --nuit-2: #0d1530; --nuit-3: #111a3a;
-            --royal: #1e3a8a; --royal-2: #2d4ba8; --indigo: #243a7a; --bleu-clair: #9fb0d8;
-            --blanc: #f2f4fb; --blanc-2: #d6dcef;
-            --ambre: #e0b070; --ambre-2: #d49a52; --ambre-clair: #f0c98a;
-            --gris: #8b95b5; --gris-2: #5d688a;
-            --border: rgba(214, 220, 239, 0.10); --border-royal: rgba(45, 75, 168, 0.35);
-            --grad-argent: linear-gradient(135deg, #ffffff 0%, #d6dcef 45%, #b8c4e0 100%);
-            --grad-royal: linear-gradient(135deg, #1e3a8a 0%, #2d4ba8 100%);
-            --grad-ambre: linear-gradient(135deg, #f0c98a 0%, #e0b070 50%, #c8884a 100%);
+            --nuit-0:#05080f;--nuit-1:#0a1024;--nuit-2:#0d1530;--nuit-3:#111a3a;
+            --royal:#1e3a8a;--royal-2:#2d4ba8;--indigo:#243a7a;--bleu-clair:#9fb0d8;
+            --blanc:#f2f4fb;--blanc-2:#d6dcef;
+            --ambre:#e0b070;--ambre-2:#d49a52;--ambre-clair:#f0c98a;
+            --gris:#8b95b5;--gris-2:#5d688a;
+            --border:rgba(214,220,239,0.10);--border-royal:rgba(45,75,168,0.35);
+            --grad-argent:linear-gradient(135deg,#fff 0%,#d6dcef 45%,#b8c4e0 100%);
+            --grad-royal:linear-gradient(135deg,#1e3a8a 0%,#2d4ba8 100%);
+            --grad-ambre:linear-gradient(135deg,#f0c98a 0%,#e0b070 50%,#c8884a 100%);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(180deg, var(--nuit-0) 0%, var(--nuit-1) 50%, var(--nuit-2) 100%); color: var(--blanc-2); line-height: 1.7; overflow-x: hidden; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--nuit-0);color:var(--blanc-2);line-height:1.7;overflow-x:hidden}
 
-        .preloader { position: fixed; inset: 0; background: var(--nuit-0); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; transition: opacity 0.8s ease, visibility 0.8s ease; }
-        .preloader.hidden { opacity: 0; visibility: hidden; }
-        .preloader-logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid rgba(214, 220, 239, 0.3); animation: preloaderSpin 2s linear infinite, preloaderPulse 1.5s ease-in-out infinite; box-shadow: 0 0 40px rgba(45, 75, 168, 0.6); }
-        @keyframes preloaderSpin { to { transform: rotate(360deg); } }
-        @keyframes preloaderPulse { 0%,100% { box-shadow: 0 0 40px rgba(45,75,168,0.6); } 50% { box-shadow: 0 0 70px rgba(224,176,112,0.7); } }
-        .preloader-bar { width: 200px; height: 3px; background: rgba(214, 220, 239, 0.1); border-radius: 3px; overflow: hidden; }
-        .preloader-bar::after { content: ''; display: block; width: 40%; height: 100%; background: var(--grad-ambre); border-radius: 3px; animation: preloaderSlide 1.2s ease-in-out infinite; }
-        @keyframes preloaderSlide { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
-        .preloader-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; letter-spacing: 4px; background: var(--grad-argent); color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-transform: uppercase; }
-
-        .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); }
-        .cursor-dot { width: 8px; height: 8px; background: var(--blanc); box-shadow: 0 0 0 2px rgba(5, 8, 15, 0.55); transition: width 0.2s, height 0.2s; }
-        .cursor-ring { width: 40px; height: 40px; border: 2px solid rgba(214, 220, 239, 0.7); box-shadow: 0 0 0 1px rgba(5, 8, 15, 0.4); transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s; }
-        .cursor-ring.hover { width: 70px; height: 70px; border-color: var(--ambre); background: rgba(224, 176, 112, 0.08); }
-        @media (max-width: 900px), (hover: none) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
-        @media (min-width: 901px) and (hover: hover) { body, a, button { cursor: none; } }
-
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #1e3a8a, #2d4ba8, #e0b070); z-index: 1001; box-shadow: 0 0 10px rgba(224, 176, 112, 0.4); transition: width 0.1s linear; }
-
-        #particleCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .bg-animation { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 20% 50%, rgba(30, 58, 138, 0.18) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(36, 58, 122, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 10%, rgba(224, 176, 112, 0.05) 0%, transparent 50%); animation: bgPulse 15s ease-in-out infinite; }
-        @keyframes bgPulse { 0%,100% { opacity: 0.5; } 50% { opacity: 0.85; } }
-        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-
-        header { background: rgba(8, 12, 26, 0.94); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid var(--border); color: white; padding: 20px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6); transition: all 0.3s; }
-        header.scrolled { padding: 12px 0; background: rgba(5, 8, 15, 0.98); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; transition: all 0.4s; }
-        .logo:hover { transform: scale(1.05); }
-        .logo img { height: 50px; border-radius: 50%; border: 2px solid rgba(214, 220, 239, 0.4); box-shadow: 0 0 20px rgba(45, 75, 168, 0.5); }
-        .logo h1 { font-size: 1.8rem; font-weight: 900; background: var(--grad-argent); background-size: 200% auto; color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: 'Playfair Display', serif; animation: gradientShift 4s ease infinite; }
-        @keyframes gradientShift { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: var(--gris); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; position: relative; padding: 5px 0; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--grad-ambre); transition: width 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--blanc); }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; }
-        .hamburger span { width: 28px; height: 3px; background: var(--blanc); border-radius: 3px; transition: all 0.3s; }
-        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 180px 20px 120px; position: relative; overflow: hidden; }
-        .hero-content { max-width: 1100px; z-index: 1; position: relative; transition: transform 0.2s ease-out; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(224, 176, 112, 0.15)); backdrop-filter: blur(15px); padding: 15px 35px; border-radius: 50px; font-size: 0.95rem; font-weight: 700; margin-bottom: 35px; border: 1px solid rgba(224, 176, 112, 0.35); color: var(--ambre-clair); letter-spacing: 2px; text-transform: uppercase; animation: slideDown 1s ease; box-shadow: 0 10px 30px rgba(30, 58, 138, 0.4); }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero h2 { font-size: 6rem; margin-bottom: 25px; font-weight: 900; font-family: 'Playfair Display', serif; line-height: 1.1; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 0.2em; }
-        .hero h2 .word { display: inline-flex; overflow: hidden; }
-        .hero h2 .char { display: inline-block; background: var(--grad-argent); background-size: 200% auto; color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transform: translateY(110%); animation: charReveal 0.8s cubic-bezier(0.5, 0, 0.1, 1) forwards, gradientShift 4s ease infinite; text-shadow: 0 0 60px rgba(45, 75, 168, 0.25); }
-        @keyframes charReveal { to { transform: translateY(0); } }
-        .hero-subtitle { font-size: 1.8rem; margin-bottom: 35px; font-weight: 600; color: var(--ambre-clair); letter-spacing: 5px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; animation: fadeInUp 1s ease 1.2s both; }
-        .hero-description { font-size: 1.35rem; margin-bottom: 50px; line-height: 2; max-width: 800px; margin-left: auto; margin-right: auto; color: var(--blanc-2); animation: fadeInUp 1s ease 1.4s both; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        .btn-group { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 1s ease 1.6s both; }
-        .btn { display: inline-flex; align-items: center; gap: 12px; background: var(--grad-royal); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; border: 2px solid rgba(214, 220, 239, 0.3); box-shadow: 0 15px 40px rgba(30, 58, 138, 0.5); text-transform: uppercase; letter-spacing: 1px; position: relative; overflow: hidden; will-change: transform; }
-        .btn:hover { box-shadow: 0 25px 60px rgba(224, 176, 112, 0.4); border-color: var(--ambre); }
-        .btn-secondary { background: transparent; border: 2px solid rgba(214, 220, 239, 0.4); box-shadow: none; }
-        .btn-secondary:hover { background: rgba(224, 176, 112, 0.1); border-color: var(--ambre); box-shadow: 0 15px 40px rgba(224, 176, 112, 0.2); }
-
-        .marquee { background: linear-gradient(90deg, var(--nuit-2), var(--indigo), var(--nuit-2)); padding: 25px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
-        .marquee-track { display: flex; gap: 60px; white-space: nowrap; animation: marqueeScroll 25s linear infinite; width: max-content; }
-        .marquee-item { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--blanc); display: flex; align-items: center; gap: 60px; letter-spacing: 3px; }
-        .marquee-item .sep { font-size: 1.5rem; }
-        .marquee-item .sep:nth-of-type(3n+1) { color: var(--ambre); }
-        .marquee-item .sep:nth-of-type(3n+2) { color: var(--blanc); }
-        .marquee-item .sep:nth-of-type(3n+3) { color: var(--bleu-clair); }
-        @keyframes marqueeScroll { to { transform: translateX(-50%); } }
-
-        section { padding: 120px 0; }
-        .section-header { text-align: center; margin-bottom: 80px; position: relative; }
-        .section-header h2 { font-size: 3.5rem; background: var(--grad-argent); background-size: 200% auto; color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 25px; font-weight: 900; font-family: 'Playfair Display', serif; display: inline-block; position: relative; animation: gradientShift 4s ease infinite; }
-        .section-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: var(--grad-ambre); border-radius: 2px; animation: expandWidth 2s ease infinite; }
-        @keyframes expandWidth { 0%,100% { width: 100px; } 50% { width: 150px; } }
-        .section-header p { color: var(--gris); max-width: 650px; margin: 0 auto; font-size: 1.2rem; line-height: 1.9; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
-        .feature-card { background: rgba(13, 21, 48, 0.6); border-radius: 28px; padding: 50px; border: 1px solid var(--border); backdrop-filter: blur(15px); transition: border-color 0.5s, box-shadow 0.5s; position: relative; overflow: hidden; transform-style: preserve-3d; will-change: transform; }
-        .feature-card .spotlight { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(224, 176, 112, 0.14), transparent 42%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
-        .feature-card:hover .spotlight { opacity: 1; }
-        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--grad-ambre); transform: scaleX(0); transform-origin: left; transition: transform 0.5s; }
-        .feature-card:hover { border-color: rgba(224, 176, 112, 0.4); box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); }
-        .feature-card:hover::before { transform: scaleX(1); }
-        .feature-icon { width: 80px; height: 80px; background: var(--grad-royal); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; color: var(--blanc); margin-bottom: 30px; border: 1px solid var(--border-royal); transition: all 0.5s; box-shadow: 0 10px 30px rgba(30, 58, 138, 0.4); position: relative; z-index: 1; transform: translateZ(40px); }
-        .feature-card:hover .feature-icon { transform: translateZ(60px) scale(1.15) rotate(10deg); background: var(--grad-ambre); color: var(--nuit-1); box-shadow: 0 20px 50px rgba(224, 176, 112, 0.4); }
-        .feature-card h3 { font-size: 1.8rem; margin-bottom: 18px; color: var(--blanc); font-weight: 800; position: relative; z-index: 1; transform: translateZ(30px); }
-        .feature-card p { color: var(--gris); line-height: 1.9; font-size: 1.05rem; position: relative; z-index: 1; transform: translateZ(20px); }
-
-        .games-section { background: linear-gradient(180deg, var(--nuit-0) 0%, var(--nuit-1) 100%); }
-        .games-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-        .game-tag { background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(13, 21, 48, 0.6)); padding: 22px 40px; border-radius: 50px; font-weight: 700; color: var(--blanc-2); border: 1px solid var(--border-royal); display: flex; align-items: center; gap: 14px; transition: all 0.5s; backdrop-filter: blur(10px); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2); position: relative; overflow: hidden; }
-        .game-tag i { color: var(--ambre); transition: color 0.4s; }
-        .game-tag::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); transition: left 0.6s; }
-        .game-tag:hover::before { left: 100%; }
-        .game-tag:hover { transform: translateY(-8px) scale(1.08); background: var(--grad-royal); border-color: var(--ambre); box-shadow: 0 20px 50px rgba(30, 58, 138, 0.5); color: white; }
-        .game-tag:hover i { color: #fff; }
-
-        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; }
-        .rule-card { background: rgba(13, 21, 48, 0.6); padding: 40px; border-radius: 24px; border-left: 6px solid var(--royal); border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); transition: all 0.5s; position: relative; overflow: hidden; }
-        .rule-card .rule-num { position: absolute; top: 15px; right: 25px; font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900; color: rgba(214, 220, 239, 0.05); line-height: 1; transition: all 0.5s; }
-        .rule-card:hover .rule-num { color: rgba(224, 176, 112, 0.14); transform: scale(1.1); }
-        .rule-card:hover { transform: translateX(15px); border-left-color: var(--ambre); box-shadow: 0 20px 60px rgba(30, 58, 138, 0.4); }
-        .rule-card h4 { color: var(--blanc); margin-bottom: 15px; font-size: 1.4rem; display: flex; align-items: center; gap: 14px; font-weight: 800; position: relative; z-index: 1; }
-        .rule-card h4 i { color: var(--ambre); }
-        .rule-card p { color: var(--gris); font-size: 1.05rem; line-height: 1.9; position: relative; z-index: 1; }
-
-        .team-section { background: linear-gradient(180deg, var(--nuit-1) 0%, var(--nuit-0) 100%); }
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto; }
-        .team-grid .team-card:nth-child(1) .team-role, .team-grid .team-card:nth-child(2) .team-role { background: var(--grad-ambre); color: var(--nuit-1); }
-        .team-grid .team-card:nth-child(3) .team-role { background: var(--grad-royal); color: #fff; }
-        .team-card { background: rgba(13, 21, 48, 0.6); border-radius: 28px; padding: 40px; text-align: center; border: 1px solid var(--border); backdrop-filter: blur(15px); transition: all 0.5s; position: relative; overflow: hidden; }
-        .team-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: var(--grad-ambre); border-radius: 28px; z-index: -1; opacity: 0; transition: opacity 0.5s; }
-        .team-card:hover::before { opacity: 0.4; }
-        .team-card:hover { transform: translateY(-10px); box-shadow: 0 30px 80px rgba(30, 58, 138, 0.4); }
-        .team-img-wrap { width: 150px; height: 150px; margin: 0 auto 25px; position: relative; }
-        .team-img-wrap::after { content: ''; position: absolute; inset: -8px; border: 2px dashed rgba(224, 176, 112, 0.3); border-radius: 50%; animation: rotate 15s linear infinite; }
-        @keyframes rotate { to { transform: rotate(360deg); } }
-        .team-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(214, 220, 239, 0.2); transition: all 0.5s; }
-        .team-card:hover .team-img { transform: scale(1.08); border-color: var(--ambre); }
-        .team-card h3 { font-size: 1.8rem; background: var(--grad-argent); color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; font-weight: 800; }
-        .team-role { display: inline-block; background: var(--grad-royal); color: white; padding: 6px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; margin-bottom: 20px; }
-        .team-card p { color: var(--gris); line-height: 1.8; }
-
-        .faq-container { max-width: 850px; margin: 0 auto; }
-        .faq-item { background: rgba(13, 21, 48, 0.6); border-radius: 20px; margin-bottom: 25px; border: 1px solid var(--border); overflow: hidden; transition: all 0.5s; backdrop-filter: blur(10px); }
-        .faq-item:hover { border-color: var(--border-royal); box-shadow: 0 15px 50px rgba(30, 58, 138, 0.3); }
-        .faq-question { padding: 35px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--blanc); transition: all 0.4s; font-size: 1.15rem; cursor: pointer; }
-        .faq-question:hover { color: var(--ambre-clair); }
-        .faq-question i { transition: transform 0.5s; color: var(--royal-2); font-size: 1.3rem; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--ambre); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s ease, padding 0.6s ease; padding: 0 35px; color: var(--gris); line-height: 1.9; font-size: 1.05rem; }
-        .faq-item.active .faq-answer { max-height: 400px; padding: 0 35px 35px 35px; }
-
-        .cta { background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.35) 0%, transparent 70%); text-align: center; padding: 150px 0; position: relative; overflow: hidden; }
-        .cta-content { position: relative; z-index: 1; }
-        .cta h2 { font-size: 4rem; margin-bottom: 30px; font-weight: 900; font-family: 'Playfair Display', serif; background: var(--grad-argent); background-size: 200% auto; color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 4s ease infinite; }
-        .cta p { font-size: 1.45rem; max-width: 800px; margin: 0 auto 60px; color: var(--gris); line-height: 2; }
-
-        footer { background: linear-gradient(180deg, var(--nuit-0) 0%, var(--nuit-1) 100%); color: var(--blanc-2); padding: 100px 0 50px; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; margin-bottom: 70px; }
-        .footer-col h4 { font-size: 1.5rem; margin-bottom: 35px; color: var(--blanc); font-weight: 800; position: relative; padding-bottom: 15px; }
-        .footer-col h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background: var(--grad-ambre); border-radius: 2px; }
-        .footer-col p { color: var(--gris); line-height: 1.9; margin-bottom: 30px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 18px; }
-        .footer-col ul li a { color: var(--gris); text-decoration: none; transition: all 0.4s; display: flex; align-items: center; gap: 12px; }
-        .footer-col ul li a:hover { color: var(--ambre-clair); padding-left: 10px; }
-        .footer-col ul li a i { color: var(--royal-2); }
-        .footer-col ul li a:hover i { color: var(--ambre); }
-        .social-links { display: flex; gap: 18px; margin-top: 30px; }
-        .social-links a { width: 55px; height: 55px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(13, 21, 48, 0.6)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--blanc); text-decoration: none; transition: all 0.5s; font-size: 1.4rem; border: 1px solid var(--border-royal); }
-        .social-links a:hover { background: var(--grad-royal); transform: translateY(-8px) scale(1.15); border-color: var(--ambre); box-shadow: 0 15px 40px rgba(30, 58, 138, 0.5); }
-        .social-links a svg { width: 22px; height: 22px; }
-        .copyright { text-align: center; padding-top: 50px; border-top: 1px solid var(--border); color: var(--gris-2); }
-
-        .back-to-top { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background: var(--grad-ambre); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--nuit-1); font-size: 1.3rem; text-decoration: none; box-shadow: 0 10px 30px rgba(224, 176, 112, 0.4); z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s; }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { transform: translateY(-5px) scale(1.1); }
-
-        .fab-menu, .quicknav, .quicknav-overlay { display: none; }
-        @keyframes fabPulse { 0%,100% { box-shadow: 0 10px 30px rgba(224,176,112,0.4); } 50% { box-shadow: 0 10px 42px rgba(224,176,112,0.75); } }
-        @media (max-width: 900px) {
-            .fab-menu { display: flex; align-items: center; justify-content: center; position: fixed; left: 22px; bottom: 22px; width: 58px; height: 58px; border-radius: 50%; border: none; background: var(--grad-ambre); color: var(--nuit-1); font-size: 1.4rem; z-index: 1002; animation: fabPulse 2.5s ease-in-out infinite; }
-            .fab-menu:active { transform: scale(0.92); }
-            .quicknav-overlay { display: block; position: fixed; inset: 0; background: rgba(5, 8, 15, 0.6); backdrop-filter: blur(4px); z-index: 1003; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
-            .quicknav-overlay.open { opacity: 1; visibility: visible; }
-            .quicknav { display: flex; flex-direction: column; position: fixed; left: 0; right: 0; bottom: 0; z-index: 1004; background: linear-gradient(180deg, var(--nuit-2), var(--nuit-1)); border: 1px solid var(--border); border-bottom: none; border-radius: 26px 26px 0 0; padding: 18px 0 8px; max-height: 82vh; transform: translateY(110%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 -20px 60px rgba(0,0,0,0.6); }
-            .quicknav.open { transform: translateY(0); }
-            .quicknav-grab { width: 46px; height: 5px; border-radius: 5px; background: rgba(224, 176, 112, 0.3); margin: 0 auto 14px; }
-            .quicknav-header { display: flex; align-items: center; justify-content: space-between; padding: 0 22px 14px; }
-            .quicknav-header span { font-family: 'Playfair Display', serif; font-size: 1.2rem; background: var(--grad-argent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; }
-            .quicknav-close { background: rgba(214, 220, 239, 0.1); border: 1px solid var(--border); color: var(--blanc); width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
-            .quicknav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 6px 22px 24px; overflow-y: auto; }
-            .quicknav-links a { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 14px; background: rgba(5, 8, 15, 0.5); border: 1px solid var(--border); color: var(--blanc-2); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.25s; }
-            .quicknav-links a i { color: var(--ambre); width: 20px; text-align: center; font-size: 1.05rem; }
-            .quicknav-links a:active { transform: scale(0.96); background: rgba(30, 58, 138, 0.3); border-color: var(--ambre); }
-            .quicknav-links .qn-cta { grid-column: 1 / -1; background: var(--grad-royal); color: #fff; justify-content: center; border: none; font-size: 1rem; }
-            .quicknav-links .qn-cta i { color: #fff; }
+        /* ===== NOISE TEXTURE ===== */
+        body::after{content:'';position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:0.025;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .reveal-left.active { opacity: 1; transform: translateX(0); }
-        .reveal-right { opacity: 0; transform: translateX(60px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
-        .reveal-scale { opacity: 0; transform: scale(0.8); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .reveal-scale.active { opacity: 1; transform: scale(1); }
+        /* ===== PRELOADER ===== */
+        .preloader{position:fixed;inset:0;background:var(--nuit-0);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;transition:opacity .8s,visibility .8s}
+        .preloader.hidden{opacity:0;visibility:hidden}
+        .preloader-logo{width:90px;height:90px;border-radius:50%;border:3px solid rgba(214,220,239,.3);animation:pSpin 2s linear infinite,pPulse 1.5s ease-in-out infinite;box-shadow:0 0 40px rgba(45,75,168,.6)}
+        @keyframes pSpin{to{transform:rotate(360deg)}}
+        @keyframes pPulse{0%,100%{box-shadow:0 0 40px rgba(45,75,168,.6)}50%{box-shadow:0 0 70px rgba(224,176,112,.7)}}
+        .preloader-bar{width:200px;height:3px;background:rgba(214,220,239,.1);border-radius:3px;overflow:hidden}
+        .preloader-bar::after{content:'';display:block;width:40%;height:100%;background:var(--grad-ambre);border-radius:3px;animation:pSlide 1.2s ease-in-out infinite}
+        @keyframes pSlide{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+        .preloader-text{font-family:'Playfair Display',serif;font-size:1.2rem;letter-spacing:4px;background:var(--grad-argent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase}
 
-        @media (max-width: 900px) {
-            .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 80px; left: 0; width: 100%; background: rgba(5, 8, 15, 0.98); backdrop-filter: blur(20px); flex-direction: column; gap: 0; padding: 20px 0; transform: translateY(-150%); transition: transform 0.4s; border-bottom: 1px solid var(--border); }
-            .nav-links.open { transform: translateY(0); }
-            .nav-links li { width: 100%; text-align: center; }
-            .nav-links a { display: block; padding: 15px; }
+        /* ===== CURSOR ===== */
+        .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+        .cursor-dot{width:8px;height:8px;background:var(--blanc);box-shadow:0 0 0 2px rgba(5,8,15,.55);transition:width .2s,height .2s}
+        .cursor-ring{width:40px;height:40px;border:2px solid rgba(214,220,239,.7);box-shadow:0 0 0 1px rgba(5,8,15,.4);transition:width .3s,height .3s,border-color .3s,background .3s}
+        .cursor-ring.hover{width:70px;height:70px;border-color:var(--ambre);background:rgba(224,176,112,.08)}
+        .cursor-trail{position:fixed;width:4px;height:4px;border-radius:50%;background:var(--ambre);pointer-events:none;z-index:9997;opacity:0;transition:opacity .1s}
+        @media(max-width:900px),(hover:none){.cursor-dot,.cursor-ring,.cursor-trail{display:none}body{cursor:auto}}
+        @media(min-width:901px)and (hover:hover){body,a,button{cursor:none}}
+
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#1e3a8a,#2d4ba8,#e0b070);z-index:1001;box-shadow:0 0 10px rgba(224,176,112,.4);transition:width .1s linear}
+
+        /* ===== MORPHING ORBS ===== */
+        .orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;z-index:-1;pointer-events:none;will-change:transform}
+        .orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(30,58,138,.6),transparent 70%);top:-10%;left:-10%;animation:orbFloat1 20s ease-in-out infinite}
+        .orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(224,176,112,.3),transparent 70%);bottom:-10%;right:-10%;animation:orbFloat2 25s ease-in-out infinite}
+        .orb-3{width:400px;height:400px;background:radial-gradient(circle,rgba(45,75,168,.4),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbFloat3 18s ease-in-out infinite}
+        @keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(80px,60px) scale(1.1)}50%{transform:translate(-40px,100px) scale(.95)}75%{transform:translate(60px,-40px) scale(1.05)}}
+        @keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-100px,-60px) scale(1.15)}66%{transform:translate(60px,-80px) scale(.9)}}
+        @keyframes orbFloat3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-40%,-60%) scale(1.2)}}
+
+        /* ===== FLOATING FLEURS DE LYS ===== */
+        .floating-lys{position:fixed;z-index:-1;pointer-events:none;opacity:.04;font-size:3rem;color:var(--ambre);animation:lysFloat 30s linear infinite}
+        @keyframes lysFloat{0%{transform:translateY(110vh) rotate(0deg)}100%{transform:translateY(-10vh) rotate(360deg)}}
+
+        #particleCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+        .container{width:100%;max-width:1400px;margin:0 auto;padding:0 40px}
+
+        /* ===== HEADER ===== */
+        header{background:rgba(8,12,26,.94);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);color:white;padding:20px 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 4px 30px rgba(0,0,0,.6);transition:all .3s}
+        header.scrolled{padding:12px 0;background:rgba(5,8,15,.98)}
+        nav{display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none;color:white;transition:all .4s}
+        .logo:hover{transform:scale(1.05)}
+        .logo img{height:50px;border-radius:50%;border:2px solid rgba(214,220,239,.4);box-shadow:0 0 20px rgba(45,75,168,.5)}
+        .logo h1{font-size:1.8rem;font-weight:900;background:var(--grad-argent);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Playfair Display',serif;animation:gradShift 4s ease infinite}
+        @keyframes gradShift{0%,100%{background-position:0% center}50%{background-position:100% center}}
+        .nav-links{display:flex;gap:30px;list-style:none}
+        .nav-links a{color:var(--gris);text-decoration:none;font-weight:600;font-size:.85rem;transition:all .3s;text-transform:uppercase;letter-spacing:.5px;position:relative;padding:5px 0}
+        .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--grad-ambre);transition:width .3s}
+        .nav-links a:hover,.nav-links a.active{color:var(--blanc)}
+        .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+        .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:5px}
+        .hamburger span{width:28px;height:3px;background:var(--blanc);border-radius:3px;transition:all .3s}
+        .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+        /* ===== HERO ===== */
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:180px 20px 120px;position:relative;overflow:hidden}
+        .hero-content{max-width:1100px;z-index:1;position:relative}
+        .hero-badge{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(30,58,138,.5),rgba(224,176,112,.15));backdrop-filter:blur(15px);padding:15px 35px;border-radius:50px;font-size:.95rem;font-weight:700;margin-bottom:35px;border:1px solid rgba(224,176,112,.35);color:var(--ambre-clair);letter-spacing:2px;text-transform:uppercase;animation:slideDown 1s ease;box-shadow:0 10px 30px rgba(30,58,138,.4)}
+        @keyframes slideDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+
+        /* Cinematic title reveal */
+        .hero h2{font-size:6rem;margin-bottom:25px;font-weight:900;font-family:'Playfair Display',serif;line-height:1.1;display:flex;flex-wrap:wrap;justify-content:center;gap:0 .25em}
+        .hero h2 .word{display:inline-flex;overflow:hidden;padding-bottom:8px}
+        .hero h2 .char{display:inline-block;background:var(--grad-argent);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transform:translateY(120%);animation:charUp .9s cubic-bezier(.22,1,.36,1) forwards,gradShift 4s ease infinite}
+        @keyframes charUp{to{transform:translateY(0)}}
+        .hero-subtitle{font-size:1.8rem;margin-bottom:35px;font-weight:600;color:var(--ambre-clair);letter-spacing:5px;text-transform:uppercase;font-family:'Cormorant Garamond',serif;opacity:0;animation:fadeUp 1s ease 1.2s forwards}
+        .hero-description{font-size:1.35rem;margin-bottom:50px;line-height:2;max-width:800px;margin-left:auto;margin-right:auto;color:var(--blanc-2);opacity:0;animation:fadeUp 1s ease 1.4s forwards}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+        /* Typewriter effect */
+        .typewriter{display:inline;border-right:2px solid var(--ambre);animation:blink .8s step-end infinite}
+        @keyframes blink{50%{border-color:transparent}}
+
+        .btn-group{display:flex;gap:25px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease 1.6s forwards}
+        .btn{display:inline-flex;align-items:center;gap:12px;background:var(--grad-royal);color:white;padding:18px 45px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;border:2px solid rgba(214,220,239,.3);box-shadow:0 15px 40px rgba(30,58,138,.5);text-transform:uppercase;letter-spacing:1px;position:relative;overflow:hidden;will-change:transform}
+        .btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,.2);transform:translate(-50%,-50%);transition:width .6s,height .6s}
+        .btn:active::after{width:300px;height:300px}
+        .btn:hover{box-shadow:0 25px 60px rgba(224,176,112,.4);border-color:var(--ambre)}
+        .btn-secondary{background:transparent;border:2px solid rgba(214,220,239,.4);box-shadow:none}
+        .btn-secondary:hover{background:rgba(224,176,112,.1);border-color:var(--ambre);box-shadow:0 15px 40px rgba(224,176,112,.2)}
+
+        /* ===== MARQUEE ===== */
+        .marquee{background:linear-gradient(90deg,var(--nuit-2),var(--indigo),var(--nuit-2));padding:25px 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marqueeScroll 25s linear infinite;width:max-content}
+        .marquee-item{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--blanc);display:flex;align-items:center;gap:60px;letter-spacing:3px}
+        .marquee-item .sep{font-size:1.5rem}
+        .marquee-item .sep:nth-of-type(3n+1){color:var(--ambre)}
+        .marquee-item .sep:nth-of-type(3n+2){color:var(--blanc)}
+        .marquee-item .sep:nth-of-type(3n+3){color:var(--bleu-clair)}
+        @keyframes marqueeScroll{to{transform:translateX(-50%)}}
+
+        /* ===== SECTIONS ===== */
+        section{padding:120px 0}
+        .section-header{text-align:center;margin-bottom:80px;position:relative}
+        .section-header h2{font-size:3.5rem;background:var(--grad-argent);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:25px;font-weight:900;font-family:'Playfair Display',serif;display:inline-block;position:relative;animation:gradShift 4s ease infinite;transition:text-shadow .4s}
+        .section-header h2:hover{text-shadow:0 0 40px rgba(224,176,112,.4),0 0 80px rgba(45,75,168,.3)}
+        .section-header h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:100px;height:4px;background:var(--grad-ambre);border-radius:2px;animation:expandW 2s ease infinite}
+        @keyframes expandW{0%,100%{width:100px}50%{width:150px}}
+        .section-header p{color:var(--gris);max-width:650px;margin:0 auto;font-size:1.2rem;line-height:1.9}
+
+        /* ===== STATS CIRCULAIRES ===== */
+        .stats-section{background:linear-gradient(180deg,var(--nuit-0),var(--nuit-1));position:relative;overflow:hidden}
+        .stats-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,176,112,.3),transparent)}
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
+        .stat-ring{text-align:center;position:relative}
+        .stat-ring svg{width:140px;height:140px;transform:rotate(-90deg)}
+        .stat-ring circle{fill:none;stroke-width:6}
+        .stat-ring .bg{stroke:rgba(214,220,239,.08)}
+        .stat-ring .fg{stroke:url(#statGrad);stroke-linecap:round;stroke-dasharray:408;stroke-dashoffset:408;transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1)}
+        .stat-ring.active .fg{stroke-dashoffset:var(--offset)}
+        .stat-ring .stat-val{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;background:var(--grad-argent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .stat-ring .stat-lbl{margin-top:12px;font-size:.85rem;color:var(--gris);text-transform:uppercase;letter-spacing:2px;font-weight:600}
+
+        /* ===== FEATURES ===== */
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:35px}
+        .feature-card{background:rgba(13,21,48,.6);border-radius:28px;padding:50px;border:1px solid var(--border);backdrop-filter:blur(15px);transition:border-color .5s,box-shadow .5s,transform .5s;position:relative;overflow:hidden;transform-style:preserve-3d;will-change:transform}
+        .feature-card .spotlight{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(224,176,112,.14),transparent 42%);opacity:0;transition:opacity .4s;pointer-events:none}
+        .feature-card:hover .spotlight{opacity:1}
+        .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad-ambre);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+        .feature-card:hover{border-color:rgba(224,176,112,.4);box-shadow:0 40px 100px rgba(0,0,0,.5)}
+        .feature-card:hover::before{transform:scaleX(1)}
+        .feature-icon{width:80px;height:80px;background:var(--grad-royal);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:var(--blanc);margin-bottom:30px;border:1px solid var(--border-royal);transition:all .5s;box-shadow:0 10px 30px rgba(30,58,138,.4);position:relative;z-index:1;transform:translateZ(40px)}
+        .feature-card:hover .feature-icon{transform:translateZ(60px) scale(1.15) rotate(10deg);background:var(--grad-ambre);color:var(--nuit-1);box-shadow:0 20px 50px rgba(224,176,112,.4)}
+        .feature-card h3{font-size:1.8rem;margin-bottom:18px;color:var(--blanc);font-weight:800;position:relative;z-index:1;transform:translateZ(30px)}
+        .feature-card p{color:var(--gris);line-height:1.9;font-size:1.05rem;position:relative;z-index:1;transform:translateZ(20px)}
+
+        /* ===== GAMES ===== */
+        .games-section{background:linear-gradient(180deg,var(--nuit-0),var(--nuit-1))}
+        .games-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:25px}
+        .game-tag{background:linear-gradient(135deg,rgba(30,58,138,.4),rgba(13,21,48,.6));padding:22px 40px;border-radius:50px;font-weight:700;color:var(--blanc-2);border:1px solid var(--border-royal);display:flex;align-items:center;gap:14px;transition:all .5s;backdrop-filter:blur(10px);font-size:1.05rem;letter-spacing:.5px;box-shadow:0 10px 30px rgba(30,58,138,.2);position:relative;overflow:hidden}
+        .game-tag i{color:var(--ambre);transition:color .4s}
+        .game-tag::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .6s}
+        .game-tag:hover::before{left:100%}
+        .game-tag:hover{transform:translateY(-8px) scale(1.08);background:var(--grad-royal);border-color:var(--ambre);box-shadow:0 20px 50px rgba(30,58,138,.5);color:white}
+        .game-tag:hover i{color:#fff}
+
+        /* ===== RULES ===== */
+        .rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:30px}
+        .rule-card{background:rgba(13,21,48,.6);padding:40px;border-radius:24px;border-left:6px solid var(--royal);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);transition:all .5s;position:relative;overflow:hidden}
+        .rule-card .rule-num{position:absolute;top:15px;right:25px;font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:rgba(214,220,239,.05);line-height:1;transition:all .5s}
+        .rule-card:hover .rule-num{color:rgba(224,176,112,.14);transform:scale(1.1)}
+        .rule-card:hover{transform:translateX(15px);border-left-color:var(--ambre);box-shadow:0 20px 60px rgba(30,58,138,.4)}
+        .rule-card h4{color:var(--blanc);margin-bottom:15px;font-size:1.4rem;display:flex;align-items:center;gap:14px;font-weight:800;position:relative;z-index:1}
+        .rule-card h4 i{color:var(--ambre)}
+        .rule-card p{color:var(--gris);font-size:1.05rem;line-height:1.9;position:relative;z-index:1}
+
+        /* ===== TIMELINE ===== */
+        .timeline-section{background:linear-gradient(180deg,var(--nuit-1),var(--nuit-0))}
+        .timeline{position:relative;max-width:800px;margin:0 auto;padding:20px 0}
+        .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--royal-2),var(--ambre),var(--royal-2),transparent);transform:translateX(-50%)}
+        .tl-item{position:relative;width:50%;padding:20px 40px;opacity:0;transform:translateY(30px);transition:all .8s}
+        .tl-item.active{opacity:1;transform:translateY(0)}
+        .tl-item:nth-child(odd){left:0;text-align:right}
+        .tl-item:nth-child(even){left:50%;text-align:left}
+        .tl-item::before{content:'';position:absolute;top:28px;width:16px;height:16px;border-radius:50%;background:var(--grad-ambre);border:3px solid var(--nuit-1);box-shadow:0 0 20px rgba(224,176,112,.5);z-index:1}
+        .tl-item:nth-child(odd)::before{right:-8px}
+        .tl-item:nth-child(even)::before{left:-8px}
+        .tl-date{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ambre-clair);font-weight:700;margin-bottom:8px}
+        .tl-text{color:var(--gris);font-size:.95rem;line-height:1.7}
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section{background:linear-gradient(180deg,var(--nuit-0),var(--nuit-1));overflow:hidden}
+        .testi-track{display:flex;gap:30px;animation:testiScroll 30s linear infinite;width:max-content}
+        .testi-track:hover{animation-play-state:paused}
+        .testi-card{width:380px;flex-shrink:0;background:rgba(13,21,48,.6);border:1px solid var(--border);border-radius:24px;padding:35px;backdrop-filter:blur(15px);transition:all .4s}
+        .testi-card:hover{border-color:rgba(224,176,112,.3);transform:translateY(-5px)}
+        .testi-stars{color:var(--ambre);margin-bottom:15px;font-size:1.1rem;letter-spacing:3px}
+        .testi-text{color:var(--blanc-2);font-size:1rem;line-height:1.8;margin-bottom:20px;font-style:italic}
+        .testi-author{display:flex;align-items:center;gap:12px}
+        .testi-avatar{width:42px;height:42px;border-radius:50%;background:var(--grad-royal);display:flex;align-items:center;justify-content:center;color:var(--blanc);font-weight:700;font-size:1.1rem}
+        .testi-name{font-weight:700;color:var(--blanc);font-size:.95rem}
+        .testi-role{font-size:.8rem;color:var(--gris)}
+        @keyframes testiScroll{to{transform:translateX(-50%)}}
+
+        /* ===== TEAM ===== */
+        .team-section{background:linear-gradient(180deg,var(--nuit-1),var(--nuit-0))}
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:35px;max-width:1200px;margin:0 auto}
+        .team-grid .team-card:nth-child(1) .team-role,.team-grid .team-card:nth-child(2) .team-role{background:var(--grad-ambre);color:var(--nuit-1)}
+        .team-grid .team-card:nth-child(3) .team-role{background:var(--grad-royal);color:#fff}
+        .team-card{background:rgba(13,21,48,.6);border-radius:28px;padding:40px;text-align:center;border:1px solid var(--border);backdrop-filter:blur(15px);transition:all .5s;position:relative;overflow:hidden}
+        .team-card::before{content:'';position:absolute;inset:-2px;background:var(--grad-ambre);border-radius:28px;z-index:-1;opacity:0;transition:opacity .5s}
+        .team-card:hover::before{opacity:.4}
+        .team-card:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(30,58,138,.4)}
+        .team-img-wrap{width:150px;height:150px;margin:0 auto 25px;position:relative}
+        .team-img-wrap::after{content:'';position:absolute;inset:-8px;border:2px dashed rgba(224,176,112,.3);border-radius:50%;animation:rotate 15s linear infinite}
+        @keyframes rotate{to{transform:rotate(360deg)}}
+        .team-img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid rgba(214,220,239,.2);transition:all .5s}
+        .team-card:hover .team-img{transform:scale(1.08);border-color:var(--ambre)}
+        .team-card h3{font-size:1.8rem;background:var(--grad-argent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;font-weight:800}
+        .team-role{display:inline-block;background:var(--grad-royal);color:white;padding:6px 20px;border-radius:20px;font-size:.9rem;font-weight:700;margin-bottom:20px}
+        .team-card p{color:var(--gris);line-height:1.8}
+
+        /* ===== FAQ ===== */
+        .faq-container{max-width:850px;margin:0 auto}
+        .faq-item{background:rgba(13,21,48,.6);border-radius:20px;margin-bottom:25px;border:1px solid var(--border);overflow:hidden;transition:all .5s;backdrop-filter:blur(10px)}
+        .faq-item:hover{border-color:var(--border-royal);box-shadow:0 15px 50px rgba(30,58,138,.3)}
+        .faq-question{padding:35px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--blanc);transition:all .4s;font-size:1.15rem;cursor:pointer}
+        .faq-question:hover{color:var(--ambre-clair)}
+        .faq-question i{transition:transform .5s;color:var(--royal-2);font-size:1.3rem}
+        .faq-item.active .faq-question i{transform:rotate(180deg);color:var(--ambre)}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .6s ease,padding .6s ease;padding:0 35px;color:var(--gris);line-height:1.9;font-size:1.05rem}
+        .faq-item.active .faq-answer{max-height:400px;padding:0 35px 35px 35px}
+
+        /* ===== CTA ===== */
+        .cta{background:radial-gradient(ellipse at center,rgba(30,58,138,.35) 0%,transparent 70%);text-align:center;padding:150px 0;position:relative;overflow:hidden}
+        .cta-content{position:relative;z-index:1}
+        .cta h2{font-size:4rem;margin-bottom:30px;font-weight:900;font-family:'Playfair Display',serif;background:var(--grad-argent);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradShift 4s ease infinite}
+        .cta p{font-size:1.45rem;max-width:800px;margin:0 auto 60px;color:var(--gris);line-height:2}
+
+        /* ===== FOOTER ===== */
+        footer{background:linear-gradient(180deg,var(--nuit-0),var(--nuit-1));color:var(--blanc-2);padding:100px 0 50px;border-top:1px solid var(--border)}
+        .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;margin-bottom:70px}
+        .footer-col h4{font-size:1.5rem;margin-bottom:35px;color:var(--blanc);font-weight:800;position:relative;padding-bottom:15px}
+        .footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:60px;height:3px;background:var(--grad-ambre);border-radius:2px}
+        .footer-col p{color:var(--gris);line-height:1.9;margin-bottom:30px}
+        .footer-col ul{list-style:none}
+        .footer-col ul li{margin-bottom:18px}
+        .footer-col ul li a{color:var(--gris);text-decoration:none;transition:all .4s;display:flex;align-items:center;gap:12px}
+        .footer-col ul li a:hover{color:var(--ambre-clair);padding-left:10px}
+        .footer-col ul li a i{color:var(--royal-2)}
+        .footer-col ul li a:hover i{color:var(--ambre)}
+        .social-links{display:flex;gap:18px;margin-top:30px}
+        .social-links a{width:55px;height:55px;background:linear-gradient(135deg,rgba(30,58,138,.5),rgba(13,21,48,.6));border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blanc);text-decoration:none;transition:all .5s;font-size:1.4rem;border:1px solid var(--border-royal)}
+        .social-links a:hover{background:var(--grad-royal);transform:translateY(-8px) scale(1.15);border-color:var(--ambre);box-shadow:0 15px 40px rgba(30,58,138,.5)}
+        .social-links a svg{width:22px;height:22px}
+        .copyright{text-align:center;padding-top:50px;border-top:1px solid var(--border);color:var(--gris-2)}
+
+        .back-to-top{position:fixed;bottom:30px;right:30px;width:55px;height:55px;background:var(--grad-ambre);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--nuit-1);font-size:1.3rem;text-decoration:none;box-shadow:0 10px 30px rgba(224,176,112,.4);z-index:999;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .4s}
+        .back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+        .back-to-top:hover{transform:translateY(-5px) scale(1.1)}
+
+        /* ===== MOBILE NAV ===== */
+        .fab-menu,.quicknav,.quicknav-overlay{display:none}
+        @keyframes fabPulse{0%,100%{box-shadow:0 10px 30px rgba(224,176,112,.4)}50%{box-shadow:0 10px 42px rgba(224,176,112,.75)}}
+        @media(max-width:900px){
+            .fab-menu{display:flex;align-items:center;justify-content:center;position:fixed;left:22px;bottom:22px;width:58px;height:58px;border-radius:50%;border:none;background:var(--grad-ambre);color:var(--nuit-1);font-size:1.4rem;z-index:1002;animation:fabPulse 2.5s ease-in-out infinite}
+            .quicknav-overlay{display:block;position:fixed;inset:0;background:rgba(5,8,15,.6);backdrop-filter:blur(4px);z-index:1003;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+            .quicknav-overlay.open{opacity:1;visibility:visible}
+            .quicknav{display:flex;flex-direction:column;position:fixed;left:0;right:0;bottom:0;z-index:1004;background:linear-gradient(180deg,var(--nuit-2),var(--nuit-1));border:1px solid var(--border);border-bottom:none;border-radius:26px 26px 0 0;padding:18px 0 8px;max-height:82vh;transform:translateY(110%);transition:transform .4s cubic-bezier(.4,0,.2,1);box-shadow:0 -20px 60px rgba(0,0,0,.6)}
+            .quicknav.open{transform:translateY(0)}
+            .quicknav-grab{width:46px;height:5px;border-radius:5px;background:rgba(224,176,112,.3);margin:0 auto 14px}
+            .quicknav-header{display:flex;align-items:center;justify-content:space-between;padding:0 22px 14px}
+            .quicknav-header span{font-family:'Playfair Display',serif;font-size:1.2rem;background:var(--grad-argent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800}
+            .quicknav-close{background:rgba(214,220,239,.1);border:1px solid var(--border);color:var(--blanc);width:38px;height:38px;border-radius:50%;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+            .quicknav-links{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:6px 22px 24px;overflow-y:auto}
+            .quicknav-links a{display:flex;align-items:center;gap:12px;padding:16px;border-radius:14px;background:rgba(5,8,15,.5);border:1px solid var(--border);color:var(--blanc-2);text-decoration:none;font-weight:600;font-size:.95rem;transition:all .25s}
+            .quicknav-links a i{color:var(--ambre);width:20px;text-align:center}
+            .quicknav-links .qn-cta{grid-column:1/-1;background:var(--grad-royal);color:#fff;justify-content:center;border:none}
+            .quicknav-links .qn-cta i{color:#fff}
         }
-        @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            .hero h2 { font-size: 3rem; }
-            .section-header h2 { font-size: 2.5rem; }
-            .cta h2 { font-size: 2.5rem; }
-            .btn-group { flex-direction: column; align-items: center; }
-            .features-grid, .rules-grid { grid-template-columns: 1fr; }
-            .marquee-item { font-size: 1.4rem; gap: 40px; }
+
+        /* ===== REVEAL ANIMATIONS ===== */
+        .reveal{opacity:0;transform:translateY(50px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        .reveal-left{opacity:0;transform:translateX(-60px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal-left.active{opacity:1;transform:translateX(0)}
+        .reveal-right{opacity:0;transform:translateX(60px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal-right.active{opacity:1;transform:translateX(0)}
+        .reveal-scale{opacity:0;transform:scale(.8);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal-scale.active{opacity:1;transform:scale(1)}
+
+        @media(max-width:900px){
+            .hamburger{display:flex}
+            .nav-links{position:fixed;top:80px;left:0;width:100%;background:rgba(5,8,15,.98);backdrop-filter:blur(20px);flex-direction:column;gap:0;padding:20px 0;transform:translateY(-150%);transition:transform .4s;border-bottom:1px solid var(--border)}
+            .nav-links.open{transform:translateY(0)}
+            .nav-links li{width:100%;text-align:center}
+            .nav-links a{display:block;padding:15px}
+            .timeline::before{left:20px}
+            .tl-item{width:100%;left:0!important;text-align:left!important;padding-left:50px;padding-right:20px}
+            .tl-item::before{left:12px!important;right:auto!important}
+        }
+        @media(max-width:768px){
+            .container{padding:0 20px}
+            .hero h2{font-size:3rem}
+            .section-header h2{font-size:2.5rem}
+            .cta h2{font-size:2.5rem}
+            .btn-group{flex-direction:column;align-items:center}
+            .features-grid,.rules-grid{grid-template-columns:1fr}
+            .marquee-item{font-size:1.4rem;gap:40px}
+            .stats-grid{grid-template-columns:repeat(2,1fr)}
         }
     </style>
 </head>
 <body>
+    <!-- SVG Gradient for stats -->
+    <svg width="0" height="0"><defs><linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1e3a8a"/><stop offset="100%" stop-color="#e0b070"/></linearGradient></defs></svg>
+
     <div class="preloader" id="preloader">
         <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo" class="preloader-logo">
         <div class="preloader-bar"></div>
@@ -267,7 +347,19 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="bg-animation"></div>
+
+    <!-- Morphing Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Floating Fleurs de Lys -->
+    <div class="floating-lys" style="left:10%;animation-delay:0s;animation-duration:28s">⚜</div>
+    <div class="floating-lys" style="left:30%;animation-delay:5s;animation-duration:35s;font-size:2rem">⚜</div>
+    <div class="floating-lys" style="left:55%;animation-delay:12s;animation-duration:25s;font-size:4rem">⚜</div>
+    <div class="floating-lys" style="left:75%;animation-delay:8s;animation-duration:32s">⚜</div>
+    <div class="floating-lys" style="left:90%;animation-delay:18s;animation-duration:30s;font-size:2.5rem">⚜</div>
+
     <canvas id="particleCanvas"></canvas>
 
     <header id="header">
@@ -279,6 +371,7 @@
                 </a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                    <li><a href="#stats" class="nav-link">Stats</a></li>
                     <li><a href="#apropos" class="nav-link">À propos</a></li>
                     <li><a href="#jeux" class="nav-link">Jeux</a></li>
                     <li><a href="#reglements" class="nav-link">Règles</a></li>
@@ -311,16 +404,30 @@
         </div>
     </div>
 
+    <!-- STATS CIRCULAIRES -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="section-header reveal"><h2>En chiffres</h2><p>Une communauté en constante croissance depuis février 2026.</p></div>
+            <div class="stats-grid">
+                <div class="stat-ring reveal" data-target="388" data-max="500"><svg viewBox="0 0 140 140"><circle class="bg" cx="70" cy="70" r="65"/><circle class="fg" cx="70" cy="70" r="65" style="--offset:92"/></svg><div class="stat-val">0</div><div class="stat-lbl">Membres</div></div>
+                <div class="stat-ring reveal" data-target="90" data-max="388"><svg viewBox="0 0 140 140"><circle class="bg" cx="70" cy="70" r="65"/><circle class="fg" cx="70" cy="70" r="65" style="--offset:314"/></svg><div class="stat-val">0</div><div class="stat-lbl">En ligne</div></div>
+                <div class="stat-ring reveal" data-target="129" data-max="200"><svg viewBox="0 0 140 140"><circle class="bg" cx="70" cy="70" r="65"/><circle class="fg" cx="70" cy="70" r="65" style="--offset:145"/></svg><div class="stat-val">0</div><div class="stat-lbl">Salons</div></div>
+                <div class="stat-ring reveal" data-target="200" data-max="250"><svg viewBox="0 0 140 140"><circle class="bg" cx="70" cy="70" r="65"/><circle class="fg" cx="70" cy="70" r="65" style="--offset:82"/></svg><div class="stat-val">0</div><div class="stat-lbl">Rôles</div></div>
+                <div class="stat-ring reveal" data-target="13" data-max="20"><svg viewBox="0 0 140 140"><circle class="bg" cx="70" cy="70" r="65"/><circle class="fg" cx="70" cy="70" r="65" style="--offset:143"/></svg><div class="stat-val">0</div><div class="stat-lbl">Bots</div></div>
+            </div>
+        </div>
+    </section>
+
     <section id="apropos">
         <div class="container">
             <div class="section-header reveal"><h2>Ce qu'on vous offre</h2><p>Une expérience communautaire unique, organisée et pensée pour votre plaisir.</p></div>
             <div class="features-grid">
-                <div class="feature-card tilt reveal"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-comments"></i></div><h3>Discussions Actives</h3><p>Des conversations dynamiques dans nos 129 salons thématiques, pour tous les goûts et toutes les passions. Débats, discussions générales, sujets variés et bien plus encore.</p></div>
-                <div class="feature-card tilt reveal"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-calendar-alt"></i></div><h3>Événements Amusants</h3><p>Quiz hebdomadaires, compétitions, tournois de jeux, soirées cinéma et activités communautaires régulières pour rassembler les membres dans la bonne humeur.</p></div>
-                <div class="feature-card tilt reveal"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Environnement Sain</h3><p>Une modération active et respectueuse 24/7, des règles claires et un espace sécurisé pour tous. Zero tolérance pour le harcèlement ou les comportements toxiques.</p></div>
-                <div class="feature-card tilt reveal"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-ticket-alt"></i></div><h3>Support & Tickets</h3><p>Un système de tickets efficace pour obtenir de l'aide rapidement. Notre équipe est là pour répondre à toutes vos questions et résoudre vos problèmes en moins de 24h.</p></div>
-                <div class="feature-card tilt reveal"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-handshake"></i></div><h3>Partenariats</h3><p>Ouvert aux collaborations ! Nous accueillons les partenariats avec d'autres communautés pour grandir ensemble et offrir plus de contenu à nos membres.</p></div>
-                <div class="feature-card tilt reveal"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-heart"></i></div><h3>Ce qu'il nous manque</h3><p><strong>Vous !</strong> Nous recherchons activement des membres actifs et des personnes investies pour agrandir cette belle famille québécoise.</p></div>
+                <div class="feature-card tilt reveal" style="transition-delay:.05s"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-comments"></i></div><h3>Discussions Actives</h3><p>Des conversations dynamiques dans nos 129 salons thématiques, pour tous les goûts et toutes les passions.</p></div>
+                <div class="feature-card tilt reveal" style="transition-delay:.1s"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-calendar-alt"></i></div><h3>Événements Amusants</h3><p>Quiz hebdomadaires, compétitions, tournois de jeux, soirées cinéma et activités communautaires régulières.</p></div>
+                <div class="feature-card tilt reveal" style="transition-delay:.15s"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Environnement Sain</h3><p>Une modération active et respectueuse 24/7, des règles claires et un espace sécurisé pour tous.</p></div>
+                <div class="feature-card tilt reveal" style="transition-delay:.2s"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-ticket-alt"></i></div><h3>Support & Tickets</h3><p>Un système de tickets efficace pour obtenir de l'aide rapidement. Notre équipe répond en moins de 24h.</p></div>
+                <div class="feature-card tilt reveal" style="transition-delay:.25s"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-handshake"></i></div><h3>Partenariats</h3><p>Ouvert aux collaborations ! Nous accueillons les partenariats avec d'autres communautés pour grandir ensemble.</p></div>
+                <div class="feature-card tilt reveal" style="transition-delay:.3s"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-heart"></i></div><h3>Ce qu'il nous manque</h3><p><strong>Vous !</strong> Nous recherchons activement des membres actifs et des personnes investies pour agrandir cette belle famille.</p></div>
             </div>
         </div>
     </section>
@@ -331,7 +438,7 @@
             <div class="games-grid reveal-scale">
                 <div class="game-tag"><i class="fas fa-cube"></i> ROBLOX</div>
                 <div class="game-tag"><i class="fas fa-tree"></i> Minecraft</div>
-                <div class="game-tag"><i class="fas fa-car"></i> Grand Theft Auto V</div>
+                <div class="game-tag"><i class="fas fa-car"></i> GTA V</div>
                 <div class="game-tag"><i class="fas fa-crosshairs"></i> VALORANT</div>
                 <div class="game-tag"><i class="fas fa-fort-awesome"></i> Fortnite</div>
                 <div class="game-tag"><i class="fas fa-truck-monster"></i> BeamNG.drive</div>
@@ -344,15 +451,44 @@
 
     <section id="reglements">
         <div class="container">
-            <div class="section-header reveal"><h2>Règlements de la Communauté</h2><p>Pour garder un environnement sain, agréable et respectueux pour tout le monde.</p></div>
+            <div class="section-header reveal"><h2>Règlements</h2><p>Pour garder un environnement sain, agréable et respectueux pour tout le monde.</p></div>
             <div class="rules-grid">
-                <div class="rule-card reveal-left"><span class="rule-num">01</span><h4><i class="fas fa-handshake"></i> Respect Absolu</h4><p>Aucun propos insultant, raciste, sexiste, homophobe ou choquant. Le respect de tous les membres est obligatoire en tout temps, que ce soit en texte ou en vocal.</p></div>
-                <div class="rule-card reveal-right"><span class="rule-num">02</span><h4><i class="fas fa-volume-mute"></i> Pollution Vocale</h4><p>Aucun cri, son agressif ou musique forte. Utilisez votre micro de façon respectueuse dans les salons vocaux. Évitez les bruits de fond dérangeants.</p></div>
-                <div class="rule-card reveal-left"><span class="rule-num">03</span><h4><i class="fas fa-ban"></i> Zero Spam & Provocation</h4><p>Pas de répétition de messages, d'envoi massif de médias ou de mentions abusives. Ne cherchez pas à énerver ou provoquer les autres membres.</p></div>
-                <div class="rule-card reveal-right"><span class="rule-num">04</span><h4><i class="fas fa-user-secret"></i> Vie Privée & Dox</h4><p>Le partage d'informations personnelles (nom, adresse, téléphone, email, visage, etc.) est strictement interdit et sanctionné immédiatement.</p></div>
-                <div class="rule-card reveal-left"><span class="rule-num">05</span><h4><i class="fas fa-gavel"></i> Décisions du Staff</h4><p>Les décisions du staff doivent être respectées. En cas de désaccord, ouvrez un ticket calmement. Les plaintes publiques et débats inutiles sont interdits.</p></div>
-                <div class="rule-card reveal-right"><span class="rule-num">06</span><h4><i class="fas fa-exclamation-triangle"></i> Contenu & Mensonges</h4><p>Aucun contenu NSFW, violent ou choquant. Il est strictement interdit de mentir au staff ou de falsifier son âge. Respect obligatoire des TOS Discord.</p></div>
+                <div class="rule-card reveal-left"><span class="rule-num">01</span><h4><i class="fas fa-handshake"></i> Respect Absolu</h4><p>Aucun propos insultant, raciste, sexiste, homophobe ou choquant. Le respect est obligatoire en tout temps.</p></div>
+                <div class="rule-card reveal-right"><span class="rule-num">02</span><h4><i class="fas fa-volume-mute"></i> Pollution Vocale</h4><p>Aucun cri, son agressif ou musique forte. Utilisez votre micro de façon respectueuse.</p></div>
+                <div class="rule-card reveal-left"><span class="rule-num">03</span><h4><i class="fas fa-ban"></i> Zero Spam</h4><p>Pas de répétition de messages, d'envoi massif de médias ou de mentions abusives.</p></div>
+                <div class="rule-card reveal-right"><span class="rule-num">04</span><h4><i class="fas fa-user-secret"></i> Vie Privée & Dox</h4><p>Le partage d'informations personnelles est strictement interdit et sanctionné immédiatement.</p></div>
+                <div class="rule-card reveal-left"><span class="rule-num">05</span><h4><i class="fas fa-gavel"></i> Décisions du Staff</h4><p>Les décisions du staff doivent être respectées. En cas de désaccord, ouvrez un ticket calmement.</p></div>
+                <div class="rule-card reveal-right"><span class="rule-num">06</span><h4><i class="fas fa-exclamation-triangle"></i> Contenu & Mensonges</h4><p>Aucun contenu NSFW ou violent. Il est strictement interdit de mentir au staff ou de falsifier son âge.</p></div>
             </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header reveal"><h2>Notre Histoire</h2><p>De la création à aujourd'hui, chaque étape compte.</p></div>
+            <div class="timeline">
+                <div class="tl-item"><div class="tl-date">Février 2026</div><div class="tl-text">Création du serveur par Vanille. Un petit groupe d'amis, une grande ambition : bâtir la meilleure communauté québécoise sur Discord.</div></div>
+                <div class="tl-item"><div class="tl-date">Mars 2026</div><div class="tl-text">Marianne rejoint en tant que Seconde Fondatrice. L'équipe de modération se forme et les premiers salons thématiques ouvrent.</div></div>
+                <div class="tl-item"><div class="tl-date">Avril 2026</div><div class="tl-text">Le cap des 100 membres est franchi. Les premiers événements communautaires sont organisés : quiz, tournois et soirées vocales.</div></div>
+                <div class="tl-item"><div class="tl-date">Juin 2026</div><div class="tl-text">Lancement du site web par Jacobin. Le serveur atteint le Niveau 3 de boost grâce à la générosité de la communauté.</div></div>
+                <div class="tl-item"><div class="tl-date">Juillet 2026</div><div class="tl-text">388 membres, 129 salons, 13 bots. La famille Québec ne cesse de grandir et l'aventure ne fait que commencer. ⚜️</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header reveal"><h2>Ce qu'ils en disent</h2><p>La parole à nos membres.</p></div>
+        </div>
+        <div class="testi-track">
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">« Le meilleur serveur québécois que j'ai trouvé. L'ambiance est incroyable et le staff est super à l'écoute. Je m'y suis fait des vrais amis ! »</div><div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Pops 🥀</div><div class="testi-role">Membre actif</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">« J'ai rejoint par hasard et je suis resté pour la communauté. Les events sont fun, les gens sont chill, et y'a toujours quelqu'un en vocal. »</div><div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Membre QC</div><div class="testi-role">Membre vérifié</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">« En tant que partenaire, je peux dire que l'équipe de CQ est professionnelle et passionnée. Un serveur qui mérite d'être connu ! »</div><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Admin Partenaire</div><div class="testi-role">Partenaire</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">« Le meilleur serveur québécois que j'ai trouvé. L'ambiance est incroyable et le staff est super à l'écoute. Je m'y suis fait des vrais amis ! »</div><div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Pops 🥀</div><div class="testi-role">Membre actif</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">« J'ai rejoint par hasard et je suis resté pour la communauté. Les events sont fun, les gens sont chill, et y'a toujours quelqu'un en vocal. »</div><div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Membre QC</div><div class="testi-role">Membre vérifié</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">« En tant que partenaire, je peux dire que l'équipe de CQ est professionnelle et passionnée. Un serveur qui mérite d'être connu ! »</div><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Admin Partenaire</div><div class="testi-role">Partenaire</div></div></div></div>
         </div>
     </section>
 
@@ -360,39 +496,22 @@
         <div class="container">
             <div class="section-header reveal"><h2>Notre Équipe</h2><p>Des personnes passionnées et dévouées pour vous offrir la meilleure expérience.</p></div>
             <div class="team-grid">
-                <div class="team-card tilt reveal-scale">
-                    <div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1504186999098314882/0b7fe4ae81670ba163b4eb6507671e48.webp?size=1024" alt="Vanille" class="team-img"></div>
-                    <h3>Vanille</h3><span class="team-role">💕 Fondatrice</span>
-                    <p>Créatrice passionnée du serveur. Toujours là pour veiller au bon fonctionnement et au bien-être de la communauté.</p>
-                    <p style="margin-top: 15px; font-size: 0.95rem;"><i class="fab fa-discord"></i> @disc0rdvanille</p>
-                </div>
-                <div class="team-card tilt reveal-scale">
-                    <div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1472310772414808326/e66c92954ebe6fcada0f67b51d1b1584.webp?size=1024" alt="Marianne" class="team-img"></div>
-                    <h3>Marianne</h3><span class="team-role">💕 Seconde Fondatrice</span>
-                    <p>Seconde fondatrice du serveur, elle veille aux côtés de Vanille au bien-être de la communauté. Bienveillante, active et à l'écoute, elle apporte une énergie précieuse qui fait grandir la famille Québec jour après jour.</p>
-                    <p style="margin-top: 15px; font-size: 0.95rem;"><i class="fab fa-discord"></i> @mariannizer</p>
-                </div>
-                <div class="team-card tilt reveal-scale">
-                    <div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" class="team-img"></div>
-                    <h3>Jacobin Babouain</h3><span class="team-role">🛠️ Développeur</span>
-                    <p>Créateur du site web et développeur de bots. Passionné par le code et l'amélioration continue du serveur.</p>
-                    <p style="margin-top: 15px; font-size: 0.95rem;"><i class="fab fa-discord"></i> @jacobin904</p>
-                </div>
+                <div class="team-card tilt reveal-scale"><div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1504186999098314882/0b7fe4ae81670ba163b4eb6507671e48.webp?size=1024" alt="Vanille" class="team-img"></div><h3>Vanille</h3><span class="team-role">💕 Fondatrice</span><p>Créatrice passionnée du serveur. Toujours là pour veiller au bon fonctionnement et au bien-être de la communauté.</p><p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @disc0rdvanille</p></div>
+                <div class="team-card tilt reveal-scale"><div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1472310772414808326/e66c92954ebe6fcada0f67b51d1b1584.webp?size=1024" alt="Marianne" class="team-img"></div><h3>Marianne</h3><span class="team-role">💕 Seconde Fondatrice</span><p>Seconde fondatrice du serveur, elle veille aux côtés de Vanille au bien-être de la communauté. Bienveillante, active et à l'écoute.</p><p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @mariannizer</p></div>
+                <div class="team-card tilt reveal-scale"><div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" class="team-img"></div><h3>Jacobin Babouain</h3><span class="team-role">🛠️ Développeur</span><p>Créateur du site web et développeur de bots. Passionné par le code et l'amélioration continue du serveur.</p><p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @jacobin904</p></div>
             </div>
         </div>
     </section>
 
     <section id="faq">
         <div class="container">
-            <div class="section-header reveal"><h2>Questions Fréquentes</h2><p>Tout ce que vous devez savoir avant de nous rejoindre.</p></div>
+            <div class="section-header reveal"><h2>FAQ</h2><p>Tout ce que vous devez savoir avant de nous rejoindre.</p></div>
             <div class="faq-container">
-                <div class="faq-item reveal"><div class="faq-question">Comment devenir membre du Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Les recrutements sont annoncés dans le salon dédié lorsqu'ils seront ouverts. Si aucune annonce n'est visible, vous pouvez ouvrir un ticket pour connaître le statut des candidatures. Nous recherchons des personnes actives, matures et investies.</div></div>
-                <div class="faq-item reveal"><div class="faq-question">Puis-je faire un partenariat avec le serveur ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, c'est tout à fait possible ! Ouvrez un ticket dans le salon partenariat prévu à cet effet pour soumettre votre demande. Nous étudions toutes les propositions sérieuses.</div></div>
-                <div class="faq-item reveal"><div class="faq-question">Comment contacter le Staff en cas de problème ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Ouvrez un ticket dans le salon dédié. C'est la méthode la plus rapide et efficace. Évitez absolument de spammer ou de mentionner les membres du staff directement en public.</div></div>
-                <div class="faq-item reveal"><div class="faq-question">Puis-je partager mes réseaux sociaux ou faire de la publicité ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, tant que cela reste raisonnable et ne devient pas du spam. La publicité écrite est interdite, mais vous pouvez partager occasionnellement. Ne redirigez pas les membres vers un autre serveur Discord.</div></div>
-                <div class="faq-item reveal"><div class="faq-question">Que faire si je conteste une sanction ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Vous pouvez contester une sanction en ouvrant un ticket calmement et avec respect. Expliquez votre situation et fournissez des preuves si nécessaire. Les plaintes publiques sont interdites.</div></div>
-                <div class="faq-item reveal"><div class="faq-question">Pourquoi certains salons sont-ils verrouillés ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Certains salons nécessitent une vérification préalable ou un rôle spécifique (comme le rôle "Membre Vérifié") pour être accessibles. C'est une mesure de sécurité pour protéger la communauté.</div></div>
-                <div class="faq-item reveal"><div class="faq-question">Le serveur est-il uniquement pour les Québécois ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Non ! Bien que nous ayons une forte identité québécoise, tous les francophones sont les bienvenus. L'important est de respecter les autres et de participer activement à la communauté.</div></div>
+                <div class="faq-item reveal"><div class="faq-question">Comment devenir membre du Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Les recrutements sont annoncés dans le salon dédié lorsqu'ils seront ouverts. Si aucune annonce n'est visible, ouvrez un ticket pour connaître le statut des candidatures.</div></div>
+                <div class="faq-item reveal"><div class="faq-question">Puis-je faire un partenariat ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui ! Ouvrez un ticket dans le salon partenariat pour soumettre votre demande. Nous étudions toutes les propositions sérieuses.</div></div>
+                <div class="faq-item reveal"><div class="faq-question">Comment contacter le Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Ouvrez un ticket dans le salon dédié. Évitez de spammer ou de mentionner les membres du staff en public.</div></div>
+                <div class="faq-item reveal"><div class="faq-question">Publicité autorisée ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, tant que cela reste raisonnable et ne devient pas du spam. Ne redirigez pas les membres vers un autre serveur Discord.</div></div>
+                <div class="faq-item reveal"><div class="faq-question">Le serveur est-il uniquement pour les Québécois ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Non ! Tous les francophones sont les bienvenus. L'important est de respecter les autres et de participer activement.</div></div>
             </div>
         </div>
     </section>
@@ -401,8 +520,8 @@
         <div class="container">
             <div class="cta-content reveal-scale">
                 <h2>Prêt à rejoindre l'aventure ?</h2>
-                <p>Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés ou simplement envie de discuter dans une ambiance chaleureuse et respectueuse, votre place est parmi nous. Rejoignez la communauté qui fait vivre cette belle famille chaque jour !</p>
-                <a href="https://discord.gg/commuqc" class="btn magnetic" target="_blank" style="background: var(--grad-ambre); color: var(--nuit-1); border: none; font-size: 1.15rem; padding: 20px 50px;"><i class="fab fa-discord"></i> Rejoindre le serveur maintenant</a>
+                <p>Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés ou simplement envie de discuter dans une ambiance chaleureuse, votre place est parmi nous.</p>
+                <a href="https://discord.gg/commuqc" class="btn magnetic" target="_blank" style="background:var(--grad-ambre);color:var(--nuit-1);border:none;font-size:1.15rem;padding:20px 50px"><i class="fab fa-discord"></i> Rejoindre le serveur maintenant</a>
             </div>
         </div>
     </section>
@@ -410,243 +529,92 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>À propos</h4>
-                    <p>Communauté Québec est un serveur Discord francophone créé en février 2026, dédié aux échanges, au partage et à la bonne ambiance. Notre mission est de créer une communauté chaleureuse, ouverte à tous et respectueuse.</p>
-                    <div class="social-links">
-                        <a href="https://discord.gg/commuqc" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.tiktok.com/@communaut.qubec" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://disboard.org/fr/server/1469888825294852130" target="_blank" rel="noopener noreferrer" title="Disboard">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M9.5 7.5 V16.5 M9.5 7.5 C15 7.5 15 16.5 9.5 16.5"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
-                        <li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li>
-                        <li><a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a></li>
-                        <li><a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a></li>
-                        <li><a href="#equipe"><i class="fas fa-users"></i> Équipe</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Ressources</h4>
-                    <ul>
-                        <li><a href="https://discord.com/channels/1469888825294852130/1469902008637980684" target="_blank"><i class="fas fa-ticket-alt"></i> Ouvrir un ticket</a></li>
-                        <li><a href="https://discord.com/channels/1469888825294852130/1472999931487977513" target="_blank"><i class="fas fa-users"></i> Devenir Staff</a></li>
-                        <li><a href="https://discord.com/channels/1469888825294852130/1489674814997401823" target="_blank"><i class="fas fa-handshake"></i> Partenariat</a></li>
-                        <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Conception</h4>
-                    <p>Site web conçu et développé avec passion par</p>
-                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 25px;">
-                        <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin Babouain" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(224, 176, 112, 0.3);">
-                        <div><p style="margin: 0; font-weight: 700; color: var(--blanc);">Jacobin Babouain</p><p style="margin: 0; font-size: 0.9rem; color: var(--gris);">Développeur Web</p></div>
-                    </div>
-                </div>
+                <div class="footer-col"><h4>À propos</h4><p>Communauté Québec est un serveur Discord francophone créé en février 2026, dédié aux échanges, au partage et à la bonne ambiance.</p><div class="social-links"><a href="https://discord.gg/commuqc" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a><a href="https://www.tiktok.com/@communaut.qubec" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a><a href="https://disboard.org/fr/server/1469888825294852130" target="_blank" rel="noopener noreferrer" title="Disboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 7.5 V16.5 M9.5 7.5 C15 7.5 15 16.5 9.5 16.5"/></svg></a></div></div>
+                <div class="footer-col"><h4>Navigation</h4><ul><li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li><li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li><li><a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a></li><li><a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a></li><li><a href="#equipe"><i class="fas fa-users"></i> Équipe</a></li></ul></div>
+                <div class="footer-col"><h4>Ressources</h4><ul><li><a href="https://discord.com/channels/1469888825294852130/1469902008637980684" target="_blank"><i class="fas fa-ticket-alt"></i> Ouvrir un ticket</a></li><li><a href="https://discord.com/channels/1469888825294852130/1472999931487977513" target="_blank"><i class="fas fa-users"></i> Devenir Staff</a></li><li><a href="https://discord.com/channels/1469888825294852130/1489674814997401823" target="_blank"><i class="fas fa-handshake"></i> Partenariat</a></li></ul></div>
+                <div class="footer-col"><h4>Conception</h4><p>Développé avec passion par</p><div style="display:flex;align-items:center;gap:15px;margin-top:25px"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" style="width:50px;height:50px;border-radius:50%;border:2px solid rgba(224,176,112,.3)"><div><p style="margin:0;font-weight:700;color:var(--blanc)">Jacobin Babouain</p><p style="margin:0;font-size:.9rem;color:var(--gris)">Développeur Web</p></div></div></div>
             </div>
-            <div class="copyright"><p>&copy; 2026 Communauté Québec. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color: var(--ambre);"></i> par Jacobin Babouain</p></div>
+            <div class="copyright"><p>&copy; 2026 Communauté Québec. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color:var(--ambre)"></i> par Jacobin Babouain</p></div>
         </div>
     </footer>
 
     <button class="fab-menu" id="fabMenu" aria-label="Navigation rapide"><i class="fas fa-compass"></i></button>
     <div class="quicknav-overlay" id="quicknavOverlay"></div>
-    <div class="quicknav" id="quicknav" role="dialog" aria-label="Navigation rapide">
-        <div class="quicknav-grab"></div>
-        <div class="quicknav-header"><span>Navigation rapide</span><button class="quicknav-close" id="quicknavClose" aria-label="Fermer"><i class="fas fa-xmark"></i></button></div>
-        <nav class="quicknav-links">
-            <a href="#accueil"><i class="fas fa-home"></i> Accueil</a>
-            <a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a>
-            <a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a>
-            <a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a>
-            <a href="#equipe"><i class="fas fa-users"></i> Équipe</a>
-            <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
-            <a href="#rejoindre" class="qn-cta"><i class="fab fa-discord"></i> Rejoindre le serveur</a>
-        </nav>
-    </div>
-
-    <a href="#accueil" class="back-to-top" id="backToTop" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></a>
+    <div class="quicknav" id="quicknav"><div class="quicknav-grab"></div><div class="quicknav-header"><span>Navigation</span><button class="quicknav-close" id="quicknavClose"><i class="fas fa-xmark"></i></button></div><nav class="quicknav-links"><a href="#accueil"><i class="fas fa-home"></i> Accueil</a><a href="#stats"><i class="fas fa-chart-pie"></i> Stats</a><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a><a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a><a href="#reglements"><i class="fas fa-scroll"></i> Règles</a><a href="#equipe"><i class="fas fa-users"></i> Équipe</a><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a><a href="#rejoindre" class="qn-cta"><i class="fab fa-discord"></i> Rejoindre</a></nav></div>
+    <a href="#accueil" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
     <script>
-    window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('hidden'); }, 800); });
+    /* ===== PRELOADER ===== */
+    window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('preloader').classList.add('hidden')},800)});
 
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorRing = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-    const isTouch = window.matchMedia('(hover: none)').matches;
-    if (!isTouch) {
-        document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; cursorDot.style.left = mouseX + 'px'; cursorDot.style.top = mouseY + 'px'; });
-        function animateRing() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; cursorRing.style.left = ringX + 'px'; cursorRing.style.top = ringY + 'px'; requestAnimationFrame(animateRing); }
-        animateRing();
-        document.querySelectorAll('a, button, .faq-question, .feature-card, .game-tag, .team-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
-        });
+    /* ===== CURSOR + TRAIL ===== */
+    const cDot=document.getElementById('cursorDot'),cRing=document.getElementById('cursorRing');
+    let mX=0,mY=0,rX=0,rY=0;
+    const isTouch=window.matchMedia('(hover:none)').matches;
+    if(!isTouch){
+        document.addEventListener('mousemove',e=>{mX=e.clientX;mY=e.clientY;cDot.style.left=mX+'px';cDot.style.top=mY+'px';createTrail(mX,mY)});
+        (function animR(){rX+=(mX-rX)*.15;rY+=(mY-rY)*.15;cRing.style.left=rX+'px';cRing.style.top=rY+'px';requestAnimationFrame(animR)})();
+        document.querySelectorAll('a,button,.faq-question,.feature-card,.game-tag,.team-card').forEach(el=>{el.addEventListener('mouseenter',()=>cRing.classList.add('hover'));el.addEventListener('mouseleave',()=>cRing.classList.remove('hover'))});
+        // Trail
+        let trailCount=0;
+        function createTrail(x,y){if(++trailCount%3!==0)return;const t=document.createElement('div');t.className='cursor-trail';t.style.left=x+'px';t.style.top=y+'px';t.style.opacity='0.6';document.body.appendChild(t);requestAnimationFrame(()=>{t.style.transition='all .8s ease-out';t.style.opacity='0';t.style.transform=`translate(${(Math.random()-.5)*40}px,${(Math.random()-.5)*40}px) scale(0)`});setTimeout(()=>t.remove(),800)}
     }
 
-    const scrollProgress = document.getElementById('scrollProgress');
-    const header = document.getElementById('header');
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        scrollProgress.style.width = (scrollTop / docHeight * 100) + '%';
-        header.classList.toggle('scrolled', scrollTop > 100);
-        backToTop.classList.toggle('visible', scrollTop > 500);
-    });
+    /* ===== SCROLL ===== */
+    const sP=document.getElementById('scrollProgress'),hdr=document.getElementById('header'),btt=document.getElementById('backToTop');
+    window.addEventListener('scroll',()=>{const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;sP.style.width=(s/d*100)+'%';hdr.classList.toggle('scrolled',s>100);btt.classList.toggle('visible',s>500)});
 
-    const heroTitle = document.getElementById('heroTitle');
-    const titleText = heroTitle.textContent;
-    heroTitle.innerHTML = '';
-    titleText.split(' ').forEach((word, wi) => {
-        const wordSpan = document.createElement('span'); wordSpan.className = 'word';
-        word.split('').forEach((char, ci) => {
-            const charSpan = document.createElement('span'); charSpan.className = 'char'; charSpan.textContent = char;
-            charSpan.style.animationDelay = (0.3 + (wi * 0.1) + (ci * 0.04)) + 's, 0s'; wordSpan.appendChild(charSpan);
-        });
-        heroTitle.appendChild(wordSpan);
-        if (wi < titleText.split(' ').length - 1) { const space = document.createElement('span'); space.innerHTML = '&nbsp;'; heroTitle.appendChild(space); }
-    });
+    /* ===== HERO TITLE ===== */
+    const hT=document.getElementById('heroTitle'),tTxt=hT.textContent;hT.innerHTML='';
+    tTxt.split(' ').forEach((w,wi)=>{const ws=document.createElement('span');ws.className='word';w.split('').forEach((c,ci)=>{const cs=document.createElement('span');cs.className='char';cs.textContent=c;cs.style.animationDelay=(0.3+wi*0.12+ci*0.04)+'s,0s';ws.appendChild(cs)});hT.appendChild(ws);if(wi<tTxt.split(' ').length-1){const sp=document.createElement('span');sp.innerHTML='&nbsp;';hT.appendChild(sp)}});
 
-    const heroContent = document.getElementById('heroContent');
-    if (!isTouch) {
-        document.querySelector('.hero').addEventListener('mousemove', e => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 30;
-            const y = (e.clientY / window.innerHeight - 0.5) * 30;
-            heroContent.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    }
+    /* ===== PARALLAX ===== */
+    const hC=document.getElementById('heroContent');
+    if(!isTouch)document.querySelector('.hero').addEventListener('mousemove',e=>{const x=(e.clientX/window.innerWidth-.5)*30,y=(e.clientY/window.innerHeight-.5)*30;hC.style.transform=`translate(${x}px,${y}px)`});
 
-    document.querySelectorAll('.tilt').forEach(card => {
-        const spotlight = card.querySelector('.spotlight');
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-            const rotateY = ((x / rect.width) - 0.5) * 12; const rotateX = ((y / rect.height) - 0.5) * -12;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-            if (spotlight) { spotlight.style.setProperty('--mx', (x / rect.width * 100) + '%'); spotlight.style.setProperty('--my', (y / rect.height * 100) + '%'); }
-        });
-        card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)'; });
-    });
+    /* ===== TILT + SPOTLIGHT ===== */
+    document.querySelectorAll('.tilt').forEach(card=>{const sp=card.querySelector('.spotlight');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;card.style.transform=`perspective(1000px) rotateX(${((y/r.height)-.5)*-12}deg) rotateY(${((x/r.width)-.5)*12}deg) translateY(-10px)`;if(sp){sp.style.setProperty('--mx',(x/r.width*100)+'%');sp.style.setProperty('--my',(y/r.height*100)+'%')}});card.addEventListener('mouseleave',()=>{card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateY(0)'})});
 
-    if (!isTouch) {
-        document.querySelectorAll('.magnetic').forEach(btn => {
-            btn.addEventListener('mousemove', e => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2; const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-            btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0, 0)'; });
-        });
-    }
+    /* ===== MAGNETIC ===== */
+    if(!isTouch)document.querySelectorAll('.magnetic').forEach(btn=>{btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`});btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)'})});
 
-    const canvas = document.getElementById('particleCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-    function initParticles() {
-        particles = []; const count = Math.min(80, Math.floor(window.innerWidth / 20));
-        for (let i = 0; i < count; i++) { particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, r: Math.random() * 2 + 1 }); }
-    }
-    initParticles();
-    let pmx = -1000, pmy = -1000;
-    document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
-    function drawParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(214, 220, 239, 0.4)'; ctx.fill();
-        });
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x; const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 130) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(45, 75, 168, ${0.3 * (1 - dist / 130)})`; ctx.lineWidth = 1; ctx.stroke(); }
-            }
-            const dmx = particles[i].x - pmx; const dmy = particles[i].y - pmy; const dmouse = Math.sqrt(dmx * dmx + dmy * dmy);
-            if (dmouse < 160) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(pmx, pmy); ctx.strokeStyle = `rgba(224, 176, 112, ${0.35 * (1 - dmouse / 160)})`; ctx.lineWidth = 1; ctx.stroke(); }
-        }
-        requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
+    /* ===== PARTICLES ===== */
+    const cvs=document.getElementById('particleCanvas'),ctx=cvs.getContext('2d');let pts=[];
+    function rCvs(){cvs.width=window.innerWidth;cvs.height=window.innerHeight}rCvs();window.addEventListener('resize',rCvs);
+    (function initP(){pts=[];const n=Math.min(80,Math.floor(window.innerWidth/20));for(let i=0;i<n;i++)pts.push({x:Math.random()*cvs.width,y:Math.random()*cvs.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*2+1})})();
+    let pmx=-1e3,pmy=-1e3;document.addEventListener('mousemove',e=>{pmx=e.clientX;pmy=e.clientY});
+    (function drawP(){ctx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cvs.width)p.vx*=-1;if(p.y<0||p.y>cvs.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(214,220,239,.4)';ctx.fill()});for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(45,75,168,${.3*(1-d/130)})`;ctx.lineWidth=1;ctx.stroke()}}const dm=Math.sqrt((pts[i].x-pmx)**2+(pts[i].y-pmy)**2);if(dm<160){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pmx,pmy);ctx.strokeStyle=`rgba(224,176,112,${.35*(1-dm/160)})`;ctx.lineWidth=1;ctx.stroke()}}requestAnimationFrame(drawP)})();
 
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-    const revealObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.12 });
-    revealEls.forEach(el => revealObserver.observe(el));
+    /* ===== REVEAL + STAGGER ===== */
+    const rObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')})},{threshold:.12});
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.tl-item').forEach(el=>rObs.observe(el));
 
-    const sections = document.querySelectorAll('section[id]');
-    const navLinksAll = document.querySelectorAll('.nav-link');
-    const spyObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => { if (entry.isIntersecting) { const id = entry.target.id; navLinksAll.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + id); }); } });
-    }, { threshold: 0.4 });
-    sections.forEach(s => spyObserver.observe(s));
+    /* ===== STATS CIRCULAIRES ===== */
+    const sObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');const v=+e.target.dataset.target;const el=e.target.querySelector('.stat-val');let cur=0;const inc=Math.ceil(v/60);const timer=setInterval(()=>{cur+=inc;if(cur>=v){cur=v;clearInterval(timer)}el.textContent=cur},25)}})},{threshold:.5});
+    document.querySelectorAll('.stat-ring').forEach(el=>sObs.observe(el));
 
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.querySelector('.faq-question').addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(o => o.classList.remove('active'));
-            if (!isActive) item.classList.add('active');
-        });
-    });
+    /* ===== SCROLL SPY ===== */
+    const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-link');
+    const spObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const id=e.target.id;nls.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+id)})}})},{threshold:.4});
+    secs.forEach(s=>spObs.observe(s));
 
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('open'); });
-    navLinks.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { hamburger.classList.remove('active'); navLinks.classList.remove('open'); }); });
+    /* ===== FAQ ===== */
+    document.querySelectorAll('.faq-item').forEach(item=>{item.querySelector('.faq-question').addEventListener('click',()=>{const a=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(o=>o.classList.remove('active'));if(!a)item.classList.add('active')})});
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        });
-    });
+    /* ===== HAMBURGER ===== */
+    const hbg=document.getElementById('hamburger'),nvl=document.getElementById('navLinks');
+    hbg.addEventListener('click',()=>{hbg.classList.toggle('active');nvl.classList.toggle('open')});
+    nvl.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hbg.classList.remove('active');nvl.classList.remove('open')})});
 
-    const fabMenu = document.getElementById('fabMenu');
-    const quicknav = document.getElementById('quicknav');
-    const quicknavOverlay = document.getElementById('quicknavOverlay');
-    const quicknavClose = document.getElementById('quicknavClose');
-    function openQuicknav() { quicknav.classList.add('open'); quicknavOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeQuicknav() { quicknav.classList.remove('open'); quicknavOverlay.classList.remove('open'); document.body.style.overflow = ''; }
-    fabMenu.addEventListener('click', openQuicknav);
-    quicknavClose.addEventListener('click', closeQuicknav);
-    quicknavOverlay.addEventListener('click', closeQuicknav);
-    quicknav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', (e) => {
-            e.preventDefault();
-            const href = a.getAttribute('href');
-            closeQuicknav();
-            setTimeout(() => { const t = document.querySelector(href); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
-        });
-    });
-    </script>
+    /* ===== SMOOTH SCROLL ===== */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 
-    <!-- Tracker de visites (multi-appareils) — INACTIF tant que les clés sont vides -->
-    <script>
-    (function(){
-      var SUPABASE_URL = '';
-      var SUPABASE_KEY = '';
-      var WEBHOOK_ID   = '';
-      if(!SUPABASE_URL && !WEBHOOK_ID) return;
-      function parseUA(ua){var os='Inconnu',br='Inconnu',type='Desktop';
-        if(/Windows NT 10/.test(ua))os='Windows 10/11';else if(/Windows/.test(ua))os='Windows';else if(/Mac OS X/.test(ua))os='macOS';else if(/Android/.test(ua))os='Android';else if(/iPhone|iPad|iPod/.test(ua))os='iOS';else if(/Linux/.test(ua))os='Linux';
-        if(/Edg\//.test(ua))br='Edge';else if(/OPR|Opera/.test(ua))br='Opera';else if(/Chrome/.test(ua))br='Chrome';else if(/Firefox/.test(ua))br='Firefox';else if(/Safari/.test(ua))br='Safari';
-        if(/Mobi|Android.*Mobile|iPhone/.test(ua))type='Mobile';else if(/iPad|Android(?!.*Mobile)|Tablet/.test(ua))type='Tablette';
-        return{os:os,browser:br,type:type};}
-      var p=parseUA(navigator.userAgent);
-      var dev={os:p.os,browser:p.browser,deviceType:p.type,screen:screen.width+'×'+screen.height,viewport:window.innerWidth+'×'+window.innerHeight,language:navigator.language,timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone)||'—',cores:navigator.hardwareConcurrency||'—',referrer:document.referrer||'(direct)',userAgent:navigator.userAgent};
-      function withIP(cb){try{fetch('https://api.ipify.org?format=json').then(function(r){return r.json();}).then(function(j){dev.ip=j.ip;cb();}).catch(function(){cb();});}catch(e){cb();}}
-      withIP(function(){
-        if(SUPABASE_URL){ try{fetch(SUPABASE_URL.replace(/\/$/,'')+'/rest/v1/cq_logs',{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({kind:'visit',message:'Visite '+location.pathname,device:dev,extra:{page:location.pathname+location.search}}),keepalive:true}).catch(function(){});}catch(e){} }
-        else if(WEBHOOK_ID){ try{fetch('https://webhook.site/'+WEBHOOK_ID,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({app:'CQ',kind:'visit',message:'Visite '+location.pathname,device:dev,extra:{page:location.pathname+location.search},ts:new Date().toISOString()}),keepalive:true}).catch(function(){});}catch(e){} }
-      });
-    })();
+    /* ===== MOBILE NAV ===== */
+    const fab=document.getElementById('fabMenu'),qn=document.getElementById('quicknav'),qo=document.getElementById('quicknavOverlay'),qc=document.getElementById('quicknavClose');
+    function openQ(){qn.classList.add('open');qo.classList.add('open');document.body.style.overflow='hidden'}
+    function closeQ(){qn.classList.remove('open');qo.classList.remove('open');document.body.style.overflow=''}
+    fab.addEventListener('click',openQ);qc.addEventListener('click',closeQ);qo.addEventListener('click',closeQ);
+    qn.querySelectorAll('a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const h=a.getAttribute('href');closeQ();setTimeout(()=>{const t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})},80)})});
     </script>
 </body>
 </html>
