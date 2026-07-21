@@ -1,900 +1,418 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Communauté Québec</title>
-    <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
-    <link rel="apple-touch-icon" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
-    <meta name="description" content="Tableau de bord administrateur pour le serveur Communauté Québec">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
-        
-        :root {
-            --nuit-0: #05080f; --nuit-1: #0a1024; --nuit-2: #0d1530; --nuit-3: #111a3a;
-            --royal: #1e3a8a; --royal-2: #2d4ba8; --indigo: #243a7a; --bleu-clair: #9fb0d8;
-            --blanc: #f2f4fb; --blanc-2: #d6dcef;
-            --ambre: #e0b070; --ambre-2: #d49a52; --ambre-clair: #f0c98a;
-            --gris: #8b95b5; --gris-2: #5d688a;
-            --border: rgba(214, 220, 239, 0.10); --border-royal: rgba(45, 75, 168, 0.35);
-            --grad-argent: linear-gradient(135deg, #fff 0%, #d6dcef 45%, #b8c4e0 100%);
-            --grad-royal: linear-gradient(135deg, #1e3a8a 0%, #2d4ba8 100%);
-            --grad-ambre: linear-gradient(135deg, #f0c98a 0%, #e0b070 50%, #c8884a 100%);
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--nuit-0);
-            color: var(--blanc-2);
-            line-height: 1.7;
-            overflow-x: hidden;
-            height: 100vh;
-        }
-        
-        /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--nuit-0);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--royal), var(--ambre-2));
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--ambre);
-        }
-        
-        /* ADMIN LAYOUT */
-        .admin-container {
-            display: flex;
-            height: 100vh;
-        }
-        
-        /* SIDEBAR */
-        .sidebar {
-            width: 280px;
-            background: rgba(13, 21, 48, 0.7);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border);
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-        
-        .logo-admin {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 0 25px 20px;
-            text-decoration: none;
-            color: white;
-        }
-        
-        .logo-admin img {
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid rgba(214, 220, 239, 0.4);
-            box-shadow: 0 0 20px rgba(45, 75, 168, 0.5);
-        }
-        
-        .logo-admin h1 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            background: var(--grad-argent);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .nav-admin {
-            list-style: none;
-            padding: 0 15px;
-        }
-        
-        .nav-admin li {
-            margin-bottom: 8px;
-        }
-        
-        .nav-admin a {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 15px;
-            border-radius: 10px;
-            color: var(--gris);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-        
-        .nav-admin a:hover, .nav-admin a.active {
-            color: var(--blanc);
-            background: rgba(45, 75, 168, 0.2);
-            border-left: 3px solid var(--ambre);
-        }
-        
-        .nav-admin a i {
-            width: 22px;
-            text-align: center;
-        }
-        
-        .nav-admin a.active {
-            font-weight: 600;
-        }
-        
-        /* MAIN CONTENT */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* HEADER */
-        .admin-header {
-            background: rgba(8, 12, 26, 0.94);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-            color: white;
-            padding: 12px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-        
-        .search-bar {
-            background: rgba(5, 8, 15, 0.6);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 8px 20px;
-            width: 350px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .search-bar input {
-            background: transparent;
-            border: none;
-            color: var(--blanc);
-            width: 100%;
-            outline: none;
-        }
-        
-        .search-bar input::placeholder {
-            color: var(--gris-2);
-        }
-        
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .user-profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid rgba(214, 220, 239, 0.3);
-        }
-        
-        .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .user-info h3 {
-            font-size: 0.95rem;
-            color: var(--blanc);
-            font-weight: 600;
-        }
-        
-        .user-info p {
-            font-size: 0.8rem;
-            color: var(--gris-2);
-        }
-        
-        /* DASHBOARD */
-        .dashboard {
-            padding: 30px;
-            flex: 1;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .dashboard-header {
-            grid-column: 1 / -1;
-            margin-bottom: 20px;
-        }
-        
-        .dashboard-header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: var(--grad-argent);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-        
-        .dashboard-header p {
-            color: var(--gris);
-            max-width: 700px;
-        }
-        
-        /* CARDS */
-        .card {
-            background: rgba(13, 21, 48, 0.6);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(15px);
-            transition: transform 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .card-header h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--blanc);
-        }
-        
-        .card-header .card-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .card-actions button {
-            background: rgba(45, 75, 168, 0.2);
-            border: 1px solid var(--border);
-            color: var(--blanc);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .card-actions button:hover {
-            background: var(--grad-royal);
-            border-color: var(--ambre);
-        }
-        
-        /* STATS */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .stat-card {
-            background: rgba(5, 8, 15, 0.4);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-        
-        .stat-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 10px 0;
-            background: var(--grad-ambre);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-card p {
-            color: var(--gris);
-            font-size: 0.9rem;
-        }
-        
-        /* LOGS */
-        .logs-container {
-            height: 350px;
-            overflow-y: auto;
-            margin-top: 20px;
-        }
-        
-        .logs-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .logs-header h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--blanc);
-        }
-        
-        .log-entry {
-            background: rgba(5, 8, 15, 0.4);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 3px solid var(--amber);
-            transition: all 0.2s;
-        }
-        
-        .log-entry:hover {
-            background: rgba(45, 75, 168, 0.2);
-            border-left: 3px solid var(--amber-clair);
-        }
-        
-        .log-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .log-time {
-            font-size: 0.8rem;
-            color: var(--gris-2);
-            background: rgba(214, 220, 239, 0.08);
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-        
-        .log-title {
-            font-weight: 600;
-            color: var(--blanc);
-        }
-        
-        .log-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .log-details div {
-            display: flex;
-            gap: 8px;
-            color: var(--gris-2);
-        }
-        
-        .log-details div i {
-            color: var(--ambre-clair);
-        }
-        
-        /* ACTIVITY CHART */
-        .activity-chart {
-            height: 200px;
-            margin-top: 10px;
-            position: relative;
-        }
-        
-        .chart-bar {
-            position: absolute;
-            bottom: 0;
-            width: 25px;
-            background: linear-gradient(to top, var(--royal-2), var(--royal));
-            border-radius: 4px 4px 0 0;
-        }
-        
-        .chart-label {
-            position: absolute;
-            bottom: -20px;
-            text-align: center;
-            width: 100%;
-            font-size: 0.8rem;
-            color: var(--gris-2);
-        }
-        
-        /* FOOTER */
-        .admin-footer {
-            background: rgba(5, 8, 15, 0.4);
-            border-top: 1px solid var(--border);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .admin-footer p {
-            color: var(--gris-2);
-            font-size: 0.9rem;
-        }
-        
-        .admin-footer a {
-            color: var(--ambre);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 900px) {
-            .admin-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: auto;
-                padding-bottom: 0;
-            }
-            
-            .admin-header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 15px;
-                gap: 15px;
-            }
-            
-            .search-bar {
-                width: 100%;
-            }
-            
-            .user-profile {
-                margin-left: auto;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .logo-admin {
-                padding: 0 20px;
-            }
-            
-            .nav-admin a {
-                font-size: 0.85rem;
-                padding: 10px 12px;
-            }
-            
-            .dashboard-header h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚜️ Admin · Communauté Québec</title>
+<link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --nuit-0:#05080f;--nuit-1:#0a1024;--nuit-2:#0d1530;--nuit-3:#111a3a;
+  --royal:#1e3a8a;--royal-2:#2d4ba8;--indigo:#243a7a;--bleu-clair:#9fb0d8;
+  --blanc:#f2f4fb;--blanc-2:#d6dcef;
+  --ambre:#e0b070;--ambre-2:#d49a52;--ambre-clair:#f0c98a;
+  --gris:#8b95b5;--gris-2:#5d688a;--ok:#38a169;--err:#e53e3e;
+  --border:rgba(214,220,239,.10);--border-royal:rgba(45,75,168,.35);
+  --grad-argent:linear-gradient(135deg,#fff 0%,#d6dcef 45%,#b8c4e0 100%);
+  --grad-royal:linear-gradient(135deg,#1e3a8a 0%,#2d4ba8 100%);
+  --grad-ambre:linear-gradient(135deg,#f0c98a 0%,#e0b070 50%,#c8884a 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Inter',sans-serif;background:var(--nuit-0);color:var(--blanc-2);line-height:1.6;overflow:hidden}
+.hidden{display:none !important}
+a{color:inherit}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--royal),var(--ambre-2));border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--ambre)}
+
+/* ===== LOGIN ===== */
+#loginScreen{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at 50% 30%,rgba(30,58,138,.25),transparent 60%),var(--nuit-0)}
+.login-box{width:100%;max-width:420px;background:rgba(13,21,48,.85);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:24px;padding:45px 40px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.login-logo{width:84px;height:84px;border-radius:50%;border:3px solid rgba(214,220,239,.35);margin:0 auto 20px;box-shadow:0 0 40px rgba(45,75,168,.6)}
+.login-box h1{font-family:'Playfair Display',serif;font-size:1.7rem;background:var(--grad-argent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.login-box .sub{color:var(--gris);font-size:.9rem;margin-bottom:28px}
+.login-box input{width:100%;padding:15px 18px;border-radius:12px;border:1px solid var(--border);background:rgba(5,8,15,.6);color:#fff;font-size:1rem;letter-spacing:4px;text-align:center;margin-bottom:16px;outline:none;transition:.3s}
+.login-box input:focus{border-color:var(--ambre);box-shadow:0 0 0 3px rgba(224,176,112,.15)}
+.login-box button{width:100%;padding:15px;border:none;border-radius:12px;background:var(--grad-royal);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:.3s;box-shadow:0 10px 30px rgba(30,58,138,.4)}
+.login-box button:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(30,58,138,.6)}
+.login-err{color:var(--err);font-size:.85rem;margin-top:12px;min-height:18px;font-weight:600}
+
+/* ===== APP LAYOUT ===== */
+#adminApp{display:none;height:100vh}
+#adminApp.show{display:flex}
+.sidebar{width:264px;flex-shrink:0;background:rgba(13,21,48,.7);backdrop-filter:blur(20px);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 0;overflow-y:auto}
+.logo-admin{display:flex;align-items:center;gap:13px;padding:0 22px 22px;text-decoration:none}
+.logo-admin img{width:44px;height:44px;border-radius:50%;border:2px solid rgba(214,220,239,.4);box-shadow:0 0 18px rgba(45,75,168,.5)}
+.logo-admin b{font-family:'Playfair Display',serif;font-size:1.15rem;background:var(--grad-argent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1.2}
+.logo-admin span{font-size:.68rem;color:var(--gris-2);letter-spacing:2px}
+.nav-admin{list-style:none;padding:0 14px;display:flex;flex-direction:column;gap:4px}
+.nav-admin a{display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:11px;color:var(--gris);text-decoration:none;font-weight:500;font-size:.92rem;transition:.25s;border:1px solid transparent;outline:none}
+.nav-admin a i{width:20px;text-align:center;font-size:.95rem}
+.nav-admin a:hover{color:var(--blanc);background:rgba(45,75,168,.15)}
+.nav-admin a.active{color:var(--blanc);background:rgba(45,75,168,.25);border-color:var(--border-royal);font-weight:600;box-shadow:inset 3px 0 0 var(--ambre)}
+.nav-admin a:focus-visible{border-color:var(--ambre)}
+.side-foot{margin-top:auto;padding:14px 14px 0;border-top:1px solid var(--border)}
+.side-foot a{display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:11px;color:var(--gris);text-decoration:none;font-size:.9rem;transition:.25s}
+.side-foot a:hover{color:var(--ambre-clair);background:rgba(224,176,112,.08)}
+
+.main-content{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.admin-header{flex-shrink:0;background:rgba(8,12,26,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:14px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.search-bar{background:rgba(5,8,15,.6);border:1px solid var(--border);border-radius:50px;padding:9px 18px;display:flex;align-items:center;gap:10px;flex:1;max-width:420px}
+.search-bar i{color:var(--gris-2)}
+.search-bar input{background:transparent;border:none;color:var(--blanc);width:100%;outline:none;font-size:.9rem}
+.search-bar input::placeholder{color:var(--gris-2)}
+.user-profile{display:flex;align-items:center;gap:12px}
+.user-profile img{width:40px;height:40px;border-radius:50%;border:1px solid rgba(214,220,239,.3)}
+.user-info h3{font-size:.92rem;color:var(--blanc);font-weight:600;line-height:1.2}
+.user-info p{font-size:.76rem;color:var(--gris-2)}
+@media(max-width:640px){.user-info{display:none}.search-bar{max-width:none}}
+
+.scroll-area{flex:1;overflow-y:auto;padding:30px}
+.view{display:none;animation:viewIn .35s ease}
+.view.active{display:block}
+@keyframes viewIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.view-head{margin-bottom:26px}
+.view-head h1{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:800;background:var(--grad-argent);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.view-head p{color:var(--gris);max-width:720px}
+
+.card{background:rgba(13,21,48,.6);border-radius:20px;padding:24px;border:1px solid var(--border);backdrop-filter:blur(15px);min-width:0;transition:border-color .3s,transform .3s}
+.card:hover{border-color:var(--border-royal)}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.card-head h2{font-size:1.2rem;font-weight:700;color:var(--blanc)}
+.card-actions{display:flex;gap:8px}
+.icon-btn{background:rgba(45,75,168,.2);border:1px solid var(--border);color:var(--blanc-2);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;font-size:.85rem}
+.icon-btn:hover{background:var(--grad-royal);border-color:var(--ambre);color:#fff}
+
+/* dashboard rows */
+.dash-stats{margin-bottom:24px}
+.dash-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+@media(max-width:1080px){.dash-row{grid-template-columns:1fr}}
+
+/* stats grid */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.stat-card{background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:15px;padding:20px;text-align:center;transition:.3s}
+.stat-card:hover{border-color:var(--border-royal);transform:translateY(-3px)}
+.stat-card .si{font-size:1.5rem;color:var(--ambre);margin-bottom:10px}
+.stat-card .sn{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;background:var(--grad-ambre);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-card .sl{color:var(--gris);font-size:.82rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:8px}
+
+/* chart */
+.chart{display:flex;align-items:flex-end;gap:8px;height:150px;margin-top:24px;padding:10px 4px 0;border-top:1px solid var(--border)}
+.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;height:100%}
+.chart-col .bar{width:100%;max-width:30px;border-radius:6px 6px 0 0;background:linear-gradient(to top,var(--royal),var(--ambre-2));transition:height .6s ease}
+.chart-col .bar:hover{background:linear-gradient(to top,var(--royal-2),var(--ambre))}
+.chart-col span{font-size:.72rem;color:var(--gris-2)}
+
+/* logs */
+.logs-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.logs-tools input{flex:1;min-width:160px;background:rgba(5,8,15,.6);border:1px solid var(--border);border-radius:10px;padding:9px 14px;color:var(--blanc);outline:none;font-size:.88rem}
+.logs-tools input:focus{border-color:var(--ambre)}
+.filter-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(45,75,168,.18);border:1px solid var(--border);color:var(--gris);padding:6px 13px;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;transition:.25s}
+.chip:hover{color:var(--blanc)}
+.chip.active{background:var(--grad-royal);border-color:var(--ambre);color:#fff}
+.logs-list{display:flex;flex-direction:column;gap:12px;max-height:460px;overflow-y:auto;padding-right:6px}
+.log-entry{background:rgba(5,8,15,.45);border:1px solid var(--border);border-left:3px solid var(--royal-2);border-radius:12px;padding:14px 16px;transition:.25s}
+.log-entry:hover{background:rgba(45,75,168,.12);border-left-color:var(--ambre)}
+.log-entry.t-visit{border-left-color:var(--ambre)}
+.log-entry.t-join{border-left-color:var(--ok)}
+.log-entry.t-leave{border-left-color:var(--err)}
+.log-entry.t-ticket{border-left-color:var(--bleu-clair)}
+.log-entry.t-login{border-left-color:var(--ambre-clair)}
+.log-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.log-title{font-weight:600;color:var(--blanc);font-size:.95rem}
+.log-time{font-size:.74rem;color:var(--gris-2);background:rgba(214,220,239,.07);padding:3px 10px;border-radius:20px;white-space:nowrap}
+.log-details{display:flex;flex-wrap:wrap;gap:7px 14px;font-size:.84rem}
+.log-details div{display:flex;align-items:center;gap:7px;color:var(--gris)}
+.log-details div i{color:var(--ambre-clair);width:14px;text-align:center}
+.log-empty{text-align:center;color:var(--gris-2);padding:30px;font-size:.9rem}
+
+/* resources */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.res-card{display:flex;align-items:center;gap:14px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;transition:.25s}
+.res-card:hover{border-color:var(--ambre);transform:translateY(-3px);background:rgba(45,75,168,.12)}
+.res-card .ri{width:44px;height:44px;border-radius:12px;background:var(--grad-royal);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0}
+.res-card:hover .ri{background:var(--grad-ambre);color:var(--nuit-1)}
+.res-card .rt{font-weight:600;color:var(--blanc);font-size:.95rem}
+.res-card .ru{font-size:.76rem;color:var(--gris-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:170px}
+
+/* team mini */
+.team-mini{display:flex;flex-direction:column;gap:12px}
+.tm-row{display:flex;align-items:center;gap:13px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:13px;padding:12px 14px;transition:.25s}
+.tm-row:hover{border-color:var(--border-royal)}
+.tm-row img{width:44px;height:44px;border-radius:50%;border:1px solid rgba(214,220,239,.25)}
+.tm-row b{color:var(--blanc);font-size:.95rem;display:block}
+.tm-row .role{font-size:.76rem;color:var(--ambre-clair);font-weight:600}
+
+/* events */
+.ev-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:13px;padding:14px 16px;margin-bottom:12px;transition:.25s}
+.ev-row:hover{border-color:var(--border-royal)}
+.ev-row .et{color:var(--ambre-clair);font-weight:600;margin-bottom:6px}
+.ev-row .em{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--gris)}
+.ev-row .em div{display:flex;align-items:center;gap:6px}
+.ev-row .em i{color:var(--ambre);width:13px}
+.ev-when{font-size:.74rem;color:var(--gris-2);background:rgba(214,220,239,.07);padding:3px 10px;border-radius:20px;white-space:nowrap}
+
+/* soon */
+.soon-box{max-width:560px;margin:40px auto;text-align:center;background:rgba(13,21,48,.6);border:1px dashed var(--border-royal);border-radius:24px;padding:60px 40px}
+.soon-box .si{width:80px;height:80px;border-radius:50%;background:var(--grad-royal);display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;margin:0 auto 24px}
+.soon-box h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--blanc);margin-bottom:12px}
+.soon-box p{color:var(--gris);margin-bottom:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad-royal);color:#fff;padding:13px 28px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.92rem;border:1px solid var(--border-royal);cursor:pointer;transition:.3s}
+.btn:hover{border-color:var(--ambre);transform:translateY(-2px)}
+
+.admin-footer{flex-shrink:0;background:rgba(5,8,15,.5);border-top:1px solid var(--border);padding:16px 30px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.admin-footer p{color:var(--gris-2);font-size:.85rem}
+.admin-footer a{color:var(--ambre);text-decoration:none;font-weight:500;font-size:.85rem}
+.admin-footer a:hover{color:var(--ambre-clair)}
+
+/* mobile sidebar toggle */
+.mob-toggle{display:none;background:none;border:1px solid var(--border);color:var(--blanc);width:40px;height:40px;border-radius:10px;font-size:1.1rem;cursor:pointer}
+@media(max-width:860px){
+  body{overflow:auto}
+  #adminApp.show{flex-direction:column;height:auto;min-height:100vh}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;z-index:150;transform:translateX(-100%);transition:transform .3s;width:260px}
+  .sidebar.open{transform:translateX(0)}
+  .mob-toggle{display:flex;align-items:center;justify-content:center}
+  .scroll-area{padding:20px}
+}
+</style>
 </head>
 <body>
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <a href="#" class="logo-admin">
-                <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo">
-                <h1>Communauté Québec</h1>
-            </a>
-            
-            <ul class="nav-admin">
-                <li><a href="#" class="active"><i class="fas fa-chart-line"></i> Tableau de bord</a></li>
-                <li><a href="#"><i class="fas fa-clipboard-list"></i> Logs des visites</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Gestion des membres</a></li>
-                <li><a href="#"><i class="fas fa-bullhorn"></i> Annonces</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Paramètres</a></li>
-                <li><a href="#"><i class="fas fa-comments"></i> Modération</a></li>
-                <li><a href="#"><i class="fas fa-shield-alt"></i> Sécurité</a></li>
-                <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
-            </ul>
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="admin-header">
-                <div class="search-bar">
-                    <i class="fas fa-search" style="color: var(--gris-2);"></i>
-                    <input type="text" placeholder="Rechercher...">
-                </div>
-                
-                <div class="user-profile">
-                    <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin Babouain">
-                    <div class="user-info">
-                        <h3>Jacobin Babouain</h3>
-                        <p>Développeur & Admin</p>
-                    </div>
-                </div>
-            </header>
-            
-            <!-- Dashboard -->
-            <div class="dashboard">
-                <div class="dashboard-header">
-                    <h1>Tableau de bord</h1>
-                    <p>Bienvenue dans le tableau de bord administrateur de Communauté Québec. Voici un aperçu de l'activité actuelle.</p>
-                </div>
-                
-                <!-- Stats -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Statistiques</h2>
-                        <div class="card-actions">
-                            <button><i class="fas fa-sync-alt"></i></button>
-                            <button><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon" style="color: var(--ambre); font-size: 1.8rem; margin-bottom: 10px;"><i class="fas fa-users"></i></div>
-                            <h3>90</h3>
-                            <p>En ligne</p>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon" style="color: var(--ambre); font-size: 1.8rem; margin-bottom: 10px;"><i class="fas fa-user-friends"></i></div>
-                            <h3>388</h3>
-                            <p>Membres</p>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon" style="color: var(--ambre); font-size: 1.8rem; margin-bottom: 10px;"><i class="fas fa-comments"></i></div>
-                            <h3>129</h3>
-                            <p>Salons</p>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon" style="color: var(--ambre); font-size: 1.8rem; margin-bottom: 10px;"><i class="fas fa-robot"></i></div>
-                            <h3>13</h3>
-                            <p>Bots</p>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-chart">
-                        <div class="chart-bar" style="height: 80%; left: 5%"></div>
-                        <div class="chart-bar" style="height: 45%; left: 15%"></div>
-                        <div class="chart-bar" style="height: 75%; left: 25%"></div>
-                        <div class="chart-bar" style="height: 90%; left: 35%"></div>
-                        <div class="chart-bar" style="height: 60%; left: 45%"></div>
-                        <div class="chart-bar" style="height: 85%; left: 55%"></div>
-                        <div class="chart-bar" style="height: 70%; left: 65%"></div>
-                        <div class="chart-bar" style="height: 95%; left: 75%"></div>
-                        <div class="chart-bar" style="height: 50%; left: 85%"></div>
-                        
-                        <div class="chart-label" style="left: 5%">Lun</div>
-                        <div class="chart-label" style="left: 15%">Mar</div>
-                        <div class="chart-label" style="left: 25%">Mer</div>
-                        <div class="chart-label" style="left: 35%">Jeu</div>
-                        <div class="chart-label" style="left: 45%">Ven</div>
-                        <div class="chart-label" style="left: 55%">Sam</div>
-                        <div class="chart-label" style="left: 65%">Dim</div>
-                        <div class="chart-label" style="left: 75%">Lun</div>
-                        <div class="chart-label" style="left: 85%">Mar</div>
-                    </div>
-                </div>
-                
-                <!-- Logs -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Logs des visites</h2>
-                        <div class="card-actions">
-                            <button><i class="fas fa-sync-alt"></i></button>
-                            <button><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="logs-header">
-                        <h3>Dernières activités</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Tout afficher</button>
-                    </div>
-                    
-                    <div class="logs-container">
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Nouvelle visite</div>
-                                <div class="log-time">Aujourd'hui, 14:23</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @Marianne</div>
-                                <div><i class="fas fa-globe"></i> Québec, CA</div>
-                                <div><i class="fas fa-browser"></i> Chrome 123</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-desktop"></i> iPhone 14</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Nouvelle visite</div>
-                                <div class="log-time">Aujourd'hui, 14:15</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @Vanille</div>
-                                <div><i class="fas fa-globe"></i> Montréal, QC</div>
-                                <div><i class="fas fa-browser"></i> Safari 17</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-desktop"></i> iPhone 13</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Nouvelle visite</div>
-                                <div class="log-time">Aujourd'hui, 14:05</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @disc0rdvanille</div>
-                                <div><i class="fas fa-globe"></i> Québec, CA</div>
-                                <div><i class="fas fa-browser"></i> Firefox 118</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-desktop"></i> Android 13</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Nouvelle visite</div>
-                                <div class="log-time">Aujourd'hui, 13:55</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @mariannizer</div>
-                                <div><i class="fas fa-globe"></i> Montréal, QC</div>
-                                <div><i class="fas fa-browser"></i> Edge 113</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-desktop"></i> Samsung S22</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Nouvelle visite</div>
-                                <div class="log-time">Aujourd'hui, 13:40</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @jacobin904</div>
-                                <div><i class="fas fa-globe"></i> Québec, CA</div>
-                                <div><i class="fas fa-browser"></i> Chrome 123</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-desktop"></i> iPhone 14</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="logs-header" style="margin-top: 25px;">
-                        <h3>Activité des membres</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Tout afficher</button>
-                    </div>
-                    
-                    <div class="logs-container">
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Membre a rejoint</div>
-                                <div class="log-time">Aujourd'hui, 12:30</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @Alex_2002</div>
-                                <div><i class="fas fa-globe"></i> France</div>
-                                <div><i class="fas fa-browser"></i> Chrome 123</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-award"></i> Membre</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Membre a quitté</div>
-                                <div class="log-time">Aujourd'hui, 11:15</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @Sofia_99</div>
-                                <div><i class="fas fa-globe"></i> Belgique</div>
-                                <div><i class="fas fa-browser"></i> Firefox 118</div>
-                                <div><i class="fas fa-mobile-alt"></i> Mobile</div>
-                                <div><i class="fas fa-award"></i> Membre</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Nouveau ticket ouvert</div>
-                                <div class="log-time">Aujourd'hui, 10:45</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-user"></i> @Lucas_24</div>
-                                <div><i class="fas fa-question"></i> Problème connexion</div>
-                                <div><i class="fas fa-ticket-alt"></i> Ticket #142</div>
-                                <div><i class="fas fa-clock"></i> En attente</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Content -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Contenu du jour</h2>
-                        <div class="card-actions">
-                            <button><i class="fas fa-sync-alt"></i></button>
-                            <button><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="logs-header">
-                        <h3>Blague du jour</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Modifier</button>
-                    </div>
-                    
-                    <p style="font-size: 1.1rem; line-height: 1.6; margin: 15px 0; color: var(--blanc);">Pourquoi les Québécois ne font-ils pas de blagues ? Parce qu'ils sont trop occupés à dire « tabarnak » !</p>
-                    
-                    <div class="logs-header" style="margin-top: 25px;">
-                        <h3>Question du jour</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Modifier</button>
-                    </div>
-                    
-                    <p style="font-size: 1.1rem; line-height: 1.6; margin: 15px 0; color: var(--blanc);">Quel est votre plat québécois préféré ?</p>
-                    
-                    <div class="stats-grid" style="margin-top: 20px; grid-template-columns: 1fr 1fr;">
-                        <div class="stat-card">
-                            <h3>32</h3>
-                            <p>Réponses</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>4.7/5</h3>
-                            <p>Évaluation</p>
-                        </div>
-                    </div>
-                    
-                    <div class="logs-header" style="margin-top: 25px;">
-                        <h3>Citation du jour</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Modifier</button>
-                    </div>
-                    
-                    <p style="font-size: 1.1rem; line-height: 1.6; margin: 15px 0; color: var(--blanc);">"Le Québec n'est pas un pays, c'est un état d'âme qui se partage avec le monde."</p>
-                    <p style="font-size: 0.9rem; text-align: right; color: var(--gris);">- Jean Béliveau</p>
-                </div>
-                
-                <!-- Activity -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Activité communautaire</h2>
-                        <div class="card-actions">
-                            <button><i class="fas fa-sync-alt"></i></button>
-                            <button><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="logs-header">
-                        <h3>Événements à venir</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Créer</button>
-                    </div>
-                    
-                    <div class="logs-container">
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title" style="color: var(--ambre);">Quiz de culture québécoise</div>
-                                <div class="log-time">Aujourd'hui, 20:00</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-calendar"></i> 20:00 - 21:30</div>
-                                <div><i class="fas fa-users"></i> 32 participants</div>
-                                <div><i class="fas fa-map-marker-alt"></i> Salon : #quiz</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title" style="color: var(--ambre);">Soirée cinéma</div>
-                                <div class="log-time">Demain, 19:00</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-calendar"></i> 19:00 - 22:00</div>
-                                <div><i class="fas fa-users"></i> 24 participants</div>
-                                <div><i class="fas fa-map-marker-alt"></i> Salon : #soiree-cinema</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title" style="color: var(--ambre);">Tournoi VALORANT</div>
-                                <div class="log-time">Ven, 18:00</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-calendar"></i> 18:00 - 21:00</div>
-                                <div><i class="fas fa-users"></i> 16 participants</div>
-                                <div><i class="fas fa-map-marker-alt"></i> Salon : #tournoi-val</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="logs-header" style="margin-top: 25px;">
-                        <h3>Partenariats</h3>
-                        <button style="background: rgba(45, 75, 168, 0.2); border: 1px solid var(--border); color: var(--blanc); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;">Gérer</button>
-                    </div>
-                    
-                    <div class="logs-container">
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Partenariat avec @Communauté Québec</div>
-                                <div class="log-time">12 mai</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-handshake"></i> En cours</div>
-                                <div><i class="fas fa-bullseye"></i> 250 membres</div>
-                                <div><i class="fas fa-calendar"></i> 3 mois</div>
-                            </div>
-                        </div>
-                        
-                        <div class="log-entry">
-                            <div class="log-header">
-                                <div class="log-title">Partenariat avec @GamingQuébec</div>
-                                <div class="log-time">20 mai</div>
-                            </div>
-                            <div class="log-details">
-                                <div><i class="fas fa-handshake"></i> En attente</div>
-                                <div><i class="fas fa-bullseye"></i> 180 membres</div>
-                                <div><i class="fas fa-calendar"></i> 2 mois</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Footer -->
-            <footer class="admin-footer">
-                <p>© 2026 Communauté Québec | Tableau de bord administrateur</p>
-                <a href="https://jacobin904.github.io/Communaute-Quebec/" target="_blank">Retour au site public</a>
-            </footer>
-        </main>
+
+<!-- ===== LOGIN ===== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo" class="login-logo">
+    <h1>Panneau Admin</h1>
+    <p class="sub">Communauté Québec · Accès restreint</p>
+    <form id="loginForm" autocomplete="off">
+      <input type="password" id="pwd" placeholder="••••" aria-label="Mot de passe" required>
+      <button type="submit"><i class="fas fa-lock-open"></i> Se connecter</button>
+    </form>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div id="adminApp">
+  <aside class="sidebar" id="sidebar">
+    <a href="#" class="logo-admin">
+      <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo">
+      <div><b>Communauté Québec</b><span>ADMIN PANEL</span></div>
+    </a>
+    <ul class="nav-admin" id="navAdmin">
+      <li><a href="#" class="active" data-view="dashboard"><i class="fas fa-gauge-high"></i> Tableau de bord</a></li>
+      <li><a href="#" data-view="logs"><i class="fas fa-clipboard-list"></i> Logs des visites</a></li>
+      <li><a href="#" data-view="resources"><i class="fas fa-link"></i> Ressources & liens</a></li>
+      <li><a href="#" data-view="soon" data-label="Gestion des membres"><i class="fas fa-users-gear"></i> Gestion des membres</a></li>
+      <li><a href="#" data-view="soon" data-label="Annonces"><i class="fas fa-bullhorn"></i> Annonces</a></li>
+      <li><a href="#" data-view="soon" data-label="Modération"><i class="fas fa-shield-halved"></i> Modération</a></li>
+      <li><a href="#" data-view="soon" data-label="Sécurité"><i class="fas fa-lock"></i> Sécurité</a></li>
+      <li><a href="#" data-view="soon" data-label="Paramètres"><i class="fas fa-sliders"></i> Paramètres</a></li>
+    </ul>
+    <div class="side-foot">
+      <a href="#" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Déconnexion</a>
     </div>
-    
-    <script>
-        // Simple interaction for demo
-        document.addEventListener('DOMContentLoaded', function() {
-            const navItems = document.querySelectorAll('.nav-admin a');
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-            
-            // Simulate activity
-            setInterval(() => {
-                const logsContainer = document.querySelector('.logs-container');
-                if (logsContainer) {
-                    const logs = logsContainer.querySelectorAll('.log-entry');
-                    if (logs.length > 0) {
-                        logs[0].style.borderLeft = '3px solid var(--ambre-clair)';
-                        setTimeout(() => {
-                            logs[0].style.borderLeft = '3px solid var(--amber)';
-                        }, 1000);
-                    }
-                }
-            }, 5000);
-        });
-    </script>
+  </aside>
+
+  <div class="main-content">
+    <header class="admin-header">
+      <button class="mob-toggle" id="mobToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Rechercher…"></div>
+      <div class="user-profile">
+        <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin">
+        <div class="user-info"><h3>Jacobin Babouain</h3><p>Développeur & Admin</p></div>
+      </div>
+    </header>
+
+    <div class="scroll-area">
+
+      <!-- ===== VIEW : DASHBOARD ===== -->
+      <section class="view active" id="view-dashboard">
+        <div class="view-head">
+          <h1>Tableau de bord</h1>
+          <p>Bienvenue dans le tableau de bord administrateur de Communauté Québec. Voici un aperçu de l'activité actuelle du serveur.</p>
+        </div>
+
+        <div class="card dash-stats">
+          <div class="card-head"><h2>Statistiques du serveur</h2><div class="card-actions"><button class="icon-btn" title="Rafraîchir"><i class="fas fa-rotate"></i></button></div></div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="si"><i class="fas fa-users"></i></div><div class="sn">388</div><div class="sl">Membres</div></div>
+            <div class="stat-card"><div class="si"><i class="fas fa-signal"></i></div><div class="sn">90</div><div class="sl">En ligne</div></div>
+            <div class="stat-card"><div class="si"><i class="fas fa-hashtag"></i></div><div class="sn">129</div><div class="sl">Salons</div></div>
+            <div class="stat-card"><div class="si"><i class="fas fa-layer-group"></i></div><div class="sn">200</div><div class="sl">Rôles</div></div>
+            <div class="stat-card"><div class="si"><i class="fas fa-robot"></i></div><div class="sn">13</div><div class="sl">Bots</div></div>
+          </div>
+          <div class="chart">
+            <div class="chart-col"><div class="bar" style="height:62%"></div><span>Lun</span></div>
+            <div class="chart-col"><div class="bar" style="height:48%"></div><span>Mar</span></div>
+            <div class="chart-col"><div class="bar" style="height:75%"></div><span>Mer</span></div>
+            <div class="chart-col"><div class="bar" style="height:88%"></div><span>Jeu</span></div>
+            <div class="chart-col"><div class="bar" style="height:70%"></div><span>Ven</span></div>
+            <div class="chart-col"><div class="bar" style="height:95%"></div><span>Sam</span></div>
+            <div class="chart-col"><div class="bar" style="height:82%"></div><span>Dim</span></div>
+          </div>
+        </div>
+
+        <div class="dash-row">
+          <div class="card">
+            <div class="card-head"><h2>Dernières visites</h2><div class="card-actions"><a class="icon-btn" href="#" data-goto="logs" title="Voir tout"><i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="logs-list" style="max-height:300px">
+              <div class="log-entry t-visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">14:23</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Québec, CA</div><div><i class="fab fa-chrome"></i> Chrome 123</div><div><i class="fas fa-mobile-screen"></i> iPhone 14</div></div></div>
+              <div class="log-entry t-visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">14:05</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Montréal, QC</div><div><i class="fab fa-safari"></i> Safari 17</div><div><i class="fas fa-mobile-screen"></i> Android 13</div></div></div>
+              <div class="log-entry t-login"><div class="log-top"><span class="log-title">Connexion au panel</span><span class="log-time">13:50</span></div><div class="log-details"><div><i class="fas fa-user"></i> Jacobin</div><div><i class="fas fa-desktop"></i> Windows 11</div></div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>Événements à venir</h2><div class="card-actions"><button class="icon-btn" title="Créer"><i class="fas fa-plus"></i></button></div></div>
+            <div class="ev-row"><div><div class="et">Quiz de culture québécoise</div><div class="em"><div><i class="far fa-clock"></i> 20:00 – 21:30</div><div><i class="fas fa-users"></i> 32 inscrits</div><div><i class="fas fa-location-dot"></i> #quiz</div></div></div><span class="ev-when">Aujourd'hui</span></div>
+            <div class="ev-row"><div><div class="et">Soirée cinéma</div><div class="em"><div><i class="far fa-clock"></i> 19:00 – 22:00</div><div><i class="fas fa-users"></i> 24 inscrits</div><div><i class="fas fa-location-dot"></i> #cinema</div></div></div><span class="ev-when">Demain</span></div>
+            <div class="ev-row"><div><div class="et">Tournoi VALORANT</div><div class="em"><div><i class="far fa-clock"></i> 18:00 – 21:00</div><div><i class="fas fa-users"></i> 16 inscrits</div><div><i class="fas fa-location-dot"></i> #tournoi</div></div></div><span class="ev-when">Vendredi</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW : LOGS ===== -->
+      <section class="view" id="view-logs">
+        <div class="view-head">
+          <h1>Logs des visites</h1>
+          <p>Historique des visites du site, des connexions au panel et de l'activité des membres. Filtre par type ou recherche un appareil / une IP.</p>
+        </div>
+        <div class="card">
+          <div class="logs-tools">
+            <input type="text" id="logSearch" placeholder="🔍 Rechercher (appareil, lieu, pseudo…)">
+            <div class="filter-chips" id="logFilters">
+              <span class="chip active" data-filter="all">Tout</span>
+              <span class="chip" data-filter="visit">Visites</span>
+              <span class="chip" data-filter="login">Connexions</span>
+              <span class="chip" data-filter="join">Arrivées</span>
+              <span class="chip" data-filter="leave">Départs</span>
+              <span class="chip" data-filter="ticket">Tickets</span>
+            </div>
+          </div>
+          <div class="logs-list" id="fullLogs" style="max-height:none">
+            <div class="log-entry t-visit" data-type="visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Aujourd'hui, 14:23</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Québec, CA</div><div><i class="fab fa-chrome"></i> Chrome 123</div><div><i class="fas fa-mobile-screen"></i> iPhone 14</div><div><i class="fas fa-network-wired"></i> 142.xxx</div></div></div>
+            <div class="log-entry t-visit" data-type="visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Aujourd'hui, 14:05</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Montréal, QC</div><div><i class="fab fa-safari"></i> Safari 17</div><div><i class="fas fa-mobile-screen"></i> Android 13</div><div><i class="fas fa-network-wired"></i> 70.xxx</div></div></div>
+            <div class="log-entry t-login" data-type="login"><div class="log-top"><span class="log-title">Connexion au panel</span><span class="log-time">Aujourd'hui, 13:50</span></div><div class="log-details"><div><i class="fas fa-user"></i> Jacobin</div><div><i class="fas fa-desktop"></i> Windows 11</div><div><i class="fab fa-firefox-browser"></i> Firefox 124</div></div></div>
+            <div class="log-entry t-join" data-type="join"><div class="log-top"><span class="log-title">Nouveau membre</span><span class="log-time">Aujourd'hui, 12:30</span></div><div class="log-details"><div><i class="fas fa-user-plus"></i> @Alex_2002</div><div><i class="fas fa-globe"></i> France</div><div><i class="fas fa-award"></i> Membre</div></div></div>
+            <div class="log-entry t-ticket" data-type="ticket"><div class="log-top"><span class="log-title">Ticket ouvert #142</span><span class="log-time">Aujourd'hui, 10:45</span></div><div class="log-details"><div><i class="fas fa-user"></i> @Lucas_24</div><div><i class="fas fa-circle-question"></i> Problème de rôle</div><div><i class="far fa-clock"></i> En attente</div></div></div>
+            <div class="log-entry t-leave" data-type="leave"><div class="log-top"><span class="log-title">Membre parti</span><span class="log-time">Aujourd'hui, 09:12</span></div><div class="log-details"><div><i class="fas fa-user-minus"></i> @Sofia_99</div><div><i class="fas fa-globe"></i> Belgique</div></div></div>
+            <div class="log-entry t-visit" data-type="visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Hier, 22:40</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Paris, FR</div><div><i class="fab fa-edge"></i> Edge 123</div><div><i class="fas fa-desktop"></i> Windows 10</div></div></div>
+          </div>
+          <div class="log-empty hidden" id="logEmpty">Aucun log ne correspond à ta recherche.</div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW : RESOURCES ===== -->
+      <section class="view" id="view-resources">
+        <div class="view-head">
+          <h1>Ressources & liens</h1>
+          <p>Tous les liens utiles du projet en un seul endroit. Clique pour ouvrir ou copier.</p>
+        </div>
+        <div class="dash-row">
+          <div class="card">
+            <div class="card-head"><h2>Liens rapides</h2></div>
+            <div class="res-grid">
+              <a class="res-card" href="https://discord.gg/commuqc" target="_blank"><div class="ri"><i class="fab fa-discord"></i></div><div><div class="rt">Serveur Discord</div><div class="ru">discord.gg/commuqc</div></div></a>
+              <a class="res-card" href="https://www.tiktok.com/@communaut.qubec" target="_blank"><div class="ri"><i class="fab fa-tiktok"></i></div><div><div class="rt">TikTok</div><div class="ru">@communaut.qubec</div></div></a>
+              <a class="res-card" href="https://disboard.org/fr/server/1469888825294852130" target="_blank"><div class="ri"><i class="fas fa-arrow-up-from-bracket"></i></div><div><div class="rt">Disboard</div><div class="ru">Bumper le serveur</div></div></a>
+              <a class="res-card" href="https://jacobin904.github.io/Communaute-Quebec/" target="_blank"><div class="ri"><i class="fas fa-globe"></i></div><div><div class="rt">Site public</div><div class="ru">jacobin904.github.io</div></div></a>
+              <a class="res-card" href="https://discord.com/channels/1469888825294852130/1469902008637980684" target="_blank"><div class="ri"><i class="fas fa-ticket"></i></div><div><div class="rt">Ouvrir un ticket</div><div class="ru">Salon support</div></div></a>
+              <a class="res-card" href="https://discord.com/channels/1469888825294852130/1472999931487977513" target="_blank"><div class="ri"><i class="fas fa-user-shield"></i></div><div><div class="rt">Devenir Staff</div><div class="ru">Candidatures</div></div></a>
+              <a class="res-card" href="https://discord.com/channels/1469888825294852130/1489674814997401823" target="_blank"><div class="ri"><i class="fas fa-handshake"></i></div><div><div class="rt">Partenariat</div><div class="ru">Demandes</div></div></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Équipe</h2></div>
+            <div class="team-mini">
+              <div class="tm-row"><img src="https://cdn.discordapp.com/avatars/1504186999098314882/0b7fe4ae81670ba163b4eb6507671e48.webp?size=1024" alt=""><div><b>Vanille</b><span class="role">💕 Fondatrice · @disc0rdvanille</span></div></div>
+              <div class="tm-row"><img src="https://cdn.discordapp.com/avatars/1472310772414808326/e66c92954ebe6fcada0f67b51d1b1584.webp?size=1024" alt=""><div><b>Marianne</b><span class="role">💕 Seconde Fondatrice · @mariannizer</span></div></div>
+              <div class="tm-row"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt=""><div><b>Jacobin Babouain</b><span class="role">🛠️ Développeur · @jacobin904</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW : SOON ===== -->
+      <section class="view" id="view-soon">
+        <div class="soon-box">
+          <div class="si"><i class="fas fa-screwdriver-wrench"></i></div>
+          <h2 id="soonTitle">En construction</h2>
+          <p>Cette section est en cours de développement et arrivera bientôt dans le panel admin.</p>
+          <a href="#" class="btn" data-goto="dashboard"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="admin-footer">
+      <p>© 2026 Communauté Québec · Panel administrateur</p>
+      <a href="https://jacobin904.github.io/Communaute-Quebec/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Voir le site public</a>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIG ===== */
+const PWD_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; // "1234"
+const SESSION_KEY='cq_admin_session';
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+async function sha256(t){if(!window.crypto||!crypto.subtle)return null;const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+
+/* ===== LOGIN / SESSION ===== */
+function showApp(){$('#loginScreen').classList.add('hidden');$('#adminApp').classList.add('show');}
+function showLogin(){$('#loginScreen').classList.remove('hidden');$('#adminApp').classList.remove('show');}
+if(localStorage.getItem(SESSION_KEY)==='1')showApp();
+
+$('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();const v=$('#pwd').value,err=$('#loginErr');err.textContent='';
+  const h=await sha256(v);const ok=h?(h===PWD_HASH):(v==='1234');
+  if(ok){localStorage.setItem(SESSION_KEY,'1');$('#pwd').value='';showApp();}
+  else{err.textContent='❌ Mot de passe incorrect';$('#pwd').style.borderColor='var(--err)';setTimeout(()=>$('#pwd').style.borderColor='',1200);}
+});
+$('#logoutBtn').addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(SESSION_KEY);showLogin();});
+
+/* ===== NAV ROUTING ===== */
+function goView(view,label){
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  const target=$('#view-'+view);if(target)target.classList.add('active');
+  if(view==='soon'&&label)$('#soonTitle').textContent=label;
+  $$('#navAdmin a').forEach(a=>a.classList.toggle('active',a.dataset.view===view&&(!label||a.dataset.label===label)));
+  $('.scroll-area').scrollTop=0;
+  $('#sidebar').classList.remove('open');
+}
+$$('#navAdmin a').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();goView(a.dataset.view,a.dataset.label);});
+});
+$$('[data-goto]').forEach(b=>{b.addEventListener('click',e=>{e.preventDefault();goView(b.dataset.goto);});});
+
+/* ===== LOG FILTER + SEARCH ===== */
+let activeFilter='all';
+function applyLogFilter(){
+  const q=($('#logSearch').value||'').toLowerCase();
+  let shown=0;
+  $$('#fullLogs .log-entry').forEach(el=>{
+    const okType=activeFilter==='all'||el.dataset.type===activeFilter;
+    const okText=!q||el.textContent.toLowerCase().includes(q);
+    const show=okType&&okText;
+    el.classList.toggle('hidden',!show);if(show)shown++;
+  });
+  $('#logEmpty').classList.toggle('hidden',shown>0);
+}
+$$('#logFilters .chip').forEach(c=>{c.addEventListener('click',()=>{$$('#logFilters .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');activeFilter=c.dataset.filter;applyLogFilter();});});
+$('#logSearch').addEventListener('input',applyLogFilter);
+
+/* ===== MOBILE SIDEBAR ===== */
+$('#mobToggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
+</script>
 </body>
 </html>
