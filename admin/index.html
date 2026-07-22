@@ -7,6 +7,7 @@
 <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 :root{
@@ -25,12 +26,10 @@ html,body{height:100%}
 body{font-family:'Inter',sans-serif;background:var(--nuit-0);color:var(--blanc-2);line-height:1.6;overflow:hidden}
 .hidden{display:none !important}
 a{color:inherit}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--royal),var(--ambre-2));border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--ambre)}
 
-/* ===== LOGIN ===== */
 #loginScreen{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at 50% 30%,rgba(30,58,138,.25),transparent 60%),var(--nuit-0)}
 .login-box{width:100%;max-width:420px;background:rgba(13,21,48,.85);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:24px;padding:45px 40px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .login-logo{width:84px;height:84px;border-radius:50%;border:3px solid rgba(214,220,239,.35);margin:0 auto 20px;box-shadow:0 0 40px rgba(45,75,168,.6)}
@@ -42,7 +41,6 @@ a{color:inherit}
 .login-box button:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(30,58,138,.6)}
 .login-err{color:var(--err);font-size:.85rem;margin-top:12px;min-height:18px;font-weight:600}
 
-/* ===== APP LAYOUT ===== */
 #adminApp{display:none;height:100vh}
 #adminApp.show{display:flex}
 .sidebar{width:264px;flex-shrink:0;background:rgba(13,21,48,.7);backdrop-filter:blur(20px);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 0;overflow-y:auto}
@@ -55,7 +53,6 @@ a{color:inherit}
 .nav-admin a i{width:20px;text-align:center;font-size:.95rem}
 .nav-admin a:hover{color:var(--blanc);background:rgba(45,75,168,.15)}
 .nav-admin a.active{color:var(--blanc);background:rgba(45,75,168,.25);border-color:var(--border-royal);font-weight:600;box-shadow:inset 3px 0 0 var(--ambre)}
-.nav-admin a:focus-visible{border-color:var(--ambre)}
 .side-foot{margin-top:auto;padding:14px 14px 0;border-top:1px solid var(--border)}
 .side-foot a{display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:11px;color:var(--gris);text-decoration:none;font-size:.9rem;transition:.25s}
 .side-foot a:hover{color:var(--ambre-clair);background:rgba(224,176,112,.08)}
@@ -76,7 +73,6 @@ a{color:inherit}
 .view{display:none;animation:viewIn .35s ease}
 .view.active{display:block}
 @keyframes viewIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
 .view-head{margin-bottom:26px}
 .view-head h1{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:800;background:var(--grad-argent);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
 .view-head p{color:var(--gris);max-width:720px}
@@ -86,44 +82,15 @@ a{color:inherit}
 .card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
 .card-head h2{font-size:1.2rem;font-weight:700;color:var(--blanc)}
 .card-actions{display:flex;gap:8px}
-.icon-btn{background:rgba(45,75,168,.2);border:1px solid var(--border);color:var(--blanc-2);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;font-size:.85rem}
+.icon-btn{background:rgba(45,75,168,.2);border:1px solid var(--border);color:var(--blanc-2);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;font-size:.85rem;text-decoration:none}
 .icon-btn:hover{background:var(--grad-royal);border-color:var(--ambre);color:#fff}
-
-/* dashboard rows */
-.dash-stats{margin-bottom:24px}
 .dash-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
 @media(max-width:1080px){.dash-row{grid-template-columns:1fr}}
 
-/* stats grid */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.stat-card{background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:15px;padding:20px;text-align:center;transition:.3s}
-.stat-card:hover{border-color:var(--border-royal);transform:translateY(-3px)}
-.stat-card .si{font-size:1.5rem;color:var(--ambre);margin-bottom:10px}
-.stat-card .sn{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;background:var(--grad-ambre);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-.stat-card .sl{color:var(--gris);font-size:.82rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:8px}
-
-/* chart */
-.chart{display:flex;align-items:flex-end;gap:8px;height:150px;margin-top:24px;padding:10px 4px 0;border-top:1px solid var(--border)}
-.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;height:100%}
-.chart-col .bar{width:100%;max-width:30px;border-radius:6px 6px 0 0;background:linear-gradient(to top,var(--royal),var(--ambre-2));transition:height .6s ease}
-.chart-col .bar:hover{background:linear-gradient(to top,var(--royal-2),var(--ambre))}
-.chart-col span{font-size:.72rem;color:var(--gris-2)}
-
-/* logs */
-.logs-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
-.logs-tools input{flex:1;min-width:160px;background:rgba(5,8,15,.6);border:1px solid var(--border);border-radius:10px;padding:9px 14px;color:var(--blanc);outline:none;font-size:.88rem}
-.logs-tools input:focus{border-color:var(--ambre)}
-.filter-chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:rgba(45,75,168,.18);border:1px solid var(--border);color:var(--gris);padding:6px 13px;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;transition:.25s}
-.chip:hover{color:var(--blanc)}
-.chip.active{background:var(--grad-royal);border-color:var(--ambre);color:#fff}
-.logs-list{display:flex;flex-direction:column;gap:12px;max-height:460px;overflow-y:auto;padding-right:6px}
+.logs-list{display:flex;flex-direction:column;gap:12px;max-height:420px;overflow-y:auto;padding-right:6px}
 .log-entry{background:rgba(5,8,15,.45);border:1px solid var(--border);border-left:3px solid var(--royal-2);border-radius:12px;padding:14px 16px;transition:.25s}
 .log-entry:hover{background:rgba(45,75,168,.12);border-left-color:var(--ambre)}
 .log-entry.t-visit{border-left-color:var(--ambre)}
-.log-entry.t-join{border-left-color:var(--ok)}
-.log-entry.t-leave{border-left-color:var(--err)}
-.log-entry.t-ticket{border-left-color:var(--bleu-clair)}
 .log-entry.t-login{border-left-color:var(--ambre-clair)}
 .log-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 .log-title{font-weight:600;color:var(--blanc);font-size:.95rem}
@@ -131,9 +98,25 @@ a{color:inherit}
 .log-details{display:flex;flex-wrap:wrap;gap:7px 14px;font-size:.84rem}
 .log-details div{display:flex;align-items:center;gap:7px;color:var(--gris)}
 .log-details div i{color:var(--ambre-clair);width:14px;text-align:center}
-.log-empty{text-align:center;color:var(--gris-2);padding:30px;font-size:.9rem}
 
-/* resources */
+/* blacklist / emails */
+.bl-form{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.bl-form input{flex:1;min-width:150px;background:rgba(5,8,15,.6);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--blanc);outline:none;font-size:.9rem}
+.bl-form input:focus{border-color:var(--ambre)}
+.bl-count{font-size:.8rem;color:var(--gris);margin-bottom:12px}
+.bl-list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;padding-right:6px}
+.bl-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.bl-row .em{font-weight:600;color:var(--blanc);font-size:.92rem;word-break:break-all}
+.bl-row .rs{font-size:.78rem;color:var(--gris-2);margin-top:2px}
+.bl-row .acts{display:flex;gap:8px;flex-shrink:0}
+.mini-btn{background:rgba(45,75,168,.2);border:1px solid var(--border);color:var(--blanc-2);padding:7px 12px;border-radius:8px;font-size:.78rem;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:6px}
+.mini-btn:hover{border-color:var(--ambre);color:var(--ambre-clair)}
+.mini-btn.danger{border-color:rgba(229,62,62,.4);color:#fc8181}
+.mini-btn.danger:hover{background:rgba(229,62,62,.15)}
+.bl-empty{color:var(--gris-2);font-size:.88rem;padding:18px;text-align:center}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad-royal);color:#fff;padding:11px 20px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.88rem;border:1px solid var(--border-royal);cursor:pointer;transition:.3s}
+.btn:hover{border-color:var(--ambre);transform:translateY(-2px)}
+
 .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .res-card{display:flex;align-items:center;gap:14px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;transition:.25s}
 .res-card:hover{border-color:var(--ambre);transform:translateY(-3px);background:rgba(45,75,168,.12)}
@@ -141,52 +124,26 @@ a{color:inherit}
 .res-card:hover .ri{background:var(--grad-ambre);color:var(--nuit-1)}
 .res-card .rt{font-weight:600;color:var(--blanc);font-size:.95rem}
 .res-card .ru{font-size:.76rem;color:var(--gris-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:170px}
-
-/* team mini */
 .team-mini{display:flex;flex-direction:column;gap:12px}
-.tm-row{display:flex;align-items:center;gap:13px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:13px;padding:12px 14px;transition:.25s}
-.tm-row:hover{border-color:var(--border-royal)}
+.tm-row{display:flex;align-items:center;gap:13px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:13px;padding:12px 14px}
 .tm-row img{width:44px;height:44px;border-radius:50%;border:1px solid rgba(214,220,239,.25)}
 .tm-row b{color:var(--blanc);font-size:.95rem;display:block}
 .tm-row .role{font-size:.76rem;color:var(--ambre-clair);font-weight:600}
 
-/* events */
-.ev-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:rgba(5,8,15,.45);border:1px solid var(--border);border-radius:13px;padding:14px 16px;margin-bottom:12px;transition:.25s}
-.ev-row:hover{border-color:var(--border-royal)}
-.ev-row .et{color:var(--ambre-clair);font-weight:600;margin-bottom:6px}
-.ev-row .em{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--gris)}
-.ev-row .em div{display:flex;align-items:center;gap:6px}
-.ev-row .em i{color:var(--ambre);width:13px}
-.ev-when{font-size:.74rem;color:var(--gris-2);background:rgba(214,220,239,.07);padding:3px 10px;border-radius:20px;white-space:nowrap}
-
-/* soon */
 .soon-box{max-width:560px;margin:40px auto;text-align:center;background:rgba(13,21,48,.6);border:1px dashed var(--border-royal);border-radius:24px;padding:60px 40px}
 .soon-box .si{width:80px;height:80px;border-radius:50%;background:var(--grad-royal);display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;margin:0 auto 24px}
 .soon-box h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--blanc);margin-bottom:12px}
 .soon-box p{color:var(--gris);margin-bottom:26px}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad-royal);color:#fff;padding:13px 28px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.92rem;border:1px solid var(--border-royal);cursor:pointer;transition:.3s}
-.btn:hover{border-color:var(--ambre);transform:translateY(-2px)}
 
 .admin-footer{flex-shrink:0;background:rgba(5,8,15,.5);border-top:1px solid var(--border);padding:16px 30px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .admin-footer p{color:var(--gris-2);font-size:.85rem}
 .admin-footer a{color:var(--ambre);text-decoration:none;font-weight:500;font-size:.85rem}
-.admin-footer a:hover{color:var(--ambre-clair)}
-
-/* mobile sidebar toggle */
 .mob-toggle{display:none;background:none;border:1px solid var(--border);color:var(--blanc);width:40px;height:40px;border-radius:10px;font-size:1.1rem;cursor:pointer}
-@media(max-width:860px){
-  body{overflow:auto}
-  #adminApp.show{flex-direction:column;height:auto;min-height:100vh}
-  .sidebar{position:fixed;top:0;left:0;bottom:0;z-index:150;transform:translateX(-100%);transition:transform .3s;width:260px}
-  .sidebar.open{transform:translateX(0)}
-  .mob-toggle{display:flex;align-items:center;justify-content:center}
-  .scroll-area{padding:20px}
-}
+@media(max-width:860px){body{overflow:auto}#adminApp.show{flex-direction:column;height:auto;min-height:100vh}.sidebar{position:fixed;top:0;left:0;bottom:0;z-index:150;transform:translateX(-100%);transition:transform .3s;width:260px}.sidebar.open{transform:translateX(0)}.mob-toggle{display:flex;align-items:center;justify-content:center}.scroll-area{padding:20px}}
 </style>
 </head>
 <body>
 
-<!-- ===== LOGIN ===== -->
 <div id="loginScreen">
   <div class="login-box">
     <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo" class="login-logo">
@@ -200,7 +157,6 @@ a{color:inherit}
   </div>
 </div>
 
-<!-- ===== APP ===== -->
 <div id="adminApp">
   <aside class="sidebar" id="sidebar">
     <a href="#" class="logo-admin">
@@ -210,16 +166,14 @@ a{color:inherit}
     <ul class="nav-admin" id="navAdmin">
       <li><a href="#" class="active" data-view="dashboard"><i class="fas fa-gauge-high"></i> Tableau de bord</a></li>
       <li><a href="#" data-view="logs"><i class="fas fa-clipboard-list"></i> Logs des visites</a></li>
+      <li><a href="#" data-view="blacklist"><i class="fas fa-user-lock"></i> Accès & blacklist</a></li>
       <li><a href="#" data-view="resources"><i class="fas fa-link"></i> Ressources & liens</a></li>
       <li><a href="#" data-view="soon" data-label="Gestion des membres"><i class="fas fa-users-gear"></i> Gestion des membres</a></li>
       <li><a href="#" data-view="soon" data-label="Annonces"><i class="fas fa-bullhorn"></i> Annonces</a></li>
       <li><a href="#" data-view="soon" data-label="Modération"><i class="fas fa-shield-halved"></i> Modération</a></li>
-      <li><a href="#" data-view="soon" data-label="Sécurité"><i class="fas fa-lock"></i> Sécurité</a></li>
       <li><a href="#" data-view="soon" data-label="Paramètres"><i class="fas fa-sliders"></i> Paramètres</a></li>
     </ul>
-    <div class="side-foot">
-      <a href="#" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Déconnexion</a>
-    </div>
+    <div class="side-foot"><a href="#" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Déconnexion</a></div>
   </aside>
 
   <div class="main-content">
@@ -234,33 +188,12 @@ a{color:inherit}
 
     <div class="scroll-area">
 
-      <!-- ===== VIEW : DASHBOARD ===== -->
+      <!-- DASHBOARD (sans stats serveur, sans événements) -->
       <section class="view active" id="view-dashboard">
         <div class="view-head">
           <h1>Tableau de bord</h1>
-          <p>Bienvenue dans le tableau de bord administrateur de Communauté Québec. Voici un aperçu de l'activité actuelle du serveur.</p>
+          <p>Bienvenue dans le tableau de bord administrateur de Communauté Québec. Gère l'accès au site et consulte les dernières visites.</p>
         </div>
-
-        <div class="card dash-stats">
-          <div class="card-head"><h2>Statistiques du serveur</h2><div class="card-actions"><button class="icon-btn" title="Rafraîchir"><i class="fas fa-rotate"></i></button></div></div>
-          <div class="stats-grid">
-            <div class="stat-card"><div class="si"><i class="fas fa-users"></i></div><div class="sn">388</div><div class="sl">Membres</div></div>
-            <div class="stat-card"><div class="si"><i class="fas fa-signal"></i></div><div class="sn">90</div><div class="sl">En ligne</div></div>
-            <div class="stat-card"><div class="si"><i class="fas fa-hashtag"></i></div><div class="sn">129</div><div class="sl">Salons</div></div>
-            <div class="stat-card"><div class="si"><i class="fas fa-layer-group"></i></div><div class="sn">200</div><div class="sl">Rôles</div></div>
-            <div class="stat-card"><div class="si"><i class="fas fa-robot"></i></div><div class="sn">13</div><div class="sl">Bots</div></div>
-          </div>
-          <div class="chart">
-            <div class="chart-col"><div class="bar" style="height:62%"></div><span>Lun</span></div>
-            <div class="chart-col"><div class="bar" style="height:48%"></div><span>Mar</span></div>
-            <div class="chart-col"><div class="bar" style="height:75%"></div><span>Mer</span></div>
-            <div class="chart-col"><div class="bar" style="height:88%"></div><span>Jeu</span></div>
-            <div class="chart-col"><div class="bar" style="height:70%"></div><span>Ven</span></div>
-            <div class="chart-col"><div class="bar" style="height:95%"></div><span>Sam</span></div>
-            <div class="chart-col"><div class="bar" style="height:82%"></div><span>Dim</span></div>
-          </div>
-        </div>
-
         <div class="dash-row">
           <div class="card">
             <div class="card-head"><h2>Dernières visites</h2><div class="card-actions"><a class="icon-btn" href="#" data-goto="logs" title="Voir tout"><i class="fas fa-arrow-right"></i></a></div></div>
@@ -270,53 +203,53 @@ a{color:inherit}
               <div class="log-entry t-login"><div class="log-top"><span class="log-title">Connexion au panel</span><span class="log-time">13:50</span></div><div class="log-details"><div><i class="fas fa-user"></i> Jacobin</div><div><i class="fas fa-desktop"></i> Windows 11</div></div></div>
             </div>
           </div>
-
           <div class="card">
-            <div class="card-head"><h2>Événements à venir</h2><div class="card-actions"><button class="icon-btn" title="Créer"><i class="fas fa-plus"></i></button></div></div>
-            <div class="ev-row"><div><div class="et">Quiz de culture québécoise</div><div class="em"><div><i class="far fa-clock"></i> 20:00 – 21:30</div><div><i class="fas fa-users"></i> 32 inscrits</div><div><i class="fas fa-location-dot"></i> #quiz</div></div></div><span class="ev-when">Aujourd'hui</span></div>
-            <div class="ev-row"><div><div class="et">Soirée cinéma</div><div class="em"><div><i class="far fa-clock"></i> 19:00 – 22:00</div><div><i class="fas fa-users"></i> 24 inscrits</div><div><i class="fas fa-location-dot"></i> #cinema</div></div></div><span class="ev-when">Demain</span></div>
-            <div class="ev-row"><div><div class="et">Tournoi VALORANT</div><div class="em"><div><i class="far fa-clock"></i> 18:00 – 21:00</div><div><i class="fas fa-users"></i> 16 inscrits</div><div><i class="fas fa-location-dot"></i> #tournoi</div></div></div><span class="ev-when">Vendredi</span></div>
+            <div class="card-head"><h2>Accès au site</h2><div class="card-actions"><a class="icon-btn" href="#" data-goto="blacklist" title="Gérer"><i class="fas fa-arrow-right"></i></a></div></div>
+            <p style="color:var(--blanc-2);font-size:.95rem;margin-bottom:8px"><i class="fas fa-envelope" style="color:var(--ambre);margin-right:8px"></i><span id="dashEmailCount">0</span> email(s) collecté(s)</p>
+            <p style="color:var(--blanc-2);font-size:.95rem;margin-bottom:18px"><i class="fas fa-user-slash" style="color:var(--err);margin-right:8px"></i><span id="dashBlackCount">0</span> adresse(s) bloquée(s)</p>
+            <a href="#" class="btn" data-goto="blacklist" style="width:100%;justify-content:center"><i class="fas fa-user-lock"></i> Gérer l'accès & la blacklist</a>
           </div>
         </div>
       </section>
 
-      <!-- ===== VIEW : LOGS ===== -->
+      <!-- LOGS -->
       <section class="view" id="view-logs">
-        <div class="view-head">
-          <h1>Logs des visites</h1>
-          <p>Historique des visites du site, des connexions au panel et de l'activité des membres. Filtre par type ou recherche un appareil / une IP.</p>
-        </div>
+        <div class="view-head"><h1>Logs des visites</h1><p>Historique des visites du site et des connexions au panel.</p></div>
         <div class="card">
-          <div class="logs-tools">
-            <input type="text" id="logSearch" placeholder="🔍 Rechercher (appareil, lieu, pseudo…)">
-            <div class="filter-chips" id="logFilters">
-              <span class="chip active" data-filter="all">Tout</span>
-              <span class="chip" data-filter="visit">Visites</span>
-              <span class="chip" data-filter="login">Connexions</span>
-              <span class="chip" data-filter="join">Arrivées</span>
-              <span class="chip" data-filter="leave">Départs</span>
-              <span class="chip" data-filter="ticket">Tickets</span>
-            </div>
+          <div class="logs-list" style="max-height:none">
+            <div class="log-entry t-visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Aujourd'hui, 14:23</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Québec, CA</div><div><i class="fab fa-chrome"></i> Chrome 123</div><div><i class="fas fa-mobile-screen"></i> iPhone 14</div><div><i class="fas fa-network-wired"></i> 142.xxx</div></div></div>
+            <div class="log-entry t-visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Aujourd'hui, 14:05</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Montréal, QC</div><div><i class="fab fa-safari"></i> Safari 17</div><div><i class="fas fa-mobile-screen"></i> Android 13</div></div></div>
+            <div class="log-entry t-login"><div class="log-top"><span class="log-title">Connexion au panel</span><span class="log-time">Aujourd'hui, 13:50</span></div><div class="log-details"><div><i class="fas fa-user"></i> Jacobin</div><div><i class="fas fa-desktop"></i> Windows 11</div><div><i class="fab fa-firefox-browser"></i> Firefox 124</div></div></div>
+            <div class="log-entry t-visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Hier, 22:40</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Paris, FR</div><div><i class="fab fa-edge"></i> Edge 123</div><div><i class="fas fa-desktop"></i> Windows 10</div></div></div>
           </div>
-          <div class="logs-list" id="fullLogs" style="max-height:none">
-            <div class="log-entry t-visit" data-type="visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Aujourd'hui, 14:23</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Québec, CA</div><div><i class="fab fa-chrome"></i> Chrome 123</div><div><i class="fas fa-mobile-screen"></i> iPhone 14</div><div><i class="fas fa-network-wired"></i> 142.xxx</div></div></div>
-            <div class="log-entry t-visit" data-type="visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Aujourd'hui, 14:05</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Montréal, QC</div><div><i class="fab fa-safari"></i> Safari 17</div><div><i class="fas fa-mobile-screen"></i> Android 13</div><div><i class="fas fa-network-wired"></i> 70.xxx</div></div></div>
-            <div class="log-entry t-login" data-type="login"><div class="log-top"><span class="log-title">Connexion au panel</span><span class="log-time">Aujourd'hui, 13:50</span></div><div class="log-details"><div><i class="fas fa-user"></i> Jacobin</div><div><i class="fas fa-desktop"></i> Windows 11</div><div><i class="fab fa-firefox-browser"></i> Firefox 124</div></div></div>
-            <div class="log-entry t-join" data-type="join"><div class="log-top"><span class="log-title">Nouveau membre</span><span class="log-time">Aujourd'hui, 12:30</span></div><div class="log-details"><div><i class="fas fa-user-plus"></i> @Alex_2002</div><div><i class="fas fa-globe"></i> France</div><div><i class="fas fa-award"></i> Membre</div></div></div>
-            <div class="log-entry t-ticket" data-type="ticket"><div class="log-top"><span class="log-title">Ticket ouvert #142</span><span class="log-time">Aujourd'hui, 10:45</span></div><div class="log-details"><div><i class="fas fa-user"></i> @Lucas_24</div><div><i class="fas fa-circle-question"></i> Problème de rôle</div><div><i class="far fa-clock"></i> En attente</div></div></div>
-            <div class="log-entry t-leave" data-type="leave"><div class="log-top"><span class="log-title">Membre parti</span><span class="log-time">Aujourd'hui, 09:12</span></div><div class="log-details"><div><i class="fas fa-user-minus"></i> @Sofia_99</div><div><i class="fas fa-globe"></i> Belgique</div></div></div>
-            <div class="log-entry t-visit" data-type="visit"><div class="log-top"><span class="log-title">Visite du site</span><span class="log-time">Hier, 22:40</span></div><div class="log-details"><div><i class="fas fa-globe"></i> Paris, FR</div><div><i class="fab fa-edge"></i> Edge 123</div><div><i class="fas fa-desktop"></i> Windows 10</div></div></div>
-          </div>
-          <div class="log-empty hidden" id="logEmpty">Aucun log ne correspond à ta recherche.</div>
         </div>
       </section>
 
-      <!-- ===== VIEW : RESOURCES ===== -->
-      <section class="view" id="view-resources">
-        <div class="view-head">
-          <h1>Ressources & liens</h1>
-          <p>Tous les liens utiles du projet en un seul endroit. Clique pour ouvrir ou copier.</p>
+      <!-- BLACKLIST -->
+      <section class="view" id="view-blacklist">
+        <div class="view-head"><h1>Accès & blacklist</h1><p>Les visiteurs doivent entrer leur email avant d'accéder au site. Ajoute ici une adresse pour la bloquer : elle ne pourra plus entrer (vérifié à chaque visite quand Supabase est configuré).</p></div>
+        <div class="dash-row">
+          <div class="card">
+            <div class="card-head"><h2>Adresses bloquées</h2></div>
+            <form class="bl-form" id="blForm">
+              <input type="email" id="blEmail" placeholder="email@exemple.com" required>
+              <input type="text" id="blReason" placeholder="Raison (optionnel)">
+              <button type="submit" class="btn"><i class="fas fa-ban"></i> Bloquer</button>
+            </form>
+            <div class="bl-count" id="blCount">0 bloquée</div>
+            <div class="bl-list" id="blList"><div class="bl-empty">Aucune adresse bloquée.</div></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Emails collectés</h2><div class="card-actions"><button class="icon-btn" id="exportEmails" title="Exporter CSV"><i class="fas fa-download"></i></button></div></div>
+            <div class="bl-count" id="emCount">0 collecté</div>
+            <div class="bl-list" id="emailList"><div class="bl-empty">Aucun email collecté pour l'instant.</div></div>
+          </div>
         </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section class="view" id="view-resources">
+        <div class="view-head"><h1>Ressources & liens</h1><p>Tous les liens utiles du projet en un seul endroit.</p></div>
         <div class="dash-row">
           <div class="card">
             <div class="card-head"><h2>Liens rapides</h2></div>
@@ -326,7 +259,6 @@ a{color:inherit}
               <a class="res-card" href="https://disboard.org/fr/server/1469888825294852130" target="_blank"><div class="ri"><i class="fas fa-arrow-up-from-bracket"></i></div><div><div class="rt">Disboard</div><div class="ru">Bumper le serveur</div></div></a>
               <a class="res-card" href="https://jacobin904.github.io/Communaute-Quebec/" target="_blank"><div class="ri"><i class="fas fa-globe"></i></div><div><div class="rt">Site public</div><div class="ru">jacobin904.github.io</div></div></a>
               <a class="res-card" href="https://discord.com/channels/1469888825294852130/1469902008637980684" target="_blank"><div class="ri"><i class="fas fa-ticket"></i></div><div><div class="rt">Ouvrir un ticket</div><div class="ru">Salon support</div></div></a>
-              <a class="res-card" href="https://discord.com/channels/1469888825294852130/1472999931487977513" target="_blank"><div class="ri"><i class="fas fa-user-shield"></i></div><div><div class="rt">Devenir Staff</div><div class="ru">Candidatures</div></div></a>
               <a class="res-card" href="https://discord.com/channels/1469888825294852130/1489674814997401823" target="_blank"><div class="ri"><i class="fas fa-handshake"></i></div><div><div class="rt">Partenariat</div><div class="ru">Demandes</div></div></a>
             </div>
           </div>
@@ -341,12 +273,12 @@ a{color:inherit}
         </div>
       </section>
 
-      <!-- ===== VIEW : SOON ===== -->
+      <!-- SOON -->
       <section class="view" id="view-soon">
         <div class="soon-box">
           <div class="si"><i class="fas fa-screwdriver-wrench"></i></div>
           <h2 id="soonTitle">En construction</h2>
-          <p>Cette section est en cours de développement et arrivera bientôt dans le panel admin.</p>
+          <p>Cette section arrive bientôt dans le panel admin.</p>
           <a href="#" class="btn" data-goto="dashboard"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
         </div>
       </section>
@@ -361,57 +293,64 @@ a{color:inherit}
 </div>
 
 <script>
-/* ===== CONFIG ===== */
-const PWD_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; // "1234"
+/* ===== CONFIG (mêmes valeurs que dans le site public) ===== */
+const SUPABASE_URL='';   // ex: https://xxxxx.supabase.co  (laisse vide = mode local/démo)
+const SUPABASE_KEY='';   // clé "anon public"
+const PWD_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; // 1234
 const SESSION_KEY='cq_admin_session';
+
 const $=s=>document.querySelector(s);
 const $$=s=>document.querySelectorAll(s);
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function fmtDate(iso){try{return new Date(iso).toLocaleString('fr-CA',{dateStyle:'short',timeStyle:'short'});}catch(e){return iso||'';}}
 async function sha256(t){if(!window.crypto||!crypto.subtle)return null;const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function toast(m){let t=$('#cqToast');if(!t){t=document.createElement('div');t.id='cqToast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--nuit-2);border:1px solid var(--ambre);color:#fff;padding:12px 22px;border-radius:12px;font-weight:600;font-size:.9rem;z-index:300;opacity:0;transition:.35s;box-shadow:0 15px 40px rgba(0,0,0,.5)';document.body.appendChild(t);}t.textContent=m;requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});clearTimeout(t._tm);t._tm=setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';},2200);}
+
+/* ===== SUPABASE / LOCAL ===== */
+let SB=null;
+try{ if(SUPABASE_URL&&SUPABASE_KEY&&window.supabase) SB=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); }catch(e){}
+const norm=e=>(e||'').toLowerCase().trim();
+function locGet(k){try{return JSON.parse(localStorage.getItem(k)||'[]');}catch(e){return[];}}
+function locSet(k,v){localStorage.setItem(k,JSON.stringify(v));}
+
+async function isBlacklisted(email){email=norm(email);if(SB){try{const{data}=await SB.rpc('is_blacklisted',{p_email:email});return !!data;}catch(e){return false;}}return locGet('cq_blacklist').some(x=>x.email===email);}
+async function getBlacklist(){if(SB){try{const{data}=await SB.from('cq_blacklist').select('*').order('ts',{ascending:false});return data||[];}catch(e){return[];}}return locGet('cq_blacklist');}
+async function addBlacklist(email,reason){email=norm(email);if(!email)return;if(SB){try{await SB.from('cq_blacklist').upsert({email,reason:reason||''},{onConflict:'email'});}catch(e){}}else{let a=locGet('cq_blacklist');if(!a.some(x=>x.email===email))a.unshift({email,reason:reason||'',ts:new Date().toISOString()});locSet('cq_blacklist',a);}}
+async function removeBlacklist(email){email=norm(email);if(SB){try{await SB.from('cq_blacklist').delete().eq('email',email);}catch(e){}}else{locSet('cq_blacklist',locGet('cq_blacklist').filter(x=>x.email!==email));}}
+async function getEmails(){if(SB){try{const{data}=await SB.from('cq_emails').select('*').order('ts',{ascending:false}).limit(300);return data||[];}catch(e){return[];}}return locGet('cq_emails');}
 
 /* ===== LOGIN / SESSION ===== */
-function showApp(){$('#loginScreen').classList.add('hidden');$('#adminApp').classList.add('show');}
+function showApp(){$('#loginScreen').classList.add('hidden');$('#adminApp').classList.add('show');refreshDashCounts();}
 function showLogin(){$('#loginScreen').classList.remove('hidden');$('#adminApp').classList.remove('show');}
 if(localStorage.getItem(SESSION_KEY)==='1')showApp();
-
-$('#loginForm').addEventListener('submit',async e=>{
-  e.preventDefault();const v=$('#pwd').value,err=$('#loginErr');err.textContent='';
-  const h=await sha256(v);const ok=h?(h===PWD_HASH):(v==='1234');
-  if(ok){localStorage.setItem(SESSION_KEY,'1');$('#pwd').value='';showApp();}
-  else{err.textContent='❌ Mot de passe incorrect';$('#pwd').style.borderColor='var(--err)';setTimeout(()=>$('#pwd').style.borderColor='',1200);}
-});
+$('#loginForm').addEventListener('submit',async e=>{e.preventDefault();const v=$('#pwd').value,err=$('#loginErr');err.textContent='';const h=await sha256(v);const ok=h?(h===PWD_HASH):(v==='1234');if(ok){localStorage.setItem(SESSION_KEY,'1');$('#pwd').value='';showApp();}else{err.textContent='❌ Mot de passe incorrect';$('#pwd').style.borderColor='var(--err)';setTimeout(()=>$('#pwd').style.borderColor='',1200);}});
 $('#logoutBtn').addEventListener('click',e=>{e.preventDefault();localStorage.removeItem(SESSION_KEY);showLogin();});
 
-/* ===== NAV ROUTING ===== */
+/* ===== NAV ===== */
 function goView(view,label){
   $$('.view').forEach(v=>v.classList.remove('active'));
-  const target=$('#view-'+view);if(target)target.classList.add('active');
+  const t=$('#view-'+view);if(t)t.classList.add('active');
   if(view==='soon'&&label)$('#soonTitle').textContent=label;
   $$('#navAdmin a').forEach(a=>a.classList.toggle('active',a.dataset.view===view&&(!label||a.dataset.label===label)));
-  $('.scroll-area').scrollTop=0;
-  $('#sidebar').classList.remove('open');
+  $('.scroll-area').scrollTop=0;$('#sidebar').classList.remove('open');
+  if(view==='blacklist')refreshBlacklistView();
+  if(view==='dashboard')refreshDashCounts();
 }
-$$('#navAdmin a').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();goView(a.dataset.view,a.dataset.label);});
-});
-$$('[data-goto]').forEach(b=>{b.addEventListener('click',e=>{e.preventDefault();goView(b.dataset.goto);});});
+$$('#navAdmin a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goView(a.dataset.view,a.dataset.label);}));
+$$('[data-goto]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();goView(b.dataset.goto);}));
 
-/* ===== LOG FILTER + SEARCH ===== */
-let activeFilter='all';
-function applyLogFilter(){
-  const q=($('#logSearch').value||'').toLowerCase();
-  let shown=0;
-  $$('#fullLogs .log-entry').forEach(el=>{
-    const okType=activeFilter==='all'||el.dataset.type===activeFilter;
-    const okText=!q||el.textContent.toLowerCase().includes(q);
-    const show=okType&&okText;
-    el.classList.toggle('hidden',!show);if(show)shown++;
-  });
-  $('#logEmpty').classList.toggle('hidden',shown>0);
-}
-$$('#logFilters .chip').forEach(c=>{c.addEventListener('click',()=>{$$('#logFilters .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');activeFilter=c.dataset.filter;applyLogFilter();});});
-$('#logSearch').addEventListener('input',applyLogFilter);
+/* ===== BLACKLIST VIEW ===== */
+function renderBlacklist(bl){const c=$('#blList');$('#blCount').textContent=bl.length+' bloquée'+(bl.length>1?'s':'');if(!bl.length){c.innerHTML='<div class="bl-empty">Aucune adresse bloquée.</div>';return;}c.innerHTML=bl.map(e=>`<div class="bl-row"><div><div class="em">${esc(e.email)}</div>${e.reason?`<div class="rs">${esc(e.reason)}</div>`:''}</div><div class="acts"><button class="mini-btn danger" data-rm="${esc(e.email)}"><i class="fas fa-trash"></i> Retirer</button></div></div>`).join('');}
+function renderEmails(em){const c=$('#emailList');$('#emCount').textContent=em.length+' collecté'+(em.length>1?'s':'');if(!em.length){c.innerHTML='<div class="bl-empty">Aucun email collecté pour l\'instant.</div>';return;}c.innerHTML=em.map(e=>`<div class="bl-row"><div><div class="em">${esc(e.email)}</div><div class="rs">${e.ts?fmtDate(e.ts):''}</div></div><div class="acts"><button class="mini-btn" data-bl="${esc(e.email)}"><i class="fas fa-ban"></i> Bloquer</button></div></div>`).join('');}
+async function refreshBlacklistView(){const bl=await getBlacklist();const em=await getEmails();renderBlacklist(bl);renderEmails(em);}
+async function refreshDashCounts(){const bl=await getBlacklist();const em=await getEmails();$('#dashBlackCount').textContent=bl.length;$('#dashEmailCount').textContent=em.length;}
 
-/* ===== MOBILE SIDEBAR ===== */
+$('#blForm').addEventListener('submit',async e=>{e.preventDefault();const em=$('#blEmail').value.trim();if(!em)return;const rs=$('#blReason').value.trim();await addBlacklist(em,rs);$('#blEmail').value='';$('#blReason').value='';await refreshBlacklistView();refreshDashCounts();toast('Adresse bloquée');});
+$('#blList').addEventListener('click',async e=>{const b=e.target.closest('[data-rm]');if(!b)return;await removeBlacklist(b.dataset.rm);await refreshBlacklistView();refreshDashCounts();toast('Adresse retirée');});
+$('#emailList').addEventListener('click',async e=>{const b=e.target.closest('[data-bl]');if(!b)return;await addBlacklist(b.dataset.bl,'');await refreshBlacklistView();refreshDashCounts();toast('Adresse bloquée');});
+$('#exportEmails').addEventListener('click',async()=>{const em=await getEmails();if(!em.length){toast('Aucun email à exporter');return;}const rows=[['email','date']];em.forEach(e=>rows.push([e.email,e.ts||'']));const csv=rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\n');const blob=new Blob([csv],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cq-emails-'+Date.now()+'.csv';a.click();toast('Export CSV téléchargé');});
+
+/* ===== MOBILE ===== */
 $('#mobToggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
 </script>
 </body>
