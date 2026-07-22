@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sherbrooke RP | Serveur ERLC Québec Premium</title>
-    <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1442003095377674414/9bf05f87fd91f1e20eafc6aa6e70ec03.webp?size=1024">
-    <link rel="apple-touch-icon" href="https://cdn.discordapp.com/icons/1442003095377674414/9bf05f87fd91f1e20eafc6aa6e70ec03.webp?size=1024">
-    <meta name="description" content="Rejoignez Sherbrooke RP - Le serveur Emergency Response: Liberty County (ERLC) le plus immersif et réaliste du Québec.">
+    <title>⚜️ Communauté Québec ⚜ | Serveur Discord Premium</title>
+    <link rel="icon" type="image/webp" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
+    <link rel="apple-touch-icon" href="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024">
+    <meta name="description" content="Rejoignez Communauté Québec - La meilleure communauté francophone sur Discord.">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Sherbrooke RP">
-    <meta property="og:title" content="Sherbrooke RP — Serveur ERLC Francophone">
-    <meta property="og:description" content="Immersion, réalisme et communauté active. Rejoins les forces de l'ordre, les services d'urgence ou la vie civile à Sherbrooke.">
-    <meta property="og:url" content="https://jacobin904.github.io/Sherbrooke-RP/">
+    <meta property="og:site_name" content="Communauté Québec">
+    <meta property="og:title" content="⚜️ Communauté Québec — Serveur Discord Francophone">
+    <meta property="og:description" content="Un serveur francophone dédié aux échanges, au partage et à la bonne ambiance. 🍁 388 membres · 129 salons · Rejoins la famille Québec !">
+    <meta property="og:url" content="https://jacobin904.github.io/Communaute-Quebec/">
     <meta property="og:locale" content="fr_CA">
-    <meta property="og:image" content="https://cdn.discordapp.com/icons/1442003095377674414/9bf05f87fd91f1e20eafc6aa6e70ec03.webp?size=1024">
+    <meta property="og:image" content="https://jacobin904.github.io/Communaute-Quebec/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="⚜️ Communauté Québec — Serveur Discord Francophone">
+    <meta name="twitter:description" content="Un serveur francophone dédié aux échanges, au partage et à la bonne ambiance. 🍁 388 membres · 129 salons · Rejoins la famille Québec !">
+    <meta name="twitter:image" content="https://jacobin904.github.io/Communaute-Quebec/og-image.png">
     <meta name="theme-color" content="#0a1024">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -116,6 +121,7 @@
         .section-divider path{animation:waveMove 8s ease-in-out infinite}
         @keyframes waveMove{0%,100%{d:path("M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,80 L0,80 Z")}50%{d:path("M0,40 C200,0 400,80 600,40 C800,0 1000,80 1200,40 L1200,80 L0,80 Z")}}
 
+        /* MARQUEE blindé : rien ne peut passer par-dessus */
         .marquee{background:linear-gradient(90deg,var(--nuit-2),var(--indigo),var(--nuit-2));padding:25px 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:5}
         .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marqScroll 25s linear infinite;width:max-content}
         .marquee-item{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--blanc);display:flex;align-items:center;gap:60px;letter-spacing:3px}
@@ -148,14 +154,14 @@
         .feature-card h3{font-size:1.8rem;margin-bottom:18px;color:var(--blanc);font-weight:800;position:relative;z-index:1;transform:translateZ(30px)}
         .feature-card p{color:var(--gris);line-height:1.9;font-size:1.05rem;position:relative;z-index:1;transform:translateZ(20px)}
 
-        .dept-section{background:linear-gradient(180deg,var(--nuit-0),var(--nuit-1))}
-        .dept-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:25px}
-        .dept-tag{background:linear-gradient(135deg,rgba(30,58,138,.4),rgba(13,21,48,.6));padding:22px 40px;border-radius:50px;font-weight:700;color:var(--blanc-2);border:1px solid var(--border-royal);display:flex;align-items:center;gap:14px;transition:all .5s;backdrop-filter:blur(10px);font-size:1.05rem;box-shadow:0 10px 30px rgba(30,58,138,.2);position:relative;overflow:hidden}
-        .dept-tag i{color:var(--ambre);transition:color .4s}
-        .dept-tag::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .6s}
-        .dept-tag:hover::before{left:100%}
-        .dept-tag:hover{transform:translateY(-8px) scale(1.08);background:var(--grad-royal);border-color:var(--ambre);color:#fff}
-        .dept-tag:hover i{color:#fff}
+        .games-section{background:linear-gradient(180deg,var(--nuit-0),var(--nuit-1))}
+        .games-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:25px}
+        .game-tag{background:linear-gradient(135deg,rgba(30,58,138,.4),rgba(13,21,48,.6));padding:22px 40px;border-radius:50px;font-weight:700;color:var(--blanc-2);border:1px solid var(--border-royal);display:flex;align-items:center;gap:14px;transition:all .5s;backdrop-filter:blur(10px);font-size:1.05rem;box-shadow:0 10px 30px rgba(30,58,138,.2);position:relative;overflow:hidden}
+        .game-tag i{color:var(--ambre);transition:color .4s}
+        .game-tag::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .6s}
+        .game-tag:hover::before{left:100%}
+        .game-tag:hover{transform:translateY(-8px) scale(1.08);background:var(--grad-royal);border-color:var(--ambre);color:#fff}
+        .game-tag:hover i{color:#fff}
 
         .rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:30px}
         .rule-card{background:rgba(13,21,48,.6);padding:40px;border-radius:24px;border-left:6px solid var(--royal);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);transition:all .5s;position:relative;overflow:hidden}
@@ -251,6 +257,9 @@
         .stagger.active>*:nth-child(4){transition-delay:.26s}
         .stagger.active>*:nth-child(5){transition-delay:.33s}
         .stagger.active>*:nth-child(6){transition-delay:.40s}
+        .stagger.active>*:nth-child(7){transition-delay:.47s}
+        .stagger.active>*:nth-child(8){transition-delay:.54s}
+        .stagger.active>*:nth-child(9){transition-delay:.61s}
 
         @media(prefers-reduced-motion:reduce){
             *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -270,7 +279,7 @@
     <div class="progress-dots" id="progressDots"></div>
 
     <div class="preloader" id="preloader">
-        <img src="https://cdn.discordapp.com/icons/1442003095377674414/9bf05f87fd91f1e20eafc6aa6e70ec03.webp?size=1024" alt="Logo" class="preloader-logo">
+        <img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo" class="preloader-logo">
         <div class="preloader-percent" id="preloaderPercent">0%</div>
         <div class="preloader-bar"><i id="preloaderBarFill"></i></div>
         <div class="preloader-text">Chargement</div>
@@ -281,15 +290,9 @@
 
     <header id="header">
         <div class="container"><nav>
-            <a href="#" class="logo"><img src="https://cdn.discordapp.com/icons/1442003095377674414/9bf05f87fd91f1e20eafc6aa6e70ec03.webp?size=1024" alt="Logo"><h1>Sherbrooke RP</h1></a>
+            <a href="#" class="logo"><img src="https://cdn.discordapp.com/icons/1469888825294852130/3119d3b76b616dfcf902ec6fef1fa617.webp?size=1024" alt="Logo"><h1>Communauté Québec</h1></a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#accueil" class="nav-link">Accueil</a></li>
-                <li><a href="#apropos" class="nav-link">À propos</a></li>
-                <li><a href="#departements" class="nav-link">Départements</a></li>
-                <li><a href="#reglements" class="nav-link">Règles</a></li>
-                <li><a href="#equipe" class="nav-link">Équipe</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
-                <li><a href="#rejoindre" class="nav-link">Rejoindre</a></li>
+                <li><a href="#accueil" class="nav-link">Accueil</a></li><li><a href="#apropos" class="nav-link">À propos</a></li><li><a href="#jeux" class="nav-link">Jeux</a></li><li><a href="#reglements" class="nav-link">Règles</a></li><li><a href="#equipe" class="nav-link">Équipe</a></li><li><a href="#faq" class="nav-link">FAQ</a></li><li><a href="#rejoindre" class="nav-link">Rejoindre</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
         </nav></div>
@@ -297,127 +300,83 @@
 
     <section class="hero" id="accueil">
         <div class="hero-content" id="heroContent">
-            <div class="hero-badge"><i class="fas fa-city"></i> Depuis 2025</div>
-            <h2 id="heroTitle" data-text="SHERBROOKE RP"></h2>
+            <div class="hero-badge">🍁 Est. Février 2026</div>
+            <h2 id="heroTitle" data-text="COMMUNAUTÉ QUÉBEC"></h2>
             <p class="hero-subtitle" id="heroSub"></p>
-            <p class="hero-description">Bienvenue sur le serveur Emergency Response: Liberty County (ERLC) le plus immersif du Québec. Une expérience de roleplay réaliste, structurée et encadrée, axée sur la ville de Sherbrooke.</p>
+            <p class="hero-description">Bienvenue sur le serveur francophone dédié aux échanges, au partage et à la bonne ambiance. Que vous soyez du Québec ou passionné par la culture québécoise, vous trouverez ici un espace chaleureux, actif et respectueux pour discuter, jouer et créer des liens durables.</p>
             <div class="btn-group">
-                <a href="https://discord.gg/JBND23V6q" class="btn" target="_blank"><i class="fab fa-discord"></i> Rejoindre le serveur</a>
+                <a href="https://discord.gg/commuqc" class="btn" target="_blank"><i class="fab fa-discord"></i> Rejoindre le serveur</a>
                 <a href="#apropos" class="btn btn-secondary">Découvrir plus</a>
             </div>
         </div>
     </section>
 
     <div class="marquee"><div class="marquee-track">
-        <div class="marquee-item">IMMERSION <i class="fas fa-star sep"></i> RÉALISME <i class="fas fa-shield-halved sep"></i> COMMUNAUTÉ <i class="fas fa-star sep"></i> SHERBROOKE <i class="fas fa-shield-halved sep"></i> ERLC <i class="fas fa-star sep"></i> QUÉBEC <i class="fas fa-shield-halved sep"></i></div>
-        <div class="marquee-item">IMMERSION <i class="fas fa-star sep"></i> RÉALISME <i class="fas fa-shield-halved sep"></i> COMMUNAUTÉ <i class="fas fa-star sep"></i> SHERBROOKE <i class="fas fa-shield-halved sep"></i> ERLC <i class="fas fa-star sep"></i> QUÉBEC <i class="fas fa-shield-halved sep"></i></div>
+        <div class="marquee-item">UNIS <span class="sep">⚜️</span> ENTRAIDE <span class="sep">★</span> RESPECT <span class="sep">♥</span> PARTAGE <span class="sep">⚜️</span> COMMUNAUTÉ <span class="sep">★</span> QUÉBEC <span class="sep">♥</span></div>
+        <div class="marquee-item">UNIS <span class="sep">⚜️</span> ENTRAIDE <span class="sep">★</span> RESPECT <span class="sep">♥</span> PARTAGE <span class="sep">⚜️</span> COMMUNAUTÉ <span class="sep">★</span> QUÉBEC <span class="sep">♥</span></div>
     </div></div>
 
     <section id="apropos">
         <div class="container">
-            <div class="section-header reveal"><h2>Ce qu'on vous offre</h2><p>Une expérience de roleplay urbain unique, organisée et pensée pour votre immersion.</p></div>
+            <div class="section-header reveal"><h2>Ce qu'on vous offre</h2><p>Une expérience communautaire unique, organisée et pensée pour votre plaisir.</p></div>
             <div class="features-grid stagger">
-                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-scale-balanced"></i></div><h3>RP Réaliste & Structuré</h3><p>Des scénarios cohérents, un règlement clair et une immersion totale dans la ville de Sherbrooke.</p></div>
-                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-users-gear"></i></div><h3>Staff Professionnel</h3><p>Une équipe de modération et d'administration active, formée et à l'écoute 24/7 pour garantir la qualité du RP.</p></div>
-                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-car-side"></i></div><h3>Véhicules & Équipements</h3><p>Des liveries personnalisées, des véhicules boostés et des équipements réalistes pour tous les départements.</p></div>
-                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>Communication Zello</h3><p>Intégration complète de l'application Zello pour des communications radio réalistes et immersives en jeu.</p></div>
-                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-calendar-check"></i></div><h3>Événements Réguliers</h3><p>Courses, élections municipales, opérations spéciales et giveaways organisés régulièrement pour la communauté.</p></div>
-                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-shield-cat"></i></div><h3>Vérification Sécurisée</h3><p>Système de vérification robuste via Melonly et RoVer pour lier votre compte Discord à votre compte Roblox en toute sécurité.</p></div>
+                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-comments"></i></div><h3>Discussions Actives</h3><p>Des conversations dynamiques dans nos 129 salons thématiques, pour tous les goûts et toutes les passions.</p></div>
+                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-calendar-alt"></i></div><h3>Événements Amusants</h3><p>Quiz hebdomadaires, compétitions, tournois de jeux, soirées cinéma et activités communautaires régulières.</p></div>
+                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Environnement Sain</h3><p>Une modération active et respectueuse 24/7, des règles claires et un espace sécurisé pour tous.</p></div>
+                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-ticket-alt"></i></div><h3>Support & Tickets</h3><p>Un système de tickets efficace pour obtenir de l'aide rapidement. Notre équipe répond en moins de 24h.</p></div>
+                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-handshake"></i></div><h3>Partenariats</h3><p>Ouvert aux collaborations ! Nous accueillons les partenariats pour grandir ensemble.</p></div>
+                <div class="feature-card tilt"><div class="spotlight"></div><div class="feature-icon"><i class="fas fa-heart"></i></div><h3>Ce qu'il nous manque</h3><p><strong>Vous !</strong> Nous recherchons activement des membres actifs pour agrandir cette belle famille québécoise.</p></div>
             </div>
         </div>
     </section>
 
     <div class="section-divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path fill="rgba(30,58,138,0.15)" d="M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,80 L0,80 Z"/></svg></div>
 
-    <section class="dept-section" id="departements">
+    <section class="games-section" id="jeux">
         <div class="container">
-            <div class="section-header reveal"><h2>Nos Départements</h2><p>Rejoignez les forces vives de la ville ou bâtissez votre propre histoire.</p></div>
-            <div class="dept-grid stagger">
-                <div class="dept-tag"><i class="fas fa-shield-halved"></i> Sûreté du Québec (SQ)</div>
-                <div class="dept-tag"><i class="fas fa-user-shield"></i> Service de Police (SPS)</div>
-                <div class="dept-tag"><i class="fas fa-fire-extinguisher"></i> SPCIS (Pompiers)</div>
-                <div class="dept-tag"><i class="fas fa-truck-medical"></i> Ambulance d'Estrie</div>
-                <div class="dept-tag"><i class="fas fa-road"></i> MTQ</div>
-                <div class="dept-tag"><i class="fas fa-headset"></i> CGA (Centre de Gestion)</div>
-                <div class="dept-tag"><i class="fas fa-gavel"></i> Palais de Justice</div>
-                <div class="dept-tag"><i class="fas fa-building"></i> Entreprises & Civils</div>
+            <div class="section-header reveal"><h2>Jeux & Activités</h2><p>Retrouvez vos jeux préférés et organisez des parties avec la communauté.</p></div>
+            <div class="games-grid stagger">
+                <div class="game-tag"><i class="fas fa-cube"></i> ROBLOX</div><div class="game-tag"><i class="fas fa-tree"></i> Minecraft</div><div class="game-tag"><i class="fas fa-car"></i> GTA V</div><div class="game-tag"><i class="fas fa-crosshairs"></i> VALORANT</div><div class="game-tag"><i class="fas fa-fort-awesome"></i> Fortnite</div><div class="game-tag"><i class="fas fa-truck-monster"></i> BeamNG.drive</div><div class="game-tag"><i class="fas fa-gamepad"></i> Among Us</div><div class="game-tag"><i class="fas fa-chess"></i> League of Legends</div><div class="game-tag"><i class="fas fa-plus"></i> Et bien plus...</div>
             </div>
         </div>
     </section>
 
     <section id="reglements">
         <div class="container">
-            <div class="section-header reveal"><h2>Règlements du Serveur</h2><p>Pour garantir une expérience de jeu sérieuse, agréable et respectueuse pour tous.</p></div>
+            <div class="section-header reveal"><h2>Règlements de la Communauté</h2><p>Pour garder un environnement sain, agréable et respectueux pour tout le monde.</p></div>
             <div class="rules-grid stagger">
-                <div class="rule-card reveal-left"><span class="rule-num">01</span><h4><i class="fas fa-handshake"></i> Respect Absolu</h4><p>Aucun propos insultant, menaçant ou toxique. Le respect mutuel est la base de notre communauté. Sanction immédiate en cas de manquement.</p></div>
-                <div class="rule-card reveal-right"><span class="rule-num">02</span><h4><i class="fas fa-theater-masks"></i> Immersion RP</h4><p>FearRP et PainRP obligatoires. Le Metagaming et le Powergaming sont strictement interdits. Jouez votre personnage de manière réaliste.</p></div>
-                <div class="rule-card reveal-left"><span class="rule-num">03</span><h4><i class="fas fa-car-burst"></i> Conduite & Combat</h4><p>RDM, VDM et Car Surfing interdits. La conduite doit être réaliste. Aucune poursuite sans infraction RP valable.</p></div>
-                <div class="rule-card reveal-right"><span class="rule-num">04</span><h4><i class="fas fa-shield-halved"></i> Zones Sécurisées</h4><p>Aucun acte criminel, RDM ou VDM dans les zones sécurisées (Spawn, Postes de police, Hôpitaux, Casernes).</p></div>
-                <div class="rule-card reveal-left"><span class="rule-num">05</span><h4><i class="fas fa-user-secret"></i> Vie Privée & HRP</h4><p>Le partage d'informations personnelles (Dox) est strictement interdit. Ne mélangez pas les conflits HRP avec le RP.</p></div>
-                <div class="rule-card reveal-right"><span class="rule-num">06</span><h4><i class="fas fa-gavel"></i> Autorité du Staff</h4><p>Les décisions du staff sont finales. En cas de désaccord, ouvrez un ticket calmement avec des preuves. Le combat log est interdit.</p></div>
+                <div class="rule-card reveal-left"><span class="rule-num">01</span><h4><i class="fas fa-handshake"></i> Respect Absolu</h4><p>Aucun propos insultant, raciste, sexiste, homophobe ou choquant. Le respect est obligatoire en tout temps.</p></div>
+                <div class="rule-card reveal-right"><span class="rule-num">02</span><h4><i class="fas fa-volume-mute"></i> Pollution Vocale</h4><p>Aucun cri, son agressif ou musique forte. Utilisez votre micro de façon respectueuse.</p></div>
+                <div class="rule-card reveal-left"><span class="rule-num">03</span><h4><i class="fas fa-ban"></i> Zero Spam</h4><p>Pas de répétition de messages, d'envoi massif de médias ou de mentions abusives.</p></div>
+                <div class="rule-card reveal-right"><span class="rule-num">04</span><h4><i class="fas fa-user-secret"></i> Vie Privée & Dox</h4><p>Le partage d'informations personnelles est strictement interdit et sanctionné immédiatement.</p></div>
+                <div class="rule-card reveal-left"><span class="rule-num">05</span><h4><i class="fas fa-gavel"></i> Décisions du Staff</h4><p>Les décisions du staff doivent être respectées. En cas de désaccord, ouvrez un ticket calmement.</p></div>
+                <div class="rule-card reveal-right"><span class="rule-num">06</span><h4><i class="fas fa-exclamation-triangle"></i> Contenu & Mensonges</h4><p>Aucun contenu NSFW ou violent. Interdit de mentir au staff ou falsifier son âge. Respect des TOS Discord.</p></div>
             </div>
         </div>
     </section>
 
     <section class="team-section" id="equipe">
         <div class="container">
-            <div class="section-header reveal"><h2>Notre Équipe de Direction</h2><p>Des personnes passionnées et dévouées pour vous offrir la meilleure expérience de roleplay.</p></div>
+            <div class="section-header reveal"><h2>Notre Équipe</h2><p>Des personnes passionnées et dévouées pour vous offrir la meilleure expérience.</p></div>
             <div class="team-grid stagger">
-                <div class="team-card tilt">
-                    <div class="team-img-wrap">
-                        <img src="https://cdn.discordapp.com/avatars/1056608991075123211/a2d6ea2b6d8db263c3e8b07ca8605d49.webp?size=1024" alt="jerome201209" class="team-img">
-                    </div>
-                    <h3>jerome201209</h3>
-                    <span class="team-role">Propriétaire</span>
-                    <p>Garant de la vision et du développement global du serveur. Veille au bon fonctionnement et à l'évolution de la communauté.</p>
-                    <p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @31-22 | jerome201209</p>
-                </div>
-                <div class="team-card tilt">
-                    <div class="team-img-wrap">
-                        <img src="https://cdn.discordapp.com/avatars/1504186999098314882/0b7fe4ae81670ba163b4eb6507671e48.webp?size=1024" alt="Vanile101010" class="team-img">
-                    </div>
-                    <h3>Vanile101010</h3>
-                    <span class="team-role">Propriétaire</span>
-                    <p>Co-fondatrice engagée, elle travaille en étroite collaboration pour assurer la qualité du RP, l'organisation des événements et le bien-être des membres.</p>
-                    <p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> disc0rdvanille</p>
-                </div>
-                <div class="team-card tilt">
-                    <div class="team-img-wrap">
-                        <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin Babouain" class="team-img">
-                    </div>
-                    <h3>Jacobin Babouain</h3>
-                    <span class="team-role">Développeur</span>
-                    <p>Créateur du site web officiel et développeur technique. Passionné par l'optimisation des systèmes et l'amélioration continue de l'expérience utilisateur.</p>
-                    <p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @jacobin904</p>
-                </div>
+                <div class="team-card tilt"><div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1504186999098314882/0b7fe4ae81670ba163b4eb6507671e48.webp?size=1024" alt="Vanille" class="team-img"></div><h3>Vanille</h3><span class="team-role">💕 Fondatrice</span><p>Créatrice passionnée du serveur. Toujours là pour veiller au bon fonctionnement et au bien-être de la communauté.</p><p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @disc0rdvanille</p></div>
+                <div class="team-card tilt"><div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1472310772414808326/e66c92954ebe6fcada0f67b51d1b1584.webp?size=1024" alt="Marianne" class="team-img"></div><h3>Marianne</h3><span class="team-role">💕 Seconde Fondatrice</span><p>Seconde fondatrice, elle veille aux côtés de Vanille au bien-être de la communauté. Bienveillante, active et à l'écoute.</p><p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @mariannizer</p></div>
+                <div class="team-card tilt"><div class="team-img-wrap"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" class="team-img"></div><h3>Jacobin Babouain</h3><span class="team-role">🛠️ Développeur</span><p>Créateur du site web et développeur de bots. Passionné par le code et l'amélioration continue du serveur.</p><p style="margin-top:15px;font-size:.95rem"><i class="fab fa-discord"></i> @jacobin904</p></div>
             </div>
         </div>
     </section>
 
     <section id="faq">
         <div class="container">
-            <div class="section-header reveal"><h2>Questions Fréquentes</h2><p>Tout ce que vous devez savoir avant de rejoindre nos rues.</p></div>
+            <div class="section-header reveal"><h2>Questions Fréquentes</h2><p>Tout ce que vous devez savoir avant de nous rejoindre.</p></div>
             <div class="faq-container stagger">
-                <div class="faq-item">
-                    <div class="faq-question">Quel est le code pour rejoindre le serveur en jeu ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Le code d'accès au serveur Emergency Response: Liberty County est : <strong>SHERBRP</strong>. Tapez-le dans la barre de recherche des serveurs communautaires sur Roblox.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Comment vérifier mon compte ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Vous devez utiliser les bots de vérification (Melonly ou RoVer) dans le salon dédié sur Discord pour lier votre compte Discord à votre compte Roblox. C'est obligatoire pour accéder au serveur en jeu.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Comment postuler pour un département ou le Staff ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Les candidatures sont ouvertes périodiquement. Rendez-vous dans le salon de recrutement correspondant et suivez le formulaire. Les délais de traitement sont de 1 à 7 jours.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">L'utilisation de Zello est-elle obligatoire ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Oui, pour tous les membres des départements (SQ, SPS, SPCIS, Paramédics, MTQ). Cela permet une communication radio réaliste et simultanée sans couper les scènes en jeu.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Comment contester une sanction ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Ouvrez un ticket dans le salon de support avec calme et respect. Fournissez des preuves claires (captures d'écran, enregistrements) pour étayer votre demande.</div>
-                </div>
+                <div class="faq-item"><div class="faq-question">Comment devenir membre du Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Les recrutements sont annoncés dans le salon dédié. Ouvrez un ticket pour connaître le statut des candidatures.</div></div>
+                <div class="faq-item"><div class="faq-question">Puis-je faire un partenariat ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui ! Ouvrez un ticket dans le salon partenariat pour soumettre votre demande.</div></div>
+                <div class="faq-item"><div class="faq-question">Comment contacter le Staff ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Ouvrez un ticket dans le salon dédié. Évitez de spammer les membres du staff en public.</div></div>
+                <div class="faq-item"><div class="faq-question">Publicité autorisée ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Oui, tant que ça reste raisonnable. La publicité écrite et la redirection vers un autre serveur sont interdites.</div></div>
+                <div class="faq-item"><div class="faq-question">Contester une sanction ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Ouvrez un ticket calmement avec respect et fournissez des preuves si nécessaire.</div></div>
+                <div class="faq-item"><div class="faq-question">Pourquoi certains salons sont verrouillés ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Certains salons nécessitent une vérification ou un rôle spécifique pour être accessibles.</div></div>
+                <div class="faq-item"><div class="faq-question">Uniquement pour les Québécois ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Non ! Tous les francophones sont les bienvenus. L'important est de respecter les autres.</div></div>
             </div>
         </div>
     </section>
@@ -425,76 +384,24 @@
     <section class="cta" id="rejoindre">
         <div class="container"><div class="reveal-scale">
             <h2>Prêt à rejoindre l'aventure ?</h2>
-            <p>Que vous souhaitiez protéger et servir, sauver des vies, ou simplement vivre une vie civile immersive, votre place est à Sherbrooke.</p>
-            <a href="https://discord.gg/JBND23V6q" class="btn btn-pulse" target="_blank" style="background:var(--grad-ambre);color:var(--nuit-1);border:none;font-size:1.15rem;padding:20px 50px"><i class="fab fa-discord"></i> Rejoindre le serveur maintenant</a>
+            <p>Que vous soyez passionné de culture québécoise, à la recherche de nouvelles amitiés ou simplement envie de discuter dans une ambiance chaleureuse, votre place est parmi nous.</p>
+            <a href="https://discord.gg/commuqc" class="btn btn-pulse" target="_blank" style="background:var(--grad-ambre);color:var(--nuit-1);border:none;font-size:1.15rem;padding:20px 50px"><i class="fab fa-discord"></i> Rejoindre le serveur maintenant</a>
         </div></div>
     </section>
 
     <footer><div class="container">
         <div class="footer-grid">
-            <div class="footer-col">
-                <h4>À propos</h4>
-                <p>Sherbrooke RP est un serveur Emergency Response: Liberty County (ERLC) francophone, dédié au roleplay réaliste, immersif et de qualité au Québec.</p>
-                <div class="social-links">
-                    <a href="https://discord.gg/JBND23V6q" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" title="Roblox"><i class="fab fa-roblox"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
-                    <li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li>
-                    <li><a href="#departements"><i class="fas fa-building-shield"></i> Départements</a></li>
-                    <li><a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a></li>
-                    <li><a href="#equipe"><i class="fas fa-users"></i> Équipe</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Ressources</h4>
-                <ul>
-                    <li><a href="https://discord.gg/JBND23V6q" target="_blank"><i class="fas fa-ticket"></i> Ouvrir un ticket</a></li>
-                    <li><a href="https://discord.gg/JBND23V6q" target="_blank"><i class="fas fa-user-plus"></i> Devenir Staff</a></li>
-                    <li><a href="https://discord.gg/JBND23V6q" target="_blank"><i class="fas fa-handshake"></i> Partenariat</a></li>
-                    <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Conception</h4>
-                <p>Site web conçu et développé avec passion par</p>
-                <div style="display:flex;align-items:center;gap:15px;margin-top:25px">
-                    <img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" style="width:50px;height:50px;border-radius:50%;border:2px solid rgba(224,176,112,.3)">
-                    <div>
-                        <p style="margin:0;font-weight:700;color:var(--blanc)">Jacobin Babouain</p>
-                        <p style="margin:0;font-size:.9rem;color:var(--gris)">Développeur Web</p>
-                    </div>
-                </div>
-            </div>
+            <div class="footer-col"><h4>À propos</h4><p>Communauté Québec est un serveur Discord francophone créé en février 2026, dédié aux échanges, au partage et à la bonne ambiance.</p><div class="social-links"><a href="https://discord.gg/commuqc" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a><a href="https://www.tiktok.com/@communaut.qubec" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a><a href="https://github.com/Jacobin904/Communaute-Quebec" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a></div></div>
+            <div class="footer-col"><h4>Navigation</h4><ul><li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li><li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li><li><a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a></li><li><a href="#reglements"><i class="fas fa-scroll"></i> Règlements</a></li><li><a href="#equipe"><i class="fas fa-users"></i> Équipe</a></li></ul></div>
+            <div class="footer-col"><h4>Ressources</h4><ul><li><a href="https://discord.com/channels/1469888825294852130/1469902008637980684" target="_blank"><i class="fas fa-ticket-alt"></i> Ouvrir un ticket</a></li><li><a href="https://discord.com/channels/1469888825294852130/1472999931487977513" target="_blank"><i class="fas fa-users"></i> Devenir Staff</a></li><li><a href="https://discord.com/channels/1469888825294852130/1489674814997401823" target="_blank"><i class="fas fa-handshake"></i> Partenariat</a></li><li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li></ul></div>
+            <div class="footer-col"><h4>Conception</h4><p>Site web conçu et développé avec passion par</p><div style="display:flex;align-items:center;gap:15px;margin-top:25px"><img src="https://cdn.discordapp.com/avatars/1281784488854159421/608fbe0e316e417b5e83539ef8555255.webp?size=1024" alt="Jacobin" style="width:50px;height:50px;border-radius:50%;border:2px solid rgba(224,176,112,.3)"><div><p style="margin:0;font-weight:700;color:var(--blanc)">Jacobin Babouain</p><p style="margin:0;font-size:.9rem;color:var(--gris)">Développeur Web</p></div></div></div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2025-2026 Sherbrooke RP. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color:var(--ambre)"></i> par Jacobin Babouain</p>
-        </div>
+        <div class="copyright"><p>&copy; 2026 Communauté Québec. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color:var(--ambre)"></i> par Jacobin Babouain</p></div>
     </div></footer>
 
     <button class="fab-menu" id="fabMenu" aria-label="Navigation rapide"><i class="fas fa-compass"></i></button>
     <div class="quicknav-overlay" id="quicknavOverlay"></div>
-    <div class="quicknav" id="quicknav">
-        <div class="quicknav-grab"></div>
-        <div class="quicknav-header">
-            <span>Navigation rapide</span>
-            <button class="quicknav-close" id="quicknavClose" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
-        </div>
-        <nav class="quicknav-links">
-            <a href="#accueil"><i class="fas fa-home"></i> Accueil</a>
-            <a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a>
-            <a href="#departements"><i class="fas fa-building-shield"></i> Départements</a>
-            <a href="#reglements"><i class="fas fa-scroll"></i> Règles</a>
-            <a href="#equipe"><i class="fas fa-users"></i> Équipe</a>
-            <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
-            <a href="#rejoindre" class="qn-cta"><i class="fab fa-discord"></i> Rejoindre</a>
-        </nav>
-    </div>
+    <div class="quicknav" id="quicknav"><div class="quicknav-grab"></div><div class="quicknav-header"><span>Navigation rapide</span><button class="quicknav-close" id="quicknavClose" aria-label="Fermer"><i class="fas fa-xmark"></i></button></div><nav class="quicknav-links"><a href="#accueil"><i class="fas fa-home"></i> Accueil</a><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a><a href="#jeux"><i class="fas fa-gamepad"></i> Jeux</a><a href="#reglements"><i class="fas fa-scroll"></i> Règles</a><a href="#equipe"><i class="fas fa-users"></i> Équipe</a><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a><a href="#rejoindre" class="qn-cta"><i class="fab fa-discord"></i> Rejoindre</a></nav></div>
     <a href="#accueil" class="back-to-top" id="backToTop" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></a>
 
 <script>
@@ -523,11 +430,11 @@ const isTouch = window.matchMedia('(hover:none)').matches;
     setTimeout(() => { clearInterval(iv); preloader.classList.add('hidden'); }, 5000);
 })();
 
-/* ===== GLOW FOLLOW ===== */
+/* ===== GLOW FOLLOW (halo ambre de fond) ===== */
 const glow=document.getElementById('glowFollow');
 if(!isTouch && !reduceMotion){document.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}
 
-/* ===== SCROLL PROGRESS + HEADER + BACK TO TOP ===== */
+/* ===== SCROLL PROGRESS + HEADER + BACK TO TOP (SANS parallax hero → plus de chevauchement) ===== */
 const scrollProgress=document.getElementById('scrollProgress'),header=document.getElementById('header'),backToTop=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{
     const s=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
@@ -538,7 +445,7 @@ window.addEventListener('scroll',()=>{
 
 /* ===== TITRE HERO : REVEAL LETTRE PAR LETTRE ===== */
 const titleEl=document.getElementById('heroTitle');
-const TITLE_TEXT=titleEl.getAttribute('data-text')||'SHERBROOKE RP';
+const TITLE_TEXT=titleEl.getAttribute('data-text')||'COMMUNAUTÉ QUÉBEC';
 (function buildTitle(){
     titleEl.innerHTML='';
     const words=TITLE_TEXT.split(' ');
@@ -559,16 +466,16 @@ const TITLE_TEXT=titleEl.getAttribute('data-text')||'SHERBROOKE RP';
     setTimeout(()=>titleEl.classList.add('done'),600+charIndex*45+800);
 })();
 
-/* ===== TYPEWRITER ===== */
+/* ===== TYPEWRITER (sous-titre) ===== */
 const subEl=document.getElementById('heroSub');
-const SUB_TEXT='IMMERSION • RÉALISME • COMMUNAUTÉ';
+const SUB_TEXT='UNIS • ENTRAIDE • RESPECT • PARTAGE';
 let twI=0;
 function typeWriter(){if(twI<=SUB_TEXT.length){subEl.innerHTML=SUB_TEXT.slice(0,twI)+'<span class="tw-cursor"></span>';twI++;setTimeout(typeWriter,70)}else{subEl.innerHTML=SUB_TEXT}}
 setTimeout(typeWriter,1800);
 
 /* ===== EFFET "DECODE" sur les titres de section au scroll ===== */
 if(!reduceMotion){
-    const SCRAMBLE='ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
+    const SCRAMBLE='ABCDEFGHIJKLMNOPQRSTUVWXYZ⚜★♥#';
     function scrambleIn(el){
         const original=el.dataset.text||el.textContent;
         el.dataset.text=original;
@@ -589,19 +496,9 @@ if(!reduceMotion){
     document.querySelectorAll('.section-header h2').forEach(h=>scrObs.observe(h));
 }
 
-/* ===== TILT 3D + SPOTLIGHT ===== */
+/* ===== TILT 3D + SPOTLIGHT (cartes uniquement) ===== */
 if(!reduceMotion){
-    document.querySelectorAll('.tilt').forEach(card=>{
-        const sp=card.querySelector('.spotlight');
-        card.addEventListener('mousemove',e=>{
-            const r=card.getBoundingClientRect();
-            const x=e.clientX-r.left,y=e.clientY-r.top;
-            const rY=((x/r.width)-.5)*12,rX=((y/r.height)-.5)*-12;
-            card.style.transform=`perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-10px)`;
-            if(sp){sp.style.setProperty('--mx',(x/r.width*100)+'%');sp.style.setProperty('--my',(y/r.height*100)+'%')}
-        });
-        card.addEventListener('mouseleave',()=>{card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateY(0)'})
-    });
+    document.querySelectorAll('.tilt').forEach(card=>{const sp=card.querySelector('.spotlight');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;const rY=((x/r.width)-.5)*12,rX=((y/r.height)-.5)*-12;card.style.transform=`perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-10px)`;if(sp){sp.style.setProperty('--mx',(x/r.width*100)+'%');sp.style.setProperty('--my',(y/r.height*100)+'%')}});card.addEventListener('mouseleave',()=>{card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateY(0)'})});
 }
 
 /* ===== PARTICULES + AIMANT SUBTIL ===== */
